@@ -8,7 +8,7 @@ Clone this repository, and create symbolic links using [GNU Stow](https://alexpe
 ``` shell
 gt clone git@github.com:Luc-Saccoccio/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-stow neovim zsh # whatever else you'd like
+stow nvim zsh # whatever else you'd like
 ```
 
 ## License
