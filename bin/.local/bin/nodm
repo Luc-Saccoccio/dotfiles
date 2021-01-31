@@ -1,0 +1,6 @@
+#!/bin/sh
+
+printf "Available WMs : [i3], [dwm], [bspwm]\nChoice: "
+read -r WM
+sed -i "s/exec\ .*/exec\ $WM/g" ".xinitrc"
+startx

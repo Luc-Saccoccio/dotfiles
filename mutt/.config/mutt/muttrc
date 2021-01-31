@@ -1,0 +1,17 @@
+# ━━━━━━━━━┏┓━━┏┓━━━━━━━━
+# ━━━━━━━━┏┛┗┓┏┛┗┓━━━━━━━
+# ┏┓┏┓┏┓┏┓┗┓┏┛┗┓┏┛┏━┓┏━━┓
+# ┃┗┛┃┃┃┃┃━┃┃━━┃┃━┃┏┛┃┏━┛
+# ┃┃┃┃┃┗┛┃━┃┗┓━┃┗┓┃┃━┃┗━┓
+# ┗┻┻┛┗━━┛━┗━┛━┗━┛┗┛━┗━━┛
+# ━━━━━━━━━━━━━━━━━━━━━━━
+# ━━━━━━━━━━━━━━━━━━━━━━━
+
+
+source /home/luc/.config/mutt/colors.muttrc
+source /home/luc/.config/mutt/accounts/prep.muttrc
+source /home/luc/.config/mutt/bindings.muttrc
+source /home/luc/.config/mutt/others.muttrc
+
+
+# vim: filetype=neomuttrc

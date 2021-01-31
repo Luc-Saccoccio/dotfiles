@@ -1,0 +1,16 @@
+#!/bin/sh
+
+killall xwinwrap > /dev/null 2>&1
+ext=${1##*.}
+if [ "$1" = "clear" ]
+then
+	exit 0
+elif [ "$ext" = "mp4" ]
+then
+	xwinwrap -g 1920x1080+0+0 -ni -s -nf -b -un -argb -fdt -- mpv --fullscreen --no-stop-screensaver --loop --no-audio --no-border --no-osc --no-input-default-bindings -wid WID "$1" > /dev/null 2>&1 &
+elif [ "$ext" = "gif" ]
+then
+	xwinwrap -g 1920x1080 -ni -s -nf -b -un -argb -fdt --  gifview -U -a -w WID "$1" > /dev/null 2>&1 &
+else
+	echo "Unkown file"
+fi

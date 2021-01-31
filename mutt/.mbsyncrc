@@ -1,0 +1,25 @@
+IMAPStore prep-remote
+Host disroot.org
+Port 993
+User lucsaccoccio@disroot.org
+PassCmd "pass mutt-wizard-prep"
+AuthMechs LOGIN
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore prep-local
+Subfolders Verbatim
+Path ~/.local/share/mail/prep/
+Inbox ~/.local/share/mail/prep/INBOX
+Flatten .
+
+Channel prep
+Expunge Both
+Master :prep-remote:
+Slave :prep-local:
+Patterns * !"[Gmail]/All Mail"
+Create Both
+Sync Pull
+SyncState *
+ExpireUnread no
+# End profile

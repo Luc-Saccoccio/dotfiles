@@ -1,0 +1,4 @@
+[Desktop Entry]
+Type=Application
+Name=Qutebrowser
+Exec=/usr/local/bin/surf %u

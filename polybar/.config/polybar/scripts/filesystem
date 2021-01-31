@@ -1,0 +1,6 @@
+#!/bin/sh
+
+r="$(df / -h --output=avail | tail -n1 | cut -d\  -f3)"
+h="$(df /home -h --output=avail | tail -n1)"
+
+echo "$r  $h"
