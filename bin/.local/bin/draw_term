@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+
+read -r X Y W H < <(slop -f "%x %y %w %h" -b 1 -t 0 -q)
+if [[ -n "$W" ]] && [[ -n "$H" ]]; then
+	(( W /= 8 ))
+	(( H /= 16 ))
+	g=${W}x${H}+${X}+${Y}
+	bspc rule -a st-256color -o state=floating
+	st -c floating -g "$g"
+fi

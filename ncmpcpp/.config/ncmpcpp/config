@@ -1,0 +1,111 @@
+# ┏━┓━┏┓┏━━━┓┏━┓┏━┓┏━━━┓┏━━━┓┏━━━┓┏━━━┓
+# ┃┃┗┓┃┃┃┏━┓┃┃┃┗┛┃┃┃┏━┓┃┃┏━┓┃┃┏━┓┃┃┏━┓┃
+# ┃┏┓┗┛┃┃┃━┗┛┃┏┓┏┓┃┃┗━┛┃┃┃━┗┛┃┗━┛┃┃┗━┛┃
+# ┃┃┗┓┃┃┃┃━┏┓┃┃┃┃┃┃┃┏━━┛┃┃━┏┓┃┏━━┛┃┏━━┛
+# ┃┃━┃┃┃┃┗━┛┃┃┃┃┃┃┃┃┃━━━┃┗━┛┃┃┃━━━┃┃━━━
+# ┗┛━┗━┛┗━━━┛┗┛┗┛┗┛┗┛━━━┗━━━┛┗┛━━━┗┛━━━
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+# Directories
+mpd_music_dir = "~/Musique"
+ncmpcpp_directory = "~/.config/ncmpcpp"
+lyrics_directory = "~/.config/ncmpcpp/lyrics"
+
+# MPD
+mpd_host = localhost
+mpd_port = 6600
+
+
+# Visualizer
+visualizer_fifo_path = /tmp/mpd.fifo
+visualizer_output_name = "visualizer"
+visualizer_in_stereo = yes
+visualizer_look = ●●
+visualizer_sync_interval = 30
+visualizer_type = ellipse
+visualizer_color = blue, cyan, green, yellow, magenta, red
+
+# Appearance
+## Colors
+colors_enabled = "yes"
+enable_window_title = "yes"
+user_interface = classic
+main_window_color = white
+empty_tag_color = magenta
+header_window_color = cyan
+#volume_color = default
+#state_line_color = default
+#state_flags_color = default:b
+#color1 = white
+#color2 = green
+statusbar_color = red
+statusbar_time_color = cyan:b
+#player_state_color = default:b
+#alternative_ui_separator_color = black:b
+#window_border_color = green
+#active_window_border = red
+
+## Progressbar
+progressbar_look = "═>═"
+progressbar_color = cyan
+progressbar_elapsed_color = blue
+
+message_delay_time = 1
+
+# Display Mode
+playlist_display_mode = classic
+browser_display_mode = columns
+
+# Format
+song_list_format = {$4%a - }{%t}|{$8%f$9}$R{$3(%l)$9}
+# song_status_format = $b{{$8"%t"}} $3by {$4%a{ $3in $7%b{ (%y)}} $3}|{$8%f}
+song_status_format = "$b$7♫ $2%a $8- $3%b $8- $8%t "
+# song_library_format = "{{%n - %t}|{%f}}{$R%l}"
+
+song_columns_list_format = (20)[]{a} (6f)[green]{NE} (50)[white]{t|f:Title} (20)[cyan]{b} (7f)[magenta]{l}
+
+execute_on_song_change="mpd_cover"
+
+#  locked_screen_width_part = 60
+#  startup_slave_screen=visualizer
+
+#execute_on_song_change = ""
+#execute_on_player_state_change = ""
+#playlist_show_mpd_host = no
+#playlist_show_remaining_time = no
+#playlist_shorten_total_times = no
+#playlist_separate_albums = no
+#search_engine_display_mode = classic
+#playlist_editor_display_mode = classic
+#discard_colors_if_item_is_selected = yes
+#show_duplicate_tags = true
+#incremental_seeking = yes
+#seek_time = 1
+volume_change_step = 1
+autocenter_mode = yes
+centered_cursor = yes
+#default_place_to_search_in = database
+#data_fetching_delay = yes
+media_library_primary_tag = album_artist
+media_library_albums_split_by_date = no
+#default_find_mode = wrapped
+#default_tag_editor_pattern = %n - %t
+#header_visibility = yes
+#statusbar_visibility = yes
+#titles_visibility = yes
+#header_text_scrolling = yes
+#cyclic_scrolling = no
+#lines_scrolled = 2
+#lyrics_fetchers = lyricwiki, azlyrics, genius, sing365, lyricsmania, metrolyrics, justsomelyrics, jahlyrics, plyrics, tekstowo, internet
+#follow_now_playing_lyrics = no
+#fetch_lyrics_for_current_song_in_background = no
+#store_lyrics_in_song_dir = no
+#generate_win32_compatible_filenames = yes
+#allow_for_physical_item_deletion = no
+startup_screen = media_library
+
+display_volume_level = yes
+
+external_editor = "nvim"

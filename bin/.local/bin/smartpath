@@ -1,0 +1,12 @@
+#!/bin/sh
+# smartpath
+
+repo_path=$(git rev-parse --show-toplevel 2> /dev/null)
+
+if [ -n "$repo_path" ]; then
+    repo=$(basename "$repo_path")
+    branch=$(git branch | grep "\*" | cut -d ' ' -f2)
+    echo "$PWD" | sed "s|^$repo_path\(.*\)|git@$repo\1:$branch|"
+else
+    echo ""
+fi

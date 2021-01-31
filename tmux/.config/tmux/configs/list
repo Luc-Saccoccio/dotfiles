@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if tmux ls | grep list
+then
+	tmux -2 attach-session -d -t list
+else
+	tmux new-session -d -s list -n main -c ~/Vidéos/list "nnn"
+	tmux set status-position bottom
+	tmux new-window -n documentaires -c ~/Vidéos/list "sc-im documentaires.sc"
+	tmux new-window -n films -c ~/Vidéos/list "sc-im films.sc"
+	tmux new-window -n series -c ~/Vidéos/list "sc-im series.sc"
+	tmux new-window -n series_audios -c ~/Vidéos/list "sc-im series_audios.sc"
+	tmux -2 attach-session -d -t list
+fi

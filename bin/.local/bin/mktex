@@ -1,0 +1,25 @@
+#!/bin/sh
+
+name="$1".tex
+
+touch "$name"
+
+cat << EOF > "$name"
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fontspec}
+\usepackage{multicol}
+\usepackage[french]{babel}
+\usepackage[top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage{wrapfig}
+\usepackage[french]{datetime}
+
+
+\begin{document}
+
+\end{document}
+EOF

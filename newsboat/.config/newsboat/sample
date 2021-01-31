@@ -1,0 +1,19 @@
+"query:▱▱▱ Youtube ▱▱▱ :tags # \"youtube\""
+https://www.youtube.com/feeds/videos.xml?channel_id=UC8-UThnwzBI5ApzVG4MY7VQ "youtube" "~▷  Nexus VI"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCYO_jab_esuFRV4b17AJtAw "youtube" "~▷  3Blue1Brown"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA "luke smith" "linux" "youtube" "~▷  Luke Smith"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCyW-leqPXUunrXXxFjpZ7VA "youtube" "~▷  Animenz Piano Sheets"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC08NVDi0tgVdM6YxHoBPTTw "youtube" "~▷  ProleteR"
+
+"query:▱▱▱ Tech ▱▱▱ :tags # \"tech\""
+http://lukesmith.xyz/rss.xml "luke smith" "linux" "~▷  Luke Smith Website" "tech"
+https://suckless.org/atom.xml "linux" "~▷  Suckless" "tech"
+https://www.archlinux.org/feeds/news/ "linux" "~▷  ArchLinux news" "tech"
+https://projecteuler.net/rss2_euler.xml "tech" "~▷  Project Euler"
+
+"query:▱▱▱ Git ▱▱▱ :tags # \"git\""
+https://github.com/jarun/nnn/commits/master.atom "git" "github" "~▷  nnn"
+https://github.com/muennich/sxiv/commits/master.atom "git" "github" "~▷  sxiv"
+
+"query:▱▱▱ Others ▱▱▱ :tags # \"others\""
+https://minecraftathome.com/minecrafthome/rss_main.php "others" "minecraft@home" "~▷  Minecraft@Home"

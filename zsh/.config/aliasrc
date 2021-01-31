@@ -1,0 +1,60 @@
+#!/bin/sh
+
+# Basics like verbosity and settings
+alias \
+	cp="cp -iv" \
+	mv="mv -iv" \
+	rm="rm -Iv" \
+	mkd="mkdir -pv" \
+	yt="youtube-dl --add-metadata -i" \
+	yta="yt -x -f bestaudio/best" \
+	ffmpeg="ffmpeg -hide_banner" \
+	tmux="tmux -f ~/.config/tmux/tmux.conf" \
+	nnn="nnn -a" \
+	lsblk='lsblk -o name,size,type,mountpoint,label' \
+	lsblkv='lsblk -o name,size,type,fstype,mountpoint,label,uuid' \
+	df='df --total -h' \
+	bat='PAGER="less -R" bat' \
+	stig='stig -c ~/.config/pipx/rc'
+
+# Colorize commands when possible
+alias \
+	ls="ls -hN --color=auto" \
+	grep="grep --color=auto" \
+	diff="diff --color=auto" \
+	ccat="highlight --out-format=ansi --force" \
+	less="less -r"
+
+# Others
+alias \
+	la="exa -lah" \
+	ll="ls -l" \
+	lsa="ls -a" \
+	lexa="exa -Tla" \
+	lext="exa -Tl" \
+	vim="nvim" \
+	nmutt="neomutt" \
+	open="xdg-open" \
+	scim="sc-im" \
+	wm-name="xprop | grep 'WM_NAME'" \
+	fr="cd \"\$((find \"\$HOME\"/repos/ -maxdepth 2 -type d && echo /home/luc/work/Informatique/informatique-mpsi) | fzf --layout=reverse --height 40%
+)\" || exit 1" \
+	ft="sh \"\$(find \"\$HOME\"/.config/tmux/configs/ -maxdepth 1 | sed '1d' | fzf --layout=reverse --height 40%)\" 2>/dev/null || :" \
+	film="mpv --sub-auto=all --sub-file-paths=Subs" \
+	music_editor="ncmpcpp -c ~/.config/ncmpcpp/editor"
+
+haste() {
+	a=$(cat)
+	curl -X POST -s -d "$a" https://hastebin.com/documents | awk -F '"' '{print "https://hastebin.com/"$4}'
+}
+
+allatexcomp() {
+	for file in $(ls | grep ".tex")
+	do
+		xelatex "$file"
+	done
+	ls | grep ".aux" >/dev/null && command rm ./*.aux
+	ls | grep ".log" >/dev/null && command rm ./*.log
+}
+
+# vim: filetype=sh

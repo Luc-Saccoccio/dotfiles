@@ -1,0 +1,19 @@
+#!/bin/sh
+
+DIR="$HOME/Images/wallpapers/" # Path to wallpapers
+
+walls=$(sxiv -t -o -r -g 750x750+585+165 "$DIR" | xargs)  # running sxiv in thumbnail mode.
+wall1=$(printf "%s" "$walls" | grep -o '[^\ ]*$') # Only print the last marked Wallpaper
+
+# if no picture is marked in sxiv, exit.
+if [ -z "$walls" ]
+then
+	exit 0
+else
+	$SingleWallMenu
+fi
+
+SingleWallMenu="dmenu -i -c -bw 3 -l 5 -p Options"
+SingleWallOptions=$(printf "fill\ncenter\ntile\nscale\nseamless" | $SingleWallMenu)
+
+feh --bg-"$SingleWallOptions" "$wall1" && /home/luc/.local/bin/livewallpaper clear

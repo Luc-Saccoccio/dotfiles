@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if tmux ls | grep "mangas"
+then
+	tmux -2 attach-session -d -t mangas
+else
+	tmux new-session -d -s mangas -n Mangas -c ~/Documents/Reading\ Material/Mangas "nnn"
+	tmux new-window -n "State" "cd ~/Documents/Reading\\ Material/Mangas; sc-im state.sc"
+	tmux -2 attach-session -d -t mangas
+fi

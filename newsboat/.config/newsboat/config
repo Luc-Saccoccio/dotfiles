@@ -1,0 +1,58 @@
+auto-reload yes
+
+notify-always yes
+notify-program "~/.local/bin/newsboat-notifier"
+
+reload-time 30
+
+bind-key j down
+bind-key k up
+bind-key j next articlelist
+bind-key k prev articlelist
+bind-key J next-feed articlelist
+bind-key K prev-feed articlelist
+bind-key G end
+bind-key g home
+bind-key d pagedown
+bind-key u pageup
+bind-key l open
+bind-key h quit
+bind-key a toggle-article-read
+bind-key n next-unread
+bind-key N prev-unread
+bind-key D pb-download
+bind-key U show-urls
+bind-key x pb-delete
+bind-key T clear-tag
+
+browser linkhandler
+macro , set browser "firefox"; open-in-browser ; set browser "linkhandler"
+macro v set browser "setsid -f mpv"; open-in-browser ; set browser linkhandler
+macro w set browser "lynx"; open-in-browser ; set browser linkhandler
+macro p set browser "dmenuhandler"; open-in-browser ; set browser linkhandler
+macro c set browser "xsel -b <<<" ; open-in-browser ; set browser linkhandler
+
+color background          default color0
+color listnormal          color8  color0
+color listnormal_unread   color6  color0
+color listfocus_unread    color4  color0 bold
+color listfocus           color3  color0 bold
+color info                color4  color0
+color article             white   color0
+
+notify-format "Finished reload :\n- New articles : %n \n- Feeds : %f"
+
+highlight all "▱▱▱.*▱▱▱" color2 color0
+feedlist-format "%t%> %u"
+highlight article "^Fil :.*" red color0 bold
+highlight article "^Titre :.*" blue color0 bold
+highlight article "^Auteur :.*" cyan color0 bold
+highlight article "^Date :.*" magenta color0
+highlight article "^Lien :.*" blue color0 bold
+highlight article "\\[[0-9][0-9]*\\]" green color0 bold
+highlight article "\\[image\\ [0-9]+\\]" yellow color0 bold
+highlight article "\\[embedded flash: [0-9][0-9]*\\]" yellow color0 bold
+highlight article ":.*\\(link\\)$" blue color0 underline
+highlight article ":.*\\(image\\)$" blue color0
+highlight article ":.*\\(embedded flash\\)$" magenta color0
+highlight article "https?://[^ ]+" blue color0 underline

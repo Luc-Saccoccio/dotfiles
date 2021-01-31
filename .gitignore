@@ -1,0 +1,15 @@
+mpd/.config/mpd/database
+mpd/.config/mpd/log
+mpd/.config/mpd/pid
+mpd/.config/mpd/state
+mpd/.config/mpd/sticker.sql
+mpv/.config/mpv/fonts/
+mpv/.config/mpv/watch_later/
+ncmpcpp/.config/ncmpcpp/lyrics/
+ncmpcpp/.config/ncmpcpp/error.log
+newsboat/.config/newsboat/urls
+nvim/.config/nvim/coc-settings.json
+nvim/.config/nvim/.netrwhist
+nvim/.config/nvim/autoload
+nvim/.config/nvim/plugged/
+nvim/.config/nvim/spell
