@@ -14,6 +14,12 @@ else
 fi
 
 SingleWallMenu="dmenu -i -c -bw 3 -l 5 -p Options"
-SingleWallOptions=$(printf "fill\ncenter\ntile\nscale\nseamless" | $SingleWallMenu)
+#SingleWallOptions=$(printf "fill\ncenter\ntile\nscale\nseamless" | $SingleWallMenu)
+SingleWallOptions="fill"
 
-feh --bg-"$SingleWallOptions" "$wall1" && /home/luc/.local/bin/livewallpaper clear
+if [ -z "$SingleWallOptions" ]
+then
+	exit 0
+else
+	feh --bg-"$SingleWallOptions" "$wall1" && /home/luc/.local/bin/livewallpaper clear
+fi
