@@ -28,6 +28,7 @@ Plug 'ryanoasis/vim-devicons' "Have icons in vim
 Plug 'lilydjwg/colorizer' " Colorize HTML codes
 Plug 'liuchengxu/vista.vim' " Symbols and tags
 Plug 'ObserverOfTime/discord.nvim', {'do': ':UpdateRemotePlugins'}
+Plug 'tomtom/tcomment_vim' " Commenting
 " WAITING FOR NIGHTLY
 " Plug 'kyazdani42/nvim-web-devicons'
 " Plug 'romgrk/barbar.nvim'
