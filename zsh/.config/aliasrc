@@ -54,7 +54,7 @@ ft() { # FZF Tmux
 
 ce() { # Edit Config
 	choices="$(find "$HOME"/.dotfiles/ -maxdepth 4 -path /home/luc/.dotfiles/.git -prune -o -name "*")"
-	cd "$(echo "$choices" | fzf --layout=reverse --height 40%)" || exit 1
+	nvim "$(echo "$choices" | fzf --layout=reverse --height 40%)" || exit 1
 }
 
 haste() {
