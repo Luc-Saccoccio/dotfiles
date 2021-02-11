@@ -15,11 +15,11 @@ syntax match pyNiceOperator "\<in\>" conceal cchar=∈
 syntax match pyNiceOperator "\<or\>" conceal cchar=∨
 syntax match pyNiceOperator "\<and\>" conceal cchar=∧
 
-syntax match pyNiceOperator "<=" conceal cchar=≤
-syntax match pyNiceOperator ">=" conceal cchar=≥
+" syntax match pyNiceOperator "<=" conceal cchar=≤
+" syntax match pyNiceOperator ">=" conceal cchar=≥
 
-syntax match pyNiceOperator "=\@<!===\@!" conceal cchar=≡
-syntax match pyNiceOperator "!=" conceal cchar=≠
+" syntax match pyNiceOperator "=\@<!===\@!" conceal cchar=≡
+" syntax match pyNiceOperator "!=" conceal cchar=≠
 
 syntax keyword pyNiceOperator sum conceal cchar=∑
 syntax match pyNiceOperator "\<\%(math\.\)\?sqrt\>" conceal cchar=√
