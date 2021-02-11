@@ -29,6 +29,10 @@ Plug 'lilydjwg/colorizer' " Colorize HTML codes
 Plug 'liuchengxu/vista.vim' " Symbols and tags
 Plug 'ObserverOfTime/discord.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'tomtom/tcomment_vim' " Commenting
+Plug 'ndmitchell/ghcid', { 'rtp': 'plugins/nvim' } " Haskell ghcid
+Plug 'eagletmt/neco-ghc' " Haskell Completion
+Plug 'neovimhaskell/haskell-vim' " Better Haskell syntax Highlightinh and other stuff
+Plug 'pineapplegiant/spaceduck', { 'branch': 'main' } " Spaceduck theme
 " WAITING FOR NIGHTLY
 " Plug 'kyazdani42/nvim-web-devicons'
 " Plug 'romgrk/barbar.nvim'
@@ -45,7 +49,7 @@ set nocompatible " Use Vim settings instead of Vi settings
 filetype plugin on " Autodetect filetype
 syntax enable " Enable syntax highlighting
 set termguicolors " Set termguicolors
-colorscheme base16-seti " Use base16-seti colorscheme
+colorscheme spaceduck " Use spaceduck colorscheme
 set number "relativenumber
 set splitbelow splitright
 set history=10
@@ -60,6 +64,9 @@ call deoplete#custom#var('omni', 'input_patterns', {
           \ 'tex': g:vimtex#re#deoplete
           \})
 call deoplete#custom#option('auto_complete_delay', 0)
+
+let g:haskellmode_completion_ghc = 0
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " Airline
 let g:airline_symbols = {}
@@ -127,7 +134,6 @@ autocmd FileType vista,vista_kind nnoremap <buffer> <silent> / :<c-u>call vista#
 
 " NerdTree
 map <C-n> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " Git Plugin
 " let g:NERDTreeIndicatorMapCustom = {
 "     \ "Modified"  : "✹",
@@ -138,7 +144,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 "     \ "Deleted"   : "✖",
 "     \ "Dirty"     : "✗",
 "     \ "Clean"     : "✔︎",
-"     \ 'Ignored'   : '☒',
+"     \ "Ignored"   : '☒',
 "     \ "Unknown"   : "?"
 "     \ }
 
@@ -201,6 +207,9 @@ nnoremap <leader>/ :BLines<CR>
 " Shellcheck
 nnoremap <leader>aS :sp term://shellcheck %<cr>:resize 15<cr>
 
+" Ghcid
+nnoremap <leader>g :Ghcid<CR>
+
 " ====================== AUTOCMD ============================ "
 
 " Spell verification on md and tex file
@@ -208,7 +217,7 @@ autocmd BufEnter *.Rmd set spell spelllang=fr
 autocmd BufEnter *.tex set spell spelllang=fr
 autocmd bufenter * if (("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc shiftwidth=3 softtabstop=3 expandtab
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc shiftwidth=4 softtabstop=4 expandtab
 
 " Clear when leaving texfile
 autocmd VimLeave *.tex !texclear %
@@ -225,7 +234,7 @@ augroup END
 au BufNewFile,BufRead *.py set foldmethod=indent
 au BufNewFile,BufRead *.tex set foldmethod=indent
 
-autocmd FileType ocaml inoremap ,l λ
+autocmd FileType ocaml,haskell inoremap ,l λ
 
 " ======================== FZF ============================== "
 
@@ -233,7 +242,7 @@ let $FZF_DEFAULT_COMMAND =  "rg --files --hidden"
 
 " ===================== SCHEMES =========================== "
 
-map <leader>D :colorscheme horizon<CR>:let g:airline_theme='lucius'<CR>
+map <leader>D :colorscheme spaceduck<CR>
 map <leader>B :colorscheme base16-seti<CR>
 map <leader>L :colorscheme rusticated<CR>
 
