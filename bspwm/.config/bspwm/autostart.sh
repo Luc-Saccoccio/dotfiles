@@ -30,8 +30,8 @@ setxkbmap -layout fr # Put the keyboard in azerty
 xmodmap "$HOME/.Xmodmap" # Custom keyboard mappings
 xsetroot -cursor_name left_ptr # Basic cursor and not a cross
 pgrep sxhkd || sxhkd & # Start Simple Hotkey Daemon
-# "$HOME/.fehbg" # Restore last wallpaper
-"$HOME"/.local/bin/random-wall # Random wallpaper
+"$HOME/.fehbg" # Restore last wallpaper
+# "$HOME"/.local/bin/random-wall # Random wallpaper
 xrdb ~/.Xresources # colors
 
 
