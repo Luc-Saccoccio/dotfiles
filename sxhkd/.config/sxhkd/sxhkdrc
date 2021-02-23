@@ -40,7 +40,7 @@ super + shift + m
 super + shift + p
 	/home/luc/.local/bin/dmenuunicode
 super + space
-	/home/luc/.local/bin/pmenu.sh
+	xdg-xmenu | xmenu | sh
 #################
 # File Managers #
 #################
@@ -65,11 +65,13 @@ Print
 super + shift + Print
 	scrot '%Y-%m-%d-%s_$wx$h.png' -e 'mv $f ~/Images/screenshots/' && notify-send --icon=itmages-information "Screenshot" "Screenshot saved to /home/luc/Images/screenshots"
 
-#########
-# Ruler #
-#########
+################
+# Ruler & Zoom #
+################
 super + shift + l
 	dunstify "xmeasure" "$(xmeasure)"
+super + k
+	boomer &> /dev/null
 
 ##################
 # Volume Control #
