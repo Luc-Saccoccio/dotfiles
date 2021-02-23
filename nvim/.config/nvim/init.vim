@@ -12,9 +12,6 @@
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} " Python syntax
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Completion
-Plug 'copy/deoplete-ocaml' " OCaml sources for deoplte
-Plug 'deoplete-plugins/deoplete-jedi' " Python sources for completion
 Plug 'dense-analysis/ale' " ALE
 Plug 'lervag/vimtex'
 Plug 'preservim/nerdtree' " Nerdtree file manager
@@ -26,13 +23,18 @@ Plug 'junegunn/fzf.vim'
 Plug 'edkolev/tmuxline.vim' " Tmux matching nvim
 Plug 'ryanoasis/vim-devicons' "Have icons in vim
 Plug 'lilydjwg/colorizer' " Colorize HTML codes
-Plug 'liuchengxu/vista.vim' " Symbols and tags
+Plug 'preservim/tagbar'
 Plug 'ObserverOfTime/discord.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'tomtom/tcomment_vim' " Commenting
 Plug 'ndmitchell/ghcid', { 'rtp': 'plugins/nvim' } " Haskell ghcid
-Plug 'eagletmt/neco-ghc' " Haskell Completion
 Plug 'neovimhaskell/haskell-vim' " Better Haskell syntax Highlightinh and other stuff
 Plug 'pineapplegiant/spaceduck', { 'branch': 'main' } " Spaceduck theme
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Completion
+Plug 'copy/deoplete-ocaml' " OCaml sources for deoplte
+Plug 'deoplete-plugins/deoplete-jedi' " Python sources for completion
+Plug 'eagletmt/neco-ghc' " Haskell Completion
+Plug 'alx741/vim-stylishask' " Prettier Haskell
+Plug 'monkoose/fzf-hoogle.vim'
 " WAITING FOR NIGHTLY
 " Plug 'kyazdani42/nvim-web-devicons'
 " Plug 'romgrk/barbar.nvim'
@@ -64,9 +66,8 @@ call deoplete#custom#var('omni', 'input_patterns', {
           \ 'tex': g:vimtex#re#deoplete
           \})
 call deoplete#custom#option('auto_complete_delay', 0)
-
-let g:haskellmode_completion_ghc = 0
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc shiftwidth=4 softtabstop=4 expandtab
+let g:stylishask_on_save = 0
 
 " Airline
 let g:airline_symbols = {}
@@ -77,28 +78,8 @@ let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#branch#empty_message = ''
 let g:airline#extensions#whitespace#symbol= '!'
 
-
-" ========================== VISTA ========================= "
-
-function! NearestMethodOrFunction() abort
-	return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
-
-let g:vista#renderer#icons = {
-			\ "function": "\uf794",
-    			\ "variable": "\uf71b"}
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
-
-
-let g:vista#renderer#enable_icon = 1
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-let g:vista_default_executive = 'ctags'
-let g:vista_ctags_cmd = {
-      \ 'haskell': 'hasktags -x -o - -c',
-      \ }
-let g:vista#renderer#enable_icon = 1
-" let g:vista_default_executive = 'ale'
-
+" Sudo on files that require root permission
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
 " ========================== TMUX ========================== "
 
@@ -128,29 +109,18 @@ tnoremap <Esc> <C-\><C-n>
 map <leader>F :setlocal spell spelllang=fr<CR>
 map <leader>E :setlocal spell spelllang=en<CR>
 
-" Vista
-map <C-p> :Vista!!<CR>
-autocmd FileType vista,vista_kind nnoremap <buffer> <silent> / :<c-u>call vista#finder#fzf#Run()<CR>
+" Tagbar
+map <C-p> :TagbarToggle<CR>
 
 " NerdTree
 map <C-n> :NERDTreeToggle<CR>
-" Git Plugin
-" let g:NERDTreeIndicatorMapCustom = {
-"     \ "Modified"  : "✹",
-"     \ "Staged"    : "✚",
-"     \ "Untracked" : "✭",
-"     \ "Renamed"   : "➜",
-"     \ "Unmerged"  : "═",
-"     \ "Deleted"   : "✖",
-"     \ "Dirty"     : "✗",
-"     \ "Clean"     : "✔︎",
-"     \ "Ignored"   : '☒',
-"     \ "Unknown"   : "?"
-"     \ }
 
-" nnn
-"map <C-n> :NnnPicker '%:p:h'<CR>
-"let g:nnn#layout = 'new' " Split
+" Haskell
+map <C-s> :Stylishask<CR>
+map <C-h> :Hoogle<CR>
+nnoremap <leader>g :Ghcid<CR>
+nnoremap <leader>G :10split term://ghci %<CR>i
+nnoremap <leader>h :10split term://hlint %<CR>i
 
 " Navigating between marks
 inoremap <leader><leader> <Esc>/<++><Enter>"_c4l
@@ -207,17 +177,12 @@ nnoremap <leader>/ :BLines<CR>
 " Shellcheck
 nnoremap <leader>aS :sp term://shellcheck %<cr>:resize 15<cr>
 
-" Ghcid
-nnoremap <leader>g :Ghcid<CR>
-
 " ====================== AUTOCMD ============================ "
 
 " Spell verification on md and tex file
 autocmd BufEnter *.Rmd set spell spelllang=fr
 autocmd BufEnter *.tex set spell spelllang=fr
 autocmd bufenter * if (("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc shiftwidth=4 softtabstop=4 expandtab
 
 " Clear when leaving texfile
 autocmd VimLeave *.tex !texclear %

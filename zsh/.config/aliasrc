@@ -15,9 +15,7 @@ alias \
 	lsblkv='lsblk -o name,size,type,fstype,mountpoint,label,uuid' \
 	df='df --total -h' \
 	bat='PAGER="less -R" bat' \
-	stig='stig -c ~/.config/pipx/rc' \
-	ghc='stack ghc' \
-	ghci='stack ghci'
+	stig='stig -c ~/.config/pipx/rc'
 
 # Colorize commands when possible
 alias \
