@@ -2,5 +2,5 @@
 
 printf "Available WMs : [i3], [dwm], [bspwm]\nChoice: "
 read -r WM
-sed -i "s/exec\ .*/exec\ $WM/g" ".xinitrc"
+sed -i "s/WM=.*/WM=\"$WM\"/g" ".xinitrc"
 startx

@@ -2,11 +2,26 @@
 
 DIR="$HOME/Images/wallpapers/" # Path to wallpapers
 
-walls=$(sxiv -t -o -r -g 750x750+585+165 "$DIR" | xargs)  # running sxiv in thumbnail mode.
-wall1=$(printf "%s" "$walls" | grep -o '[^\ ]*$') # Only print the last marked Wallpaper
+while getopts 'sd' c
+do
+	case $c in
+		s) menu="sxiv" ;;
+		d) menu="dmenu" ;;
+		*) printf "Unkown Argument\n" ;;
+	esac
+done
+
+if [ "$menu" = "sxiv" ]; then
+	walls=$(sxiv -t -o -r -g 750x750+585+165 "$DIR" | xargs)  # running sxiv in thumbnail mode.
+	wall1=$(printf "%s" "$walls" | grep -o '[^\ ]*$') # Only print the last marked Wallpaper
+else
+	cd "$DIR" || exit
+	wall1=$(find . | dmenu -p "Wallpaper: " -l 7 | xargs)
+fi
+
 
 # if no picture is marked in sxiv, exit.
-if [ -z "$walls" ]
+if [ -z "$wall1" ]
 then
 	exit 0
 else
