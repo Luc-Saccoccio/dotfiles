@@ -40,7 +40,9 @@ super + shift + m
 super + shift + p
 	/home/luc/.local/bin/dmenuunicode
 super + space
-	xdg-xmenu | xmenu | sh
+	xdg-menu | xmenu | sh
+super + y
+	ytfzf -D
 #################
 # File Managers #
 #################
@@ -120,7 +122,9 @@ super + i
 super + shift + i
 	/home/luc/.local/bin/current-wal
 super + w
-	/home/luc/.local/bin/walc
+	/home/luc/.local/bin/walc -s
+super + shift + s
+	/home/luc/.local/bin/walc -d
 super + shift + w
 	/home/luc/.local/bin/livewalc
 

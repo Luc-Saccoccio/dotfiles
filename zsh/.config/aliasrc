@@ -27,9 +27,9 @@ alias \
 
 # Others
 alias \
-	la="exa -lah" \
-	ll="ls -l" \
-	lsa="ls -a" \
+	la="lsd -la" \
+	ll="lsd -l" \
+	lsa="lsd -a" \
 	lexa="exa -Tla" \
 	lext="exa -Tl" \
 	vim="nvim" \
