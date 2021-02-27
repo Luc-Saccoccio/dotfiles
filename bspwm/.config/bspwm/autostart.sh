@@ -20,6 +20,7 @@ mkdir /tmp/qutebrowser
 ##################
 rm -f ~/.python_history
 rm -f ~/.lesshst ~/.wget-hsts
+xdg-xmenu > ~/.cache/xmenu &
 
 ##########
 # Basics #

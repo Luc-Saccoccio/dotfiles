@@ -120,7 +120,7 @@ map <C-s> :Stylishask<CR>
 map <C-h> :Hoogle<CR>
 nnoremap <leader>g :Ghcid<CR>
 nnoremap <leader>G :10split term://ghci %<CR>i
-nnoremap <leader>h :10split term://hlint %<CR>i
+nnoremap <leader>h :10split term://hlint %; read<CR>i
 
 " Navigating between marks
 inoremap <leader><leader> <Esc>/<++><Enter>"_c4l
