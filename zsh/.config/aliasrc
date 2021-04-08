@@ -33,7 +33,6 @@ alias \
 	lexa="exa -Tla" \
 	lext="exa -Tl" \
 	vim="nvim" \
-	nmutt="neomutt" \
 	open="xdg-open" \
 	scim="sc-im" \
 	wm-name="xprop | grep 'WM_NAME'" \
@@ -41,7 +40,7 @@ alias \
 	music_editor="ncmpcpp -c ~/.config/ncmpcpp/editor"
 
 fr() { # FZF Repos
-	choices=$(find "$HOME"/repos/ -maxdepth 2 -type d && echo /home/luc/work/Informatique/informatique-mpsi)
+	choices=$(find "$HOME"/repos/ -maxdepth 2 -type d && find /home/luc/work/Informatique/informatique-mpsi -maxdepth 2 -type d -path /home/luc/work/Informatique/informatique-mpsi/.git -prune -o -name "*")
 	cd "$(echo "$choices" | fzf --layout=reverse --height 40%)" || exit 1
 }
 
@@ -50,23 +49,33 @@ ft() { # FZF Tmux
 	sh "$config" 2>/dev/null || :
 }
 
+fw() {
+	dir=$(find "$HOME/work" -not -path '*/\.*' -type d | fzf --layout=reverse --height=40%)
+	cd "$dir" || exit 1
+}
+
 ce() { # Edit Config
 	choices="$(find "$HOME"/.dotfiles/ -maxdepth 4 -path /home/luc/.dotfiles/.git -prune -o -name "*")"
 	nvim "$(echo "$choices" | fzf --layout=reverse --height 40%)" || exit 1
 }
 
-haste() {
+haste() { # Hase pastebin
 	a=$(cat)
 	curl -X POST -s -d "$a" https://hastebin.com/documents | awk -F '"' '{print "https://hastebin.com/"$4}'
 }
 
-allatexcomp() {
+allatexcomp() { # Compile all latex documents in a directory
 	for file in $(ls | grep ".tex")
 	do
 		xelatex "$file"
 	done
 	ls | grep ".aux" >/dev/null && command rm ./*.aux
 	ls | grep ".log" >/dev/null && command rm ./*.log
+}
+
+ghcip() {
+	packages="$(fzf --layout=reverse --height 40% < "$HOME/.local/share/stack-ghci-packages")"
+	[ "$packages" = "" ] || stack ghci --package "$packages"
 }
 
 # vim: filetype=sh

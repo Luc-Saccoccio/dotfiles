@@ -40,3 +40,8 @@
 	helper = cache
 [init]
 	defaultBranch = master
+
+[sendemail]
+	smtpserver = disroot.org
+	smtpuser = lucsaccoccio@disroot.org
+	smtpserverport = 587

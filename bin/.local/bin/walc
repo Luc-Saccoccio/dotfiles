@@ -16,7 +16,7 @@ if [ "$menu" = "sxiv" ]; then
 	wall1=$(printf "%s" "$walls" | grep -o '[^\ ]*$') # Only print the last marked Wallpaper
 else
 	cd "$DIR" || exit
-	wall1=$(find . | dmenu -p "Wallpaper: " -l 7 | xargs)
+	wall1=$(find . | sort | dmenu -p "Wallpaper: " -l 7 | xargs)
 fi
 
 
