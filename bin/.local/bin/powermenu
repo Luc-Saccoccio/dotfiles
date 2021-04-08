@@ -33,6 +33,7 @@ case $menu in
 	*Logout)
 		if check
 		then
+			pkill -KILL "$(pgrep -u "$(id -u)" -nf 'clipmenud$')"
 			bspc quit || pkill -SIGQUIT dwm
 		fi;;
 	*Reboot)

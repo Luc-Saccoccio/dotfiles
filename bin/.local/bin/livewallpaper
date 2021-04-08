@@ -1,16 +1,22 @@
-#!/bin/sh
+#!/bin/bash
 
-killall xwinwrap > /dev/null 2>&1
+PIDFILE="/tmp/livewallpaper.pid"
+
+declare -a PIDs
+
+p="$(cat $PIDFILE)"
+[ "$(ps -p "$p" -o comm=)" = "xwinwrap" ] && kill -9 "$p"
+
 ext=${1##*.}
 if [ "$1" = "clear" ]
 then
 	exit 0
-elif [ "$ext" = "mp4" ]
+elif [ "$ext" = "mp4" ] || [ "$ext" = "gif" ]
 then
-	xwinwrap -g 1920x1080+0+0 -ni -s -nf -b -un -argb -fdt -- mpv --fullscreen --no-stop-screensaver --loop --no-audio --no-border --no-osc --no-input-default-bindings -wid WID "$1" > /dev/null 2>&1 &
-elif [ "$ext" = "gif" ]
-then
-	xwinwrap -g 1920x1080 -ni -s -nf -b -un -argb -fdt --  gifview -U -a -w WID "$1" > /dev/null 2>&1 &
+	xwinwrap -g 1920x1080+0+0 -ni -s -nf -b -un -argb -fdt -- mpv --fullscreen --no-stop-screensaver --loop --no-audio --no-border --no-osc --no-input-default-bindings --panscan=1 -wid WID "$1" > /dev/null 2>&1 &
+	PIDs+=($!)
 else
-	echo "Unkown file"
+	echo "Unkown file" && exit 1
 fi
+
+printf "%s\n" "${PIDs[@]}" > $PIDFILE
