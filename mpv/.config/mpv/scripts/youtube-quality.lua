@@ -42,7 +42,7 @@ local opts = {
     text_padding_y = 5,
 
     --other
-    menu_timeout = 10,
+    menu_timeout = 2,
 
     --use youtube-dl to fetch a list of available formats (overrides quality_strings)
     fetch_formats = true,

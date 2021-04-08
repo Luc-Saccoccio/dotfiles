@@ -15,3 +15,6 @@ source /home/luc/.config/mutt/others.muttrc
 
 
 # vim: filetype=neomuttrc
+macro index,pager i0 '<sync-mailbox><enter-command>source /home/luc/.config/mutt/accounts/prep.muttrc<enter><change-folder>!<enter>;<check-stats><enter-command>echo "Switched to lucsaccoccio@disroot"<enter>' "switch to lucsaccoccio@disroot.org"
+macro index,pager i1 '<sync-mailbox><enter-command>source /home/luc/.config/mutt/accounts/1-anarchiste@disroot.org.muttrc<enter><change-folder>!<enter>;<check-stats><enter-command>echo "Switched to anarchiste@disroot"<enter>' "switch to anarchiste@disroot.org"
+macro index,pager i2 '<sync-mailbox><enter-command>source /home/luc/.config/mutt/accounts/2-Luc.Saccoccio_Le_Guennec@etu.sorbonne-universite.fr.muttrc<enter><change-folder>!<enter>;<check-stats><enter-command>echo "Switched to Luc.Saccoccio_Le_Guennec@etu.sorbonne-universite.fr"<enter>' "switch to Luc.Saccoccio_Le_Guennec@etu.sorbonne-universite.fr"

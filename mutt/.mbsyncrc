@@ -23,3 +23,55 @@ Sync Pull
 SyncState *
 ExpireUnread no
 # End profile
+
+IMAPStore anarchiste@disroot.org-remote
+Host disroot.org
+Port 993
+User anarchiste@disroot.org
+PassCmd "pass anarchiste@disroot.org"
+AuthMechs LOGIN
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore anarchiste@disroot.org-local
+Subfolders Verbatim
+Path /home/luc/.local/share/mail/anarchiste@disroot.org/
+Inbox /home/luc/.local/share/mail/anarchiste@disroot.org/INBOX
+
+Channel anarchiste@disroot.org
+Expunge Both
+Master :anarchiste@disroot.org-remote:
+Slave :anarchiste@disroot.org-local:
+Patterns * !"[Gmail]/All Mail"
+Create Both
+SyncState *
+MaxMessages 0
+ExpireUnread no
+# End profile
+
+
+IMAPStore Luc.Saccoccio_Le_Guennec@etu.sorbonne-universite.fr-remote
+Host imaps.sorbonne-universite.fr
+Port 993
+User Luc.Saccoccio_Le_Guennec@etu.sorbonne-universite.fr
+PassCmd "pass Luc.Saccoccio_Le_Guennec@etu.sorbonne-universite.fr"
+AuthMechs LOGIN
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore Luc.Saccoccio_Le_Guennec@etu.sorbonne-universite.fr-local
+Subfolders Verbatim
+Path /home/luc/.local/share/mail/Luc.Saccoccio_Le_Guennec@etu.sorbonne-universite.fr/
+Inbox /home/luc/.local/share/mail/Luc.Saccoccio_Le_Guennec@etu.sorbonne-universite.fr/INBOX
+
+Channel Luc.Saccoccio_Le_Guennec@etu.sorbonne-universite.fr
+Expunge Both
+Master :Luc.Saccoccio_Le_Guennec@etu.sorbonne-universite.fr-remote:
+Slave :Luc.Saccoccio_Le_Guennec@etu.sorbonne-universite.fr-local:
+Patterns * !"[Gmail]/All Mail"
+Create Both
+SyncState *
+MaxMessages 0
+ExpireUnread no
+# End profile
+

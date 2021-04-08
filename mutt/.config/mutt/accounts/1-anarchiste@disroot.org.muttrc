@@ -8,14 +8,14 @@
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 
-# muttrc file for account lucsaccoccio@disroot.org
-set realname = "Luc Saccoccio--Le Guennec"
-set from = "lucsaccoccio@disroot.org"
-set sendmail = "msmtp -a prep"
-alias me Luc Saccoccio--Le Guennec <lucsaccoccio@disroot.org>
-set folder = "/home/luc/.local/share/mail/prep"
-set header_cache = /home/luc/.cache/mutt-wizard/prep/headers
-set message_cachedir = /home/luc/.cache/mutt-wizard/prep/bodies
+# muttrc file for account anarchiste@disroot.org
+set realname = "Anarchiste"
+set from = "anarchiste@disroot.org"
+set sendmail = "msmtp -a anarchiste@disroot.org"
+alias me Anarchiste <anarchiste@disroot.org>
+set folder = "/home/luc/.local/share/mail/anarchiste@disroot.org"
+set header_cache = /home/luc/.cache/mutt-wizard/anarchiste@disroot.org/headers
+set message_cachedir = /home/luc/.cache/mutt-wizard/anarchiste@disroot.org/bodies
 set mbox_type = Maildir
 
 # set crypt_autosign = yes
@@ -32,7 +32,7 @@ unmailboxes *
 unalternates *
 unset signature
 unmacro index o
-macro index o "<shell-escape>mailsync -V prep<enter>" "run mbsync to sync prep"
+macro index o "<shell-escape>mw -y anarchiste@disroot.org<enter>" "run mbsync to sync anarchiste@disroot.org"
 
 mailboxes "=INBOX" "=Sent" "=Trash" "=Drafts" "=Junk" 
 set spoolfile = "+INBOX"

@@ -1,43 +1,51 @@
-set notification-error-bg       "#1f2430"
-set notification-error-fg       "#fb4934"
-set notification-warning-bg     "#1f2430"
-set notification-warning-fg     "#fabd2f"
-set notification-bg             "#1f2430"
-set notification-fg             "#b8bb26"
+# ┏━━━━┓━━━━━━┏┓━┏┓━━━━━━━━━━━━━━
+# ┗━━┓━┃━━━━━┏┛┗┓┃┃━━━━━━━━━━━━━━
+# ━━┏┛┏┛┏━━┓━┗┓┏┛┃┗━┓┏┓┏┓┏━┓┏━━┓━
+# ━┏┛┏┛━┗━┓┃━━┃┃━┃┏┓┃┃┃┃┃┃┏┛┗━┓┃━
+# ┏┛━┗━┓┃┗┛┗┓━┃┗┓┃┃┃┃┃┗┛┃┃┃━┃┗┛┗┓
+# ┗━━━━┛┗━━━┛━┗━┛┗┛┗┛┗━━┛┗┛━┗━━━┛
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-set completion-bg               "#1f2430"
-set completion-fg               "#bfbab0"
-set completion-group-bg         "#3c3836"
-set completion-group-fg         "#928374"
-set completion-highlight-bg     "#83a598"
-set completion-highlight-fg     "#504945"
 
-# Define the color in index mode
-set index-bg                    "#1f2430"
-set index-fg                    "#bfbab0"
-set index-active-bg             "#83a598"
-set index-active-fg             "#504945"
+# Colors
+set recolor-reverse-video 	"false"
+set font                        "Source Code Pro Regular 11"
+set default-bg                  "#2f3136" #06
+set default-fg                  "#e2c8c7" #01
 
-set inputbar-bg                 "#1f2430"
-set inputbar-fg                 "#bfbab0"
+set statusbar-bg                "#181a1b" #04
+set statusbar-fg                "#e2c8c7" #02
 
-set statusbar-bg                "#1f2430"
-set statusbar-fg                "#bfbab0"
+set inputbar-bg                 "#111111" # currently not used
+set inputbar-fg                 "#e2c8c7" #02
 
-set highlight-color             "#fabd2f"
-set highlight-active-color      "#fe8019"
+set notification-error-bg       "#111111" #08
+set notification-error-fg       "#e2c8c7" #06
 
-set default-bg                  "#1f2430"
-set default-fg                  "#bfbab0"
-set render-loading              true
-set render-loading-bg           "#1f2430"
-set render-loading-fg           "#bfbab0"
+set notification-warning-bg     "#1c1e26" #08
+set notification-warning-fg     "#e2c8c7" #06
 
-# Recolor book content's color
-set recolor-lightcolor          "#1f2430"
-set recolor-darkcolor           "#bfbab0"
-set recolor                     "true"
-# set recolor-keephue             true      # keep original color
+set highlight-color             "#F4BF75" #0A
+set highlight-active-color      "#AA759F" #08
+
+set highlight-color             "#111111" #0A
+set highlight-active-color      "#e2c8c7" #08
+
+set completion-highlight-bg     "#111111" #0C
+set completion-highlight-fg     "#e2c8c7" #05
+
+set completion-bg               "#111111" #05
+set completion-fg               "#e2c8c7" #0C
+
+set notification-bg             "#111111" #0B
+set notification-fg             "#e2c8c7" #07
+
+set recolor-lightcolor          "#202225" #06
+set recolor-darkcolor           "#e2c8c7" #02
+set recolor                     "false"
+
+set recolor-keephue "true"
 
 set selection-clipboard clipboard
 

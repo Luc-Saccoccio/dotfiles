@@ -8,14 +8,14 @@
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 
-# muttrc file for account lucsaccoccio@disroot.org
-set realname = "Luc Saccoccio--Le Guennec"
-set from = "lucsaccoccio@disroot.org"
-set sendmail = "msmtp -a prep"
-alias me Luc Saccoccio--Le Guennec <lucsaccoccio@disroot.org>
-set folder = "/home/luc/.local/share/mail/prep"
-set header_cache = /home/luc/.cache/mutt-wizard/prep/headers
-set message_cachedir = /home/luc/.cache/mutt-wizard/prep/bodies
+# muttrc file for account Luc.Saccoccio_Le_Guennec@etu.sorbonne-universite.fr
+set realname = "Luc.Saccoccio_Le_Guennec"
+set from = "Luc.Saccoccio_Le_Guennec@etu.sorbonne-universite.fr"
+set sendmail = "msmtp -a Luc.Saccoccio_Le_Guennec@etu.sorbonne-universite.fr"
+alias me Luc.Saccoccio_Le_Guennec <Luc.Saccoccio_Le_Guennec@etu.sorbonne-universite.fr>
+set folder = "/home/luc/.local/share/mail/Luc.Saccoccio_Le_Guennec@etu.sorbonne-universite.fr"
+set header_cache = /home/luc/.cache/mutt-wizard/Luc.Saccoccio_Le_Guennec@etu.sorbonne-universite.fr/headers
+set message_cachedir = /home/luc/.cache/mutt-wizard/Luc.Saccoccio_Le_Guennec@etu.sorbonne-universite.fr/bodies
 set mbox_type = Maildir
 
 # set crypt_autosign = yes
@@ -32,7 +32,7 @@ unmailboxes *
 unalternates *
 unset signature
 unmacro index o
-macro index o "<shell-escape>mailsync -V prep<enter>" "run mbsync to sync prep"
+macro index o "<shell-escape>mw -y Luc.Saccoccio_Le_Guennec@etu.sorbonne-universite.fr<enter>" "run mbsync to sync Luc.Saccoccio_Le_Guennec@etu.sorbonne-universite.fr"
 
 mailboxes "=INBOX" "=Sent" "=Trash" "=Drafts" "=Junk" 
 set spoolfile = "+INBOX"
