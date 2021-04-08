@@ -8,6 +8,7 @@ let g:haskell_backpack = 1
 let g:necoghc_enable_detailed_browse = 1
 let g:haskellmode_completion_ghc = 0
 let b:ale_linters = ['hlint', 'hdevtootools', 'ghc', 'stack_ghc', 'brittany']
+let g:stylishask_on_save = 0
 let g:tagbar_type_haskell = {
     \ 'ctagsbin'  : 'hasktags',
     \ 'ctagsargs' : '-x -c -o-',
@@ -43,30 +44,8 @@ let g:tagbar_type_haskell = {
     \ }
 \ }
 
-function! ApplyOneSuggestion()
-  let l = line(".")
-  let c = col(".")
-  let l:filter = "%! hlint - --refactor  --refactor-options=\"--pos ".l.','.c."\""
-  execute l:filter
-  silent if v:shell_error == 1| undo | endif
-  call cursor(l, c)
-endfunction
-
-
-function! ApplyAllSuggestions()
-  let l = line(".")
-  let c = col(".")
-  let l:filter = "%! hlint - --refactor"
-  execute l:filter
-  silent if v:shell_error == 1| undo | endif"
-  call cursor(l, c)
-endfunction
-
- 
-if ( ! exists('g:hlintRefactor#disableDefaultKeybindings') || 
-   \ ! g:hlintRefactor#disableDefaultKeybindings )
-
-  map <silent> to :call ApplyOneSuggestion()<CR>
-  map <silent> ta :call ApplyAllSuggestions()<CR>
-
-endif
+map <C-s> :Stylishask<CR>
+map <C-h> :Hoogle<CR>
+nnoremap <leader>g :Ghcid<CR>
+nnoremap <leader>G :10split term://ghci %<CR>i
+nnoremap <leader>h :10split term://hlint %; read<CR>
