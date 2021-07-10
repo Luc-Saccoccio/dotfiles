@@ -18,6 +18,7 @@ PS1+='>──%{$fg[yellow]%}»%b '
 HISTFILE=~/.cache/zshistory
 HISTSIZE=10000
 SAVEHIST=10000
+setopt HIST_IGNORE_SPACE
 
 # Load aliases
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
@@ -82,6 +83,8 @@ setopt auto_cd
 [ -f ~/.config/fzf/fzf.zsh ] && source ~/.config/fzf/fzf.zsh
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+
+source /home/luc/.config/completions
 
 # opam configuration
 test -r /home/luc/.opam/opam-init/init.zsh && . /home/luc/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

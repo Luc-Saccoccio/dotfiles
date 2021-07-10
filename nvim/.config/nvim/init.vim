@@ -11,14 +11,13 @@
 
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'TaDaa/vimade'
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' } " Python syntax
 Plug 'dense-analysis/ale' " ALE
 Plug 'lervag/vimtex', { 'for': ['tex', 'latex'] }
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' } " Nerdtree file manager
 Plug 'bling/vim-airline', "Vim-airline
 Plug 'vim-airline/vim-airline-themes' "Themes for vim-airline
-	let g:airline_theme='lucius' " Use murmur theme
+	let g:airline_theme='lucius' " Use lucius theme
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'edkolev/tmuxline.vim' " Tmux matching nvim
@@ -30,16 +29,13 @@ Plug 'tomtom/tcomment_vim' " Commenting
 Plug 'ndmitchell/ghcid', { 'rtp': 'plugins/nvim', 'for': 'haskell', 'on': 'Ghcid' } " Haskell ghcid
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' } " Better Haskell syntax Highlightinh and other stuff
 Plug 'pineapplegiant/spaceduck', { 'branch': 'main' } " Spaceduck theme
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Completion
-Plug 'copy/deoplete-ocaml', { 'for' : 'haskell' } " OCaml sources for deoplte
-Plug 'deoplete-plugins/deoplete-jedi', { 'for': 'python' } " Python sources for completion
-Plug 'eagletmt/neco-ghc', { 'for': 'haskell' } " Haskell Completion
-Plug 'alx741/vim-stylishask', { 'for': 'haskell' } " Prettier Haskell
 Plug 'vimwiki/vimwiki'
-Plug 'racer-rust/vim-racer', { 'for': 'rust' } " Rust completion sources
-" WAITING FOR NIGHTLY
-" Plug 'kyazdani42/nvim-web-devicons'
-" Plug 'romgrk/barbar.nvim'
+Plug 'mhinz/vim-signify'
+Plug 'cespare/vim-toml', { 'for': 'toml' }
+Plug 'machakann/vim-sandwich'
+Plug 'kyazdani42/nvim-web-devicons'
+:Plug 'neovim/nvim-lspconfig'
+Plug 'romgrk/barbar.nvim'
 
 call plug#end()
 
@@ -54,6 +50,7 @@ set nocompatible " Use Vim settings instead of Vi settings
 filetype plugin on " Autodetect filetype
 syntax enable " Enable syntax highlighting
 set termguicolors " Set termguicolors
+set hidden
 colorscheme spaceduck " Use spaceduck colorscheme
 set number "relativenumber
 set splitbelow splitright
@@ -62,10 +59,16 @@ set shada='100,f0
 set rtp+=/home/luc/.opam/default/share/merlin/vim
 let mapleader = "µ" " Use a different map leader
 set conceallevel=0
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#complete_method = "complete"
-call deoplete#custom#option('auto_complete_delay', 0)
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc shiftwidth=4 softtabstop=4 expandtab
+set updatetime=100
+
+lua << EOF
+require'lspconfig'.hls.setup{}
+require'lspconfig'.pyls.setup{}
+require'lspconfig'.clangd.setup{}
+require'lspconfig'.ocamllsp.setup{}
+EOF
+
+let g:python3_host_prog = '/usr/bin/python'
 
 " Airline
 let g:airline_symbols = {}
@@ -80,8 +83,93 @@ let g:airline#extensions#whitespace#symbol= '!'
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
 " Vimwiki
-let g:vimwiki_list = [{'path': '~/.local/share/vimwiki', 'path_html': '~/.local/share/vimwiki/html'}]
+let g:vimwiki_list = [{'path': '~/.local/share/vimwiki', 'path_html': '~/.local/share/vimwiki/html'}, {'path': '~/.local/share/vimwikin', 'path_html': '~/.local/share/vimwikin/html'}]
 
+function! HighlightRepeats() range
+  let lineCounts = {}
+  let lineNum = a:firstline
+  while lineNum <= a:lastline
+    let lineText = getline(lineNum)
+    if lineText != ""
+      let lineCounts[lineText] = (has_key(lineCounts, lineText) ? lineCounts[lineText] : 0) + 1
+    endif
+    let lineNum = lineNum + 1
+  endwhile
+  exe 'syn clear Repeat'
+  for lineText in keys(lineCounts)
+    if lineCounts[lineText] >= 2
+      exe 'syn match Repeat "^' . escape(lineText, '".\^$*[]') . '$"'
+    endif
+  endfor
+endfunction
+
+command! -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
+
+" ===================== BINARY ===================== "
+
+command -bar Hexmode call ToggleHex()
+
+function ToggleHex()
+  let l:modified=&mod
+  let l:oldreadonly=&readonly
+  let &readonly=0
+  let l:oldmodifiable=&modifiable
+  let &modifiable=1
+  if !exists("b:editHex") || !b:editHex
+    let b:oldft=&ft
+    let b:oldbin=&bin
+    setlocal binary
+    silent :e
+    let &ft="xxd"
+    let b:editHex=1
+    %!xxd
+  else
+    let &ft=b:oldft
+    if !b:oldbin
+      setlocal nobinary
+    endif
+    let b:editHex=0
+    %!xxd -r
+  endif
+  let &mod=l:modified
+  let &readonly=l:oldreadonly
+  let &modifiable=l:oldmodifiable
+endfunction
+
+
+if has("autocmd")
+  augroup Binary
+    au!
+    au BufReadPre *.bin,*.hex setlocal binary
+    au BufReadPost *
+          \ if exists('b:editHex') && b:editHex |
+          \   let b:editHex = 0 |
+          \ endif
+    au BufReadPost *
+          \ if &binary | Hexmode | endif
+    au BufUnload *
+          \ if getbufvar(expand("<afile>"), 'editHex') == 1 |
+          \   call setbufvar(expand("<afile>"), 'editHex', 0) |
+          \ endif
+    au BufWritePre *
+          \ if exists("b:editHex") && b:editHex && &binary |
+          \  let oldro=&ro | let &ro=0 |
+          \  let oldma=&ma | let &ma=1 |
+          \  silent exe "%!xxd -r" |
+          \  let &ma=oldma | let &ro=oldro |
+          \  unlet oldma | unlet oldro |
+          \ endif
+    au BufWritePost *
+          \ if exists("b:editHex") && b:editHex && &binary |
+          \  let oldro=&ro | let &ro=0 |
+          \  let oldma=&ma | let &ma=1 |
+          \  silent exe "%!xxd" |
+          \  exe "set nomod" |
+          \  let &ma=oldma | let &ro=oldro |
+          \  unlet oldma | unlet oldro |
+          \ endif
+  augroup END
+endif
 " ========================== TMUX ========================== "
 
 let g:tmuxline_preset = {
@@ -105,6 +193,16 @@ function! Tab_Or_Complete()
 endfunction
 inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 tnoremap <Esc> <C-\><C-n>
+
+function! RandomLine() range
+  ruby first_line = (VIM::evaluate 'a:firstline').to_i
+  ruby last_line = (VIM::evaluate 'a:lastline').to_i
+  ruby VIM::command(((rand last_line - first_line + 1) + first_line).to_s)
+  ruby VIM::command("mark '")
+endfunction
+command! -range=% RandomLine <line1>,<line2>call RandomLine()
+nnoremap gr :RandomLine<CR>
+
 
 " Spell Verification
 map <leader>F :setlocal spell spelllang=fr<CR>
@@ -150,10 +248,10 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 
 " Tab navigation
 nnoremap t<Left> :tabfirst<CR>
-nnoremap t<Down> :tabnext<CR>
-nnoremap t<Up> :tabprev<CR>
 nnoremap t<Right> :tablast<CR>
-nnoremap tn :tabnew<CR>
+nnoremap tt :tabnew<CR>
+nnoremap tn :tabnext<CR>
+nnoremap tp :tabprev<CR>
 nnoremap <F8> :tabn<CR>
 
 " Term
@@ -170,6 +268,9 @@ nnoremap <leader>/ :BLines<CR>
 
 " Shellcheck
 nnoremap <leader>aS :sp term://shellcheck %<cr>:resize 15<cr>
+
+nnoremap cn :cnext<CR>
+nnoremap cp :cprevious<CR>
 
 " ====================== AUTOCMD ============================ "
 
@@ -201,5 +302,5 @@ command C !compiler %
 " View the result
 command O !opout %
 
-" Both, laziness fo brrrrrrrrr
+" Both, laziness go brrrrrrrrr
 command CO !compiler % && opout %

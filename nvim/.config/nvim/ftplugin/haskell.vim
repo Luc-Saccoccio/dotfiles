@@ -7,7 +7,7 @@ let g:haskell_enable_static_pointers = 1
 let g:haskell_backpack = 1
 let g:necoghc_enable_detailed_browse = 1
 let g:haskellmode_completion_ghc = 0
-let b:ale_linters = ['hlint', 'hdevtootools', 'ghc', 'stack_ghc', 'brittany']
+let b:ale_linters = ['hlint', 'stack_build', 'stack_ghc', 'cabal_ghc', 'brittany']
 let g:stylishask_on_save = 0
 let g:tagbar_type_haskell = {
     \ 'ctagsbin'  : 'hasktags',
@@ -44,7 +44,7 @@ let g:tagbar_type_haskell = {
     \ }
 \ }
 
-map <C-s> :Stylishask<CR>
+map <C-s> :%!stylish-haskell<CR>
 map <C-h> :Hoogle<CR>
 nnoremap <leader>g :Ghcid<CR>
 nnoremap <leader>G :10split term://ghci %<CR>i

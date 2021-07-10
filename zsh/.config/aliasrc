@@ -40,18 +40,13 @@ alias \
 	music_editor="ncmpcpp -c ~/.config/ncmpcpp/editor"
 
 fr() { # FZF Repos
-	choices=$(find "$HOME"/repos/ -maxdepth 2 -type d && find /home/luc/work/Informatique/informatique-mpsi -maxdepth 2 -type d -path /home/luc/work/Informatique/informatique-mpsi/.git -prune -o -name "*")
+	choices=$(find "$HOME"/repos/ -maxdepth 2 -type d && find /home/luc/work/ -maxdepth 4 -type d)
 	cd "$(echo "$choices" | fzf --layout=reverse --height 40%)" || exit 1
 }
 
 ft() { # FZF Tmux
 	config=$(find "$HOME"/.config/tmux/configs/ -maxdepth 1 | sed '1d' | fzf --layout=reverse --height 40%) 
 	sh "$config" 2>/dev/null || :
-}
-
-fw() {
-	dir=$(find "$HOME/work" -not -path '*/\.*' -type d | fzf --layout=reverse --height=40%)
-	cd "$dir" || exit 1
 }
 
 ce() { # Edit Config
@@ -72,10 +67,4 @@ allatexcomp() { # Compile all latex documents in a directory
 	ls | grep ".aux" >/dev/null && command rm ./*.aux
 	ls | grep ".log" >/dev/null && command rm ./*.log
 }
-
-ghcip() {
-	packages="$(fzf --layout=reverse --height 40% < "$HOME/.local/share/stack-ghci-packages")"
-	[ "$packages" = "" ] || stack ghci --package "$packages"
-}
-
 # vim: filetype=sh

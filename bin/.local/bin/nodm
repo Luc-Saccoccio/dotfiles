@@ -1,6 +1,6 @@
 #!/bin/sh
 
-printf "Available WMs : [i3], [dwm], [bspwm]\nChoice: "
+printf "Available WMs : [i3], [dwm], [bspwm], [xmonad]\nChoice: "
 read -r WM
 sed -i "s/WM=.*/WM=\"$WM\"/g" ".xinitrc"
 startx
