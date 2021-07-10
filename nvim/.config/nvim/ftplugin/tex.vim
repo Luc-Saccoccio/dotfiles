@@ -1,7 +1,4 @@
 let g:tex_flavor="xelatex"
-call deoplete#custom#var('omni', 'input_patterns', {
-          \ 'tex': g:vimtex#re#deoplete
-          \})
 set spell spelllang=fr
 autocmd VimLeave *.tex !texclear %
 set foldmethod=indent

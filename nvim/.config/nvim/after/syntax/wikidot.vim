@@ -24,6 +24,7 @@ syntax match wikidotClearFloat '\~\{4,}\(<\|=\|>\)\?'
 syntax match wikidotColor '##\(#\?\w\+|\)\?'
 syntax match wikidotQuoteBlock '^>\+ '
 syntax match wikidotAlign '^='
+syntax match wikidotToCorrect '\~\~.\+\~\~'
 
 syntax region wikidotRaw matchgroup=wikidotRaw start='@@' end='@@' oneline
 syntax region wikidotRaw matchgroup=wikidotRawLegacy start='``' end='``' oneline
@@ -57,6 +58,7 @@ highlight default link wikidotSeparator PreProc
 highlight default link wikidotColor Statement
 highlight default link wikidotQuoteBlock Type
 highlight default link wikidotAlign Statement
+highlight wikidotToCorrect guifg=#c1c3cc ctermfg=166 guibg=#e33400 ctermbg=NONE gui=bold cterm=NONE
 
 highlight default link wikidotRaw PreProc
 highlight default link wikidotRawLegacy PreProc

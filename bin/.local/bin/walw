@@ -1,0 +1,16 @@
+#!/bin/bash
+
+wallpaper="$(waln)"
+name="$(basename "$wallpaper")"
+newname="/tmp/${name%.*}.jpg"
+convert "$wallpaper" -geometry 1920x1080 "$newname"
+
+if ! file "$newname" | grep -E "1920x1080|1920 x 1080"; then
+	notify-send "Wallpaper" "Not 1920x1080\n$(file "$wallpaper")"
+	rm "$newname"
+	exit 0
+fi
+
+convert "$newname" <( curl wttr.in/_tqp0.png ) -geometry 275x275+50+50 -composite /tmp/wallpaper.jpg
+rm "$newname"
+feh --bg-fill -no-fehbg /tmp/wallpaper.jpg

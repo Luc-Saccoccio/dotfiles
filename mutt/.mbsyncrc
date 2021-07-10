@@ -15,8 +15,8 @@ Flatten .
 
 Channel prep
 Expunge Both
-Master :prep-remote:
-Slave :prep-local:
+Far :prep-remote:
+Near :prep-local:
 Patterns * !"[Gmail]/All Mail"
 Create Both
 Sync Pull
@@ -40,8 +40,8 @@ Inbox /home/luc/.local/share/mail/anarchiste@disroot.org/INBOX
 
 Channel anarchiste@disroot.org
 Expunge Both
-Master :anarchiste@disroot.org-remote:
-Slave :anarchiste@disroot.org-local:
+Far :anarchiste@disroot.org-remote:
+Near :anarchiste@disroot.org-local:
 Patterns * !"[Gmail]/All Mail"
 Create Both
 SyncState *
@@ -66,8 +66,8 @@ Inbox /home/luc/.local/share/mail/Luc.Saccoccio_Le_Guennec@etu.sorbonne-universi
 
 Channel Luc.Saccoccio_Le_Guennec@etu.sorbonne-universite.fr
 Expunge Both
-Master :Luc.Saccoccio_Le_Guennec@etu.sorbonne-universite.fr-remote:
-Slave :Luc.Saccoccio_Le_Guennec@etu.sorbonne-universite.fr-local:
+Far :Luc.Saccoccio_Le_Guennec@etu.sorbonne-universite.fr-remote:
+Near :Luc.Saccoccio_Le_Guennec@etu.sorbonne-universite.fr-local:
 Patterns * !"[Gmail]/All Mail"
 Create Both
 SyncState *
