@@ -44,7 +44,6 @@ x-scheme-handler/discord-600967922378342430=discord-600967922378342430.desktop
 application/x-osptracker=tracker.desktop
 
 [Added Associations]
-application/binary=org.pwmt.zathura-ps.desktop;text.desktop;
 application/json=nvim.desktop;
 audio/mid=mscore.desktop;
 application/x-shockwave-flash=firefox.desktop;
