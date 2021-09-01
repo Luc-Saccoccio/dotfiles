@@ -133,6 +133,8 @@ super + shift + w
 ###############
 XF86Audio{Play,Pause,Next,Prev,Stop}
 	mpc {toggle,toggle,next,prev,stop}
+XF86Eject
+	mpd_cover
 
 #####################
 # Backlight Control #

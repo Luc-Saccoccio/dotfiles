@@ -1,3 +1,8 @@
+set foldmethod=indent
+set expandtab
+set shiftwidth=4
+set smartindent
+set autoindent
 let g:haskell_enable_quantification = 1
 let g:haskell_enable_recursivedo = 1
 let g:haskell_enable_arrowsyntax = 1
@@ -8,7 +13,6 @@ let g:haskell_backpack = 1
 let g:necoghc_enable_detailed_browse = 1
 let g:haskellmode_completion_ghc = 0
 let b:ale_linters = ['hlint', 'stack_build', 'stack_ghc', 'cabal_ghc', 'brittany']
-let g:stylishask_on_save = 0
 let g:tagbar_type_haskell = {
     \ 'ctagsbin'  : 'hasktags',
     \ 'ctagsargs' : '-x -c -o-',
@@ -45,7 +49,6 @@ let g:tagbar_type_haskell = {
 \ }
 
 map <C-s> :%!stylish-haskell<CR>
-map <C-h> :Hoogle<CR>
 nnoremap <leader>g :Ghcid<CR>
 nnoremap <leader>G :10split term://ghci %<CR>i
 nnoremap <leader>h :10split term://hlint %; read<CR>

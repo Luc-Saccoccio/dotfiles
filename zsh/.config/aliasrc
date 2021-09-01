@@ -36,11 +36,10 @@ alias \
 	open="xdg-open" \
 	scim="sc-im" \
 	wm-name="xprop | grep 'WM_NAME'" \
-	film="mpv --sub-auto=all --sub-file-paths=Subs" \
-	music_editor="ncmpcpp -c ~/.config/ncmpcpp/editor"
+	film="mpv --sub-auto=all --sub-file-paths=Subs"
 
 fr() { # FZF Repos
-	choices=$(find "$HOME"/repos/ -maxdepth 2 -type d && find /home/luc/work/ -maxdepth 4 -type d)
+	choices=$(find "$HOME"/repos/ -maxdepth 2 -type d && find /home/luc/work/ -maxdepth 5 -type d)
 	cd "$(echo "$choices" | fzf --layout=reverse --height 40%)" || exit 1
 }
 

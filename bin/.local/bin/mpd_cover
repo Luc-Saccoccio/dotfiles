@@ -2,7 +2,7 @@
 
 COVER=/tmp/cover.jpg
 
-ffmpeg -i "/home/luc/Musique/$(mpc current -f %file%)" "$COVER" -y
+ffmpeg -i "/home/luc/Musique/$(mpc current -f %file%)" "$COVER" -y &>/dev/null
 STATUS=$?
 if [ "$STATUS" -eq 0 ];then
 	image=$COVER
@@ -13,6 +13,6 @@ if [ "$STATUS" -eq 0 ];then
         convert "$image" "$COVER"
 fi
 
-mpc status | grep 'playing' && notify-send -t 3000 -i "$(readlink -f "$image")" "♪ Now Playing:
+notify-send -t 3000 -i "$(readlink -f "$image")" "♪ Now Playing:
 
-$(mpc --format '%position% - %title%' | head -n1)" "$(mpc --format '%album%\nby %artist%\n\n%time%' | head -n4)"
+$(mpc --format '%track% - %title%' | head -n1)" "$(mpc --format '%album%\nby %artist%\n\n%time%' | head -n4)"

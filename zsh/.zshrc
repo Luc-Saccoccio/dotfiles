@@ -79,12 +79,10 @@ zle -N zle-line-init
 
 setopt auto_cd
 
-# FZF
-[ -f ~/.config/fzf/fzf.zsh ] && source ~/.config/fzf/fzf.zsh
-
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
 source /home/luc/.config/completions
+source /usr/share/fzf/key-bindings.zsh
 
 # opam configuration
 test -r /home/luc/.opam/opam-init/init.zsh && . /home/luc/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

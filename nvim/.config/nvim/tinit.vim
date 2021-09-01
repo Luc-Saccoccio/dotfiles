@@ -12,6 +12,7 @@
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' } " Python syntax
+Plug 'nvim-lua/completion-nvim'
 Plug 'dense-analysis/ale' " ALE
 Plug 'lervag/vimtex', { 'for': ['tex', 'latex'] }
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' } " Nerdtree file manager
@@ -30,12 +31,13 @@ Plug 'ndmitchell/ghcid', { 'rtp': 'plugins/nvim', 'for': 'haskell', 'on': 'Ghcid
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' } " Better Haskell syntax Highlightinh and other stuff
 Plug 'pineapplegiant/spaceduck', { 'branch': 'main' } " Spaceduck theme
 Plug 'vimwiki/vimwiki'
-Plug 'mhinz/vim-signify'
-Plug 'cespare/vim-toml', { 'for': 'toml' }
+Plug 'mhinz/vim-signify' " Git
 Plug 'machakann/vim-sandwich'
 Plug 'kyazdani42/nvim-web-devicons'
-:Plug 'neovim/nvim-lspconfig'
+Plug 'neovim/nvim-lspconfig'
 Plug 'romgrk/barbar.nvim'
+Plug 'wfxr/minimap.vim'
+Plug 'dstein64/vim-startuptime'
 
 call plug#end()
 
@@ -44,7 +46,7 @@ call plug#end()
 set encoding=utf-8 " Use utf-8 encoding
 set mouse=a " Use all mouse options
 " set nohlsearch " Don't hightlight all when searching
-nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+nnoremap <Space> :nohlsearch<Bar>:echo<CR>
 set clipboard=unnamedplus " Use system clipboard
 set nocompatible " Use Vim settings instead of Vi settings
 filetype plugin on " Autodetect filetype
@@ -56,17 +58,30 @@ set number "relativenumber
 set splitbelow splitright
 set history=10
 set shada='100,f0
-set rtp+=/home/luc/.opam/default/share/merlin/vim
+" set rtp+=/home/luc/.opam/default/share/merlin/vim
 let mapleader = "µ" " Use a different map leader
 set conceallevel=0
 set updatetime=100
 
 lua << EOF
-require'lspconfig'.hls.setup{}
-require'lspconfig'.pyls.setup{}
-require'lspconfig'.clangd.setup{}
-require'lspconfig'.ocamllsp.setup{}
+lspconfig = require('lspconfig')
+completion_callback = require'completion'.on_attach
+
+lspconfig.hls.setup{
+  on_attach = completion_callback,
+  root_dir = vim.loop.cwd
+  }
+lspconfig.pylsp.setup{completion_callback}
+lspconfig.clangd.setup{completion_callback}
+lspconfig.ocamllsp.setup{
+  on_attach = completion_callback
+  }
+lspconfig.texlab.setup{completion_callback}
 EOF
+
+set omnifunc=v:lua.vim.lsp.omnifunc
+set shortmess+=c
+set completeopt=menuone,noinsert,noselect
 
 let g:python3_host_prog = '/usr/bin/python'
 
@@ -184,15 +199,8 @@ let g:tmuxline_preset = {
 
 " ===================== MAPPINGS =========================== "
 
-function! Tab_Or_Complete()
-  if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
-    return "\<C-N>"
-  else
-    return "\<Tab>"
-  endif
-endfunction
-inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
-tnoremap <Esc> <C-\><C-n>
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 function! RandomLine() range
   ruby first_line = (VIM::evaluate 'a:firstline').to_i
