@@ -41,6 +41,7 @@ super + shift + p
 	/home/luc/.local/bin/dmenuunicode
 super + space
 	xdg-menu | xmenu | sh
+
 #################
 # File Managers #
 #################

@@ -12,8 +12,22 @@
 #     Variables    #
 ####################
 set $mod Mod4
-set $term --no-startup-id termite
+set $term --no-startup-id st
 set $editor nvim
+
+##################
+# Workspaces     #
+##################
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 ####################
 #       Font       #
@@ -26,6 +40,20 @@ font pango:Code Source Pro Regular 8
 bindsym $mod+Shift+x [class="^.*"] border toggle
 new_window 1pixel
 for_window [class="^.*"] border pixel 2
+
+##################
+# Floating rules #
+##################
+for_window [class="Zathura"] floating disable # PDF viewer
+for_window [class="floating"] floating enable # Floating class (for terminal)
+for_window [class="GPick"] floating enable # Pick a color application
+for_window [class="mpv"] floating enable # MPV media player
+for_window [class="Pavucontrol"] floating enable # Pulseaudio control panel
+for_window [class="Pdf2png"] floating enable # pdf to png application
+for_window [class="hakuneko-desktop"] floating enable # Manga downloader
+for_window [class="Snes9x"] floating enable # Snes emulator
+for_window [class="Sxiv"] floating enable # Simple X Image Viewer
+for_window [class="discord"] move to workspace $ws2 # Discord
 
 ####################
 #   Borders colors #
@@ -42,8 +70,10 @@ floating_modifier $mod
 ####################
 # Term             #
 ####################
-bindsym $mod+Return exec termite
-bindsym $mod+Shift+Return exec urxvt
+bindsym $mod+Return exec $term
+bindsym $mod+Shift+Return exec $term -c floating
+# bindsym $mod+Shift+Return exec alacritty
+bindsym $mod+c exec /home/luc/.local/bin/draw_term
 
 #######################
 # Kill focused window #
@@ -53,72 +83,104 @@ bindsym $mod+Shift+a kill
 ############################################
 #Programms launcher and dmenu-based things #
 ############################################
-bindsym $mod+a exec rofi -show run
-bindsym $mod+o exec rofi -show drun
+bindsym $mod+o exec rofi -show drun -columns 2 -show-icons
 bindsym $mod+Shift+o exec rofi -show window
 bindsym $mod+d exec dmenu_run
 bindsym $mod+Shift+d exec networkmanager_dmenu
-bindsym $mod+Shift+y exec btmenu
-
-
-###################
-# Screenshots     #
-###################
-bindsym Print exec i3-scrot
-bindsym Shift+Print exec termite -e "ranger /home/luc/Images/screenshots"
+# bindsym $mod+e exec rofi -show calc -modi calc -no-show-match -no-sort -lines 2
+bindsym $mod+u exec rofi-theme-selector
+bindsym $mod+shift+m exec clipmenu
+bindsym $mod+shift+p exec /home/luc/.local/bin/dmenuunicode
+# bindsym $mod+space exec xdg-menu | xmenu | sh
 
 ###################
 # File Managers   #
 ###################
 bindsym $mod+p exec thunar
-# bindsym $mod+Shift+p exec pcmanfm
-bindsym $mod+Shift+p exec termite -e "ranger"
 
 ###################
 # Web Browsers    #
 ###################
 bindsym $mod+t exec firefox
-bindsym $mod+Shift+t exec surf duckduckgo.com
+bindsym $mod+Shift+t exec surf /home/luc/repos/external/homeFork/index.html
+bindsym $mod+n exec qutebrowser
+
+###################
+# Screenshots     #
+###################
+bindsym Print exec --no-startup-id /home/luc/.local/bin/perscrot
+bindsym $mod+Shift+Print exec --no-startup-id scrot '%Y-%m-%d-%s_$wx$h.png' -e 'mv $f ~/Images/screenshots/' && notify-send --icon=itmages-information "Screenshot" "Screenshot saved to /home/luc/Images/screenshots"
 
 ###################
 # Volume control  #
 ###################
-bindsym XF86AudioLowerVolume exec --no-startup-id  amixer set Master 1%-
-bindsym XF86AudioRaiseVolume exec --no-startup-id  amixer set Master 1%+
+bindsym XF86AudioLowerVolume exec amixer set Master 1%-
+bindsym XF86AudioRaiseVolume exec amixer set Master 1%+
 bindsym XF86AudioMute exec amixer -q set Master toggle
 
 ######################
 # Brightness control #
 ######################
-bindsym XF86MonBrightnessDown exec light -U 5
-bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessDown exec /home/luc/.local/bin/backlight-control dec
+bindsym XF86MonBrightnessUp exec /home/luc/.local/bin/backlight-control in
+
+######################
+# Restart i3/polybar #
+######################
+bindsym $mod+Shift+r reload
+bindsym $mod+shift+q exec /home/luc/.config/polybar/launch.sh
+
+###################
+# Polybar Control #
+###################
+bindsym $mod+q exec polybar-msg cmd toggle
+
+###########
+# Exit i3 #
+###########
+bindsym $mod+Shift+e exec /home/luc/.local/bin/powermenu
+
+###########
+# Lock i3 #
+###########
+bindsym $mod+Shift+z exec /home/luc/.local/bin/lock.sh
+
+#####################
+# Wallpaper Control #
+#####################
+bindsym $mod+i exec /home/luc/.local/bin/random-wall
+bindsym $mod+shift+i exec /home/luc/.local/bin/current-wal
+bindsym $mod+shift+u exec /home/luc/.local/bin/walw &> /dev/null
+bindsym $mod+w exec /home/luc/.local/bin/walc -s
+bindsym $mod+shift+s exec /home/luc/.local/bin/walc -d
+bindsym $mod+shift+w exec /home/luc/.local/bin/livewalc
+
+###############
+# MPD Control #
+###############
+bindsym XF86AudioPlay exec mpc toggle
+bindsym XF86AudioPause exec mpc toggle
+bindsym XF86AudioNext exec mpc next
+bindsym XF86AudioPrev exec mpc prev
+bindsym XF86AudioStop exec mpc stop
+bindsym XF86Eject exec mpd_cover
 
 ##################
 # Focus Control  #
 ##################
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+m focus right
-
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 bindsym $mod+space focus mode_toggle
-bindsym $mod+q focus parent
+# bindsym $mod+q focus parent
 
 bindsym $mod+Tab exec --no-startup-id skippy-xd
 
 ##################
 # Move windows
 ##################
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+m move right
-
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -147,20 +209,6 @@ bindsym $mod+e layout toggle split
 ##################
 bindsym $mod+Shift+space floating toggle
 
-##################
-# Workspaces     #
-##################
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
-
 #######################
 # Switch to workspace #
 #######################
@@ -188,34 +236,6 @@ bindsym $mod+Shift+egrave move container to workspace $ws7
 bindsym $mod+Shift+underscore move container to workspace $ws8
 bindsym $mod+Shift+ccedilla move container to workspace $ws9
 bindsym $mod+Shift+agrave move container to workspace $ws10
-
-##################
-# Reload the configuration file
-##################
-bindsym $mod+Shift+c reload
-
-##################
-# Restart i3/polybar
-##################
-bindsym $mod+Shift+r restart
-bindsym $mod+Shift+q exec ./.config/polybar/launch.sh
-
-##################
-# Exit i3        #
-##################
-bindsym $mod+Shift+e exec /home/luc/.local/bin/powermenu
-
-#################
-# Lock i3       #
-#################
-bindsym $mod+Shift+f exec betterlockscreen -l dim
-bindsym $mod+Shift+z exec i3lock-fancy
-
-#####################
-# Wallpaper Control #
-#####################
-bindsym $mod+i exec /home/luc/bin/random-wall
-bindsym $mod+Shift+i exec /home/luc/bin/current-wal
 
 #################
 # Resize window #
@@ -392,35 +412,7 @@ mode "$mode_gaps_left" {
         bindsym Escape mode "default"
 }
 
-
-#################
-# MPD control   #
-#################
-bindsym XF86AudioPlay exec mpd-control toggle
-bindsym XF86AudioPause exec mpd-control toggle
-bindsym XF86AudioNext exec mpd-control next
-bindsym XF86AudioPrev exec mpd-control prev
-bindsym XF86AudioStop exec mpd-control stop
-bindsym Shift+XF86AudioStop exec mpd-control volume-up
-bindsym Shift+XF86AudioPlay exec mpd-control volume-down
-bindsym Shift+XF86AudioPause exec mpd-control volume-down
-bindsym Shift+XF86AudioPrev exec mpd-control menu
-
-
 ###########################
 # Some programms to start #
 ###########################
-exec --no-startup-id /home/luc/.config/polybar/launch.sh
-exec --no-startup-id xautolock -locker "i3lock-fancy" -time 15
-exec --no-startup-id compton
-exec --no-startup-id $HOME/bin/random-wall
-exec --no-startup-id setxkbmap -layout fr -variant azerty
-exec --no-startup-id xmodmap ~/.Xmodmap
-exec --no-startup-id regen-wall-list
-exec --no-startup-id regen-zathura
-
-#################
-# Applets       #
-#################
-exec --no-startup-id nm-applet
-exec --no-startup-id copyq
+exec --no-startup-id /home/luc/.config/bspwm/autostart.sh

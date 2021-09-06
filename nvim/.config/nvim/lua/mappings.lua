@@ -10,8 +10,8 @@ map('n', '<Space>', ':nohlsearch<Bar>:echo<CR>', {})
 map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {noremap = true, expr = true})
 map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {noremap = true, expr = true})
 
-map('n', '<leader>F', ':setlocal spell spellang=fr<CR>', {})
-map('n', '<leader>E', ':setlocal spell spellang=en<CR>', {})
+map('n', '<leader>F', ':setlocal spell spelllang=fr<CR>', {})
+map('n', '<leader>E', ':setlocal spell spelllang=en<CR>', {})
 
 map('n', '<C-p>', ':TagbarToggle<CR>', {})
 -- map('n', '<C-n>', ':NERDTreeToggle<CR>', {})
