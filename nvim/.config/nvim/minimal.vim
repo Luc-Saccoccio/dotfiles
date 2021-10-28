@@ -1,0 +1,9 @@
+syntax off
+filetype off
+set noundofile
+set noswapfile
+set noloadplugins
+set number
+set wildmenu
+set ruler
+set showcmd

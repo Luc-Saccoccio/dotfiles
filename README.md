@@ -65,3 +65,4 @@ Check all my other repositories :
 
 ## TODO
 * [ ] Include screenshots
+* [ ] Try to switch from `stow` to a `Makefile`

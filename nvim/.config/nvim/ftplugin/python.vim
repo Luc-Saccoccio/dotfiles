@@ -4,5 +4,6 @@ augroup pyfiles
 augroup END
 
 set foldmethod=indent
+let b:ale_linters = ['pylint']
 
 nnoremap <leader>P :10split term://python -i %<CR>i

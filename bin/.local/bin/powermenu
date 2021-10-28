@@ -25,7 +25,8 @@ check() {
 	fi
 }
 
-menu=$( rofi -theme ~/.config/rofi/themes/mpdmenu.rasi -sep "|" -dmenu -i -p 'Menu' -width 10 -hide-scrollbar -line-padding 4 -padding 20 -lines 4 <<< " Lock| Logout| Reboot| Force Shutdown| Shutdown")
+# menu=$( rofi -theme ~/.config/rofi/themes/mpdmenu.rasi -sep "|" -dmenu -i -p 'Menu' -width 10 -hide-scrollbar -line-padding 4 -padding 20 -lines 4 <<< " Lock| Logout| Reboot| Force Shutdown| Shutdown")
+menu=$(printf " Lock\n Logout\n Reboot\n Force Shutdown\n Shutdown" | dmenu -c -bw 1 -l 5)
 
 case $menu in
 	*Lock)

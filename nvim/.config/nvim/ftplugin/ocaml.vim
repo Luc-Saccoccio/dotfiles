@@ -1,1 +1,1 @@
-nnoremap gh :MerlinTypeOf<CR>
+inoremap ,c (*  *)<ESC>2hi

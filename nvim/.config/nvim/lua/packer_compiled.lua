@@ -69,40 +69,63 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  LuaSnip = {
+    loaded = true,
+    path = "/home/luc/.local/share/nvim/site/pack/packer/start/LuaSnip"
+  },
   ale = {
     loaded = true,
     path = "/home/luc/.local/share/nvim/site/pack/packer/start/ale"
   },
-  ["barbar.nvim"] = {
+  ["cmp-buffer"] = {
     loaded = true,
-    path = "/home/luc/.local/share/nvim/site/pack/packer/start/barbar.nvim"
+    path = "/home/luc/.local/share/nvim/site/pack/packer/start/cmp-buffer"
   },
-  ["completion-nvim"] = {
+  ["cmp-nvim-lsp"] = {
     loaded = true,
-    path = "/home/luc/.local/share/nvim/site/pack/packer/start/completion-nvim"
+    path = "/home/luc/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp"
   },
-  ["discord.nvim"] = {
+  ["cmp-spell"] = {
     loaded = true,
-    path = "/home/luc/.local/share/nvim/site/pack/packer/start/discord.nvim"
+    path = "/home/luc/.local/share/nvim/site/pack/packer/start/cmp-spell"
   },
-  ghcid = {
-    commands = { "Ghcid" },
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/luc/.local/share/nvim/site/pack/packer/opt/ghcid/plugins/nvims"
+  cmp_luasnip = {
+    loaded = true,
+    path = "/home/luc/.local/share/nvim/site/pack/packer/start/cmp_luasnip"
   },
   ["haskell-vim"] = {
     loaded = false,
     needs_bufread = true,
+    only_cond = false,
     path = "/home/luc/.local/share/nvim/site/pack/packer/opt/haskell-vim"
+  },
+  ["impatient.nvim"] = {
+    loaded = true,
+    path = "/home/luc/.local/share/nvim/site/pack/packer/start/impatient.nvim"
+  },
+  ["indent-blankline.nvim"] = {
+    loaded = true,
+    path = "/home/luc/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim"
   },
   kommentary = {
     loaded = true,
     path = "/home/luc/.local/share/nvim/site/pack/packer/start/kommentary"
   },
+  ["lspsaga.nvim"] = {
+    loaded = true,
+    path = "/home/luc/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/luc/.local/share/nvim/site/pack/packer/start/lualine.nvim"
+  },
+  ["nest.nvim"] = {
+    loaded = true,
+    path = "/home/luc/.local/share/nvim/site/pack/packer/start/nest.nvim"
+  },
+  ["nvim-cmp"] = {
+    loaded = true,
+    path = "/home/luc/.local/share/nvim/site/pack/packer/start/nvim-cmp"
   },
   ["nvim-colorizer.lua"] = {
     loaded = true,
@@ -136,15 +159,17 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/luc/.local/share/nvim/site/pack/packer/start/popup.nvim"
   },
+  ["registers.nvim"] = {
+    loaded = true,
+    path = "/home/luc/.local/share/nvim/site/pack/packer/start/registers.nvim"
+  },
   spaceduck = {
     loaded = true,
     path = "/home/luc/.local/share/nvim/site/pack/packer/start/spaceduck"
   },
-  tagbar = {
-    commands = { "TagbarToggle" },
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/luc/.local/share/nvim/site/pack/packer/opt/tagbar"
+  ["symbols-outline.nvim"] = {
+    loaded = true,
+    path = "/home/luc/.local/share/nvim/site/pack/packer/start/symbols-outline.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
@@ -153,6 +178,10 @@ _G.packer_plugins = {
   ["tmuxline.vim"] = {
     loaded = true,
     path = "/home/luc/.local/share/nvim/site/pack/packer/start/tmuxline.vim"
+  },
+  ["tokyonight.nvim"] = {
+    loaded = true,
+    path = "/home/luc/.local/share/nvim/site/pack/packer/start/tokyonight.nvim"
   },
   ["trouble.nvim"] = {
     loaded = true,
@@ -163,9 +192,8 @@ _G.packer_plugins = {
     path = "/home/luc/.local/share/nvim/site/pack/packer/start/vim-sandwich"
   },
   vimtex = {
-    loaded = false,
-    needs_bufread = true,
-    path = "/home/luc/.local/share/nvim/site/pack/packer/opt/vimtex"
+    loaded = true,
+    path = "/home/luc/.local/share/nvim/site/pack/packer/start/vimtex"
   },
   vimwiki = {
     loaded = true,
@@ -174,30 +202,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Runtimepath customization
-time([[Runtimepath customization]], true)
-vim.o.runtimepath = vim.o.runtimepath .. ",/home/luc/.local/share/nvim/site/pack/packer/opt/ghcid/plugins/nvims"
-time([[Runtimepath customization]], false)
-
--- Command lazy-loads
-time([[Defining lazy-load commands]], true)
-pcall(vim.cmd, [[command! -nargs=* -range -bang -complete=file Ghcid lua require("packer.load")({'ghcid'}, { cmd = "Ghcid", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command! -nargs=* -range -bang -complete=file TagbarToggle lua require("packer.load")({'tagbar'}, { cmd = "TagbarToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]])
-time([[Defining lazy-load commands]], false)
-
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
 time([[Defining lazy-load filetype autocommands]], true)
-vim.cmd [[au FileType haskell ++once lua require("packer.load")({'ghcid', 'haskell-vim'}, { ft = "haskell" }, _G.packer_plugins)]]
-vim.cmd [[au FileType latex ++once lua require("packer.load")({'vimtex'}, { ft = "latex" }, _G.packer_plugins)]]
-vim.cmd [[au FileType tex ++once lua require("packer.load")({'vimtex'}, { ft = "tex" }, _G.packer_plugins)]]
+vim.cmd [[au FileType haskell ++once lua require("packer.load")({'haskell-vim'}, { ft = "haskell" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
 vim.cmd("augroup END")
 vim.cmd [[augroup filetypedetect]]
-time([[Sourcing ftdetect script at: /home/luc/.local/share/nvim/site/pack/packer/opt/vimtex/ftdetect/tex.vim]], true)
-vim.cmd [[source /home/luc/.local/share/nvim/site/pack/packer/opt/vimtex/ftdetect/tex.vim]]
-time([[Sourcing ftdetect script at: /home/luc/.local/share/nvim/site/pack/packer/opt/vimtex/ftdetect/tex.vim]], false)
 time([[Sourcing ftdetect script at: /home/luc/.local/share/nvim/site/pack/packer/opt/haskell-vim/ftdetect/haskell.vim]], true)
 vim.cmd [[source /home/luc/.local/share/nvim/site/pack/packer/opt/haskell-vim/ftdetect/haskell.vim]]
 time([[Sourcing ftdetect script at: /home/luc/.local/share/nvim/site/pack/packer/opt/haskell-vim/ftdetect/haskell.vim]], false)

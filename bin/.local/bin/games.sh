@@ -2,12 +2,12 @@
 
 # Launch steam games from the /comfy/ terminal with dmenu
 
-games="$(grep -n "name" ~/.local/share/Steam/steamapps/*.acf | sed -E 's/.*appmanifest_([0-9]+)\.acf.*"name".*"([^"]+)"/\1\t\2/g')""
-quit"
+games="$(grep -n "name" ~/.local/share/Steam/steamapps/*.acf | sed -E 's/.*appmanifest_([0-9]+)\.acf.*"name".*"([^"]+)"/\1\t\2/g')"
 
 name="$(echo "$games" | sed -r 's/[0-9]+\s//' | grep -v -i -E 'proton|redistributable' | \
     dmenu \
-    -i \
+    -c \
+    -bw 2 \
     -l "$(echo "$games" | wc -l)" \
     -p "dsteam" \
     -nb "#2c323b" \
@@ -16,5 +16,5 @@ name="$(echo "$games" | sed -r 's/[0-9]+\s//' | grep -v -i -E 'proton|redistribu
     -sf "#ffffff")"
 
 
-[ "$name" = "quit" ] && exit 0
+[ -z "$name" ] && exit 0
 echo "$games" | grep "$name" | awk -F'\t' '{print $1}' | xargs -I{} steam 'steam://run/{}'

@@ -32,11 +32,11 @@ alias \
 	lsa="lsd -a" \
 	lexa="exa -Tla" \
 	lext="exa -Tl" \
-	vim="nvim" \
+	vim="nvim -u ~/.config/nvim/minimal.vim" \
 	open="xdg-open" \
 	scim="sc-im" \
 	wm-name="xprop | grep 'WM_NAME'" \
-	film="mpv --sub-auto=all --sub-file-paths=Subs"
+	film="mpv --sub-auto=all --sub-file-paths=Subs" \
 
 fr() { # FZF Repos
 	choices=$(find "$HOME"/repos/ -maxdepth 2 -type d && find /home/luc/work/ -maxdepth 5 -type d)
@@ -62,8 +62,16 @@ allatexcomp() { # Compile all latex documents in a directory
 	for file in $(ls | grep ".tex")
 	do
 		xelatex "$file"
+		xelatex "$file"
+		texclear "$file"
 	done
-	ls | grep ".aux" >/dev/null && command rm ./*.aux
-	ls | grep ".log" >/dev/null && command rm ./*.log
+}
+
+run() {
+	number=$1
+	shift
+	for _ in $(seq "$number"); do
+		"$@"
+	done
 }
 # vim: filetype=sh

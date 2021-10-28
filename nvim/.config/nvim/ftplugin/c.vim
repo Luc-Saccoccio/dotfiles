@@ -1,1 +1,1 @@
-nnoremap gd :ALEGoToDefinition<CR>
+" nnoremap gd :ALEGoToDefinition<CR>

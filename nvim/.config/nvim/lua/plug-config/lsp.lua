@@ -1,12 +1,12 @@
-lspconfig = require('lspconfig')
-completion_callback = require('completion').on_attach
+local lspconfig = require('lspconfig')
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-lspconfig.hls.setup{
-	on_attach = completion_callback,
-	root_dir = vim.loop.cwd}
-lspconfig.pylsp.setup{completion_callback}
-lspconfig.clangd.setup{completion_callback}
-lspconfig.ocamllsp.setup{completion_callback}
-lspconfig.texlab.setup{completion_callback}
-lspconfig.gopls.setup{completion_callback}
-lspconfig.sqls.setup{completion_callback}
+lspconfig.clangd.setup({ capabilities = capabilities })
+lspconfig.gopls.setup({ capabilities = capabilities })
+lspconfig.hls.setup({ root_dir = vim.loop.cwd, autostart = false, capabilities = capabilities })
+lspconfig.ocamllsp.setup({ root_dir = vim.loop.cwd, capabilities = capabilities })
+lspconfig.pylsp.setup({ capabilities = capabilities })
+lspconfig.sqls.setup({ capabilities = capabilities })
+lspconfig.sumneko_lua.setup({ cmd = {"/usr/bin/lua-language-server"}, capabilities = capabilities })
+lspconfig.texlab.setup({ capabilities = capabilities })
+lspconfig.rust_analyzer.setup({ root_dir = vim.loop.cwd, capabilities = capabilities })

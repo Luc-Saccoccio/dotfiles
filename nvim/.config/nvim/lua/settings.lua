@@ -26,12 +26,17 @@ cmd('set shortmess+=c')
 
 -- Miscellaneous
 o.clipboard = 'unnamedplus'
+o.guifont = 'FiraCode Nerd Font:h15'
 g.nocompatible = true
+g.loaded_netrwPlugin = true
 o.mouse = 'a'
 cmd('colorscheme spaceduck')
 o.number = true
+g.vimtex_compiler_engine = 'xelatex'
 g.c_syntax_for_h = true
 o.foldmethod = 'indent'
+g.python3_host_prog = "/usr/bin/python3"
+g.python_host_prog = "/usr/bin/python"
 
 g.nvim_tree_show_icons = {
     git = 1,
@@ -59,4 +64,3 @@ cmd('autocmd FileType ocaml,haskell inoremap ,l λ')
 cmd('command C !compiler %')
 cmd('command O !opout %')
 cmd('command CO !compiler % && opout %')
--- cmd('autocmd bufenter * if (("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif')

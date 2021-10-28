@@ -45,8 +45,7 @@ set recolor                     "false"
 set recolor-keephue "true"
 
 set selection-clipboard clipboard
-set show-scrollbars
+set guioptions "hvs"
 
 # Mappings
-map <C-s> set recolor
 map b toggle_statusbar

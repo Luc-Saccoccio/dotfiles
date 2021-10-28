@@ -53,8 +53,6 @@ super + p
 ################
 super + t
 	firefox
-super + shift + t
-	surf /home/luc/repos/perso/startpage/index.html
 super + n
 	qutebrowser
 
@@ -126,6 +124,8 @@ super + w
 	/home/luc/.local/bin/walc -s
 super + shift + s
 	/home/luc/.local/bin/walc -d
+super + shift + t
+	/home/luc/.local/bin/walc -t
 super + shift + w
 	/home/luc/.local/bin/livewalc
 
@@ -142,6 +142,16 @@ XF86Eject
 #####################
 XF86MonBrightness{Up,Down}
 	/home/luc/.local/bin/backlight-control {inc,dec}
+
+#########
+# Dunst #
+#########
+ctrl + space
+	dunstctl close
+ctrl + shift + space
+	dunstctl close_all
+super + shift + space
+	dunstctl context
 
 #################
 # Close or Kill #
@@ -198,11 +208,3 @@ super + ctrl + {Left,Down,Up,Right}
 ####################
 super + b
 	/home/luc/.local/bin/toggle-screenkey
-
-#################
-# Documentation #
-#################
-super + F1
-	dmenufm /home/luc/.local/share/documents/
-super + F2
-	dmenufm /home/luc/work/

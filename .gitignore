@@ -13,3 +13,5 @@ nvim/.config/nvim/.netrwhist
 nvim/.config/nvim/autoload
 nvim/.config/nvim/plugged/
 nvim/.config/nvim/spell
+nvim/.config/nvim/ftplugin/vimwiki.vim
+nvim/.config/nvim/plugin/packer_compiled.lua

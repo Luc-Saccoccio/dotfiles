@@ -1,6 +1,0 @@
-#!/usr/bin/sh
-
-read -r rdv
-rdv=$(echo "$rdv" | sed 's/\[/\\\[/; s/\]/\\\]/')
-line=$(grep -n "$rdv" ~/.local/share/calcurse/apts | cut -d':' -f1)
-sed -i "${line}s/\[1\]\ /\[1\]\ ✓\ /" ~/.local/share/calcurse/apts

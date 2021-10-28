@@ -19,11 +19,12 @@ case "$file" in
 	*\.[rR]md) Rscript -e "require(rmarkdown); rmarkdown::render('$file')" ;;
 	*\.tex) textype "$file" ;;
 	*\.md) pandoc "$file" --pdf-engine=xelatex -o "$base".pdf ;;
-	*config.h) sudo make install ;;
+	*config.h) make;;
 	*\.c) cc "$file" -o "$base" && "$base";;
 	*\.cpp) c++ "$file" -o "$base" && "$base" ;;
 	*\.py) python "$file" ;;
 	*\.go) go run "$file" ;;
 	*\.sent) setsid sent "$file" 2>/dev/null & ;;
+	*\.dot|*\.gv) dot "$file" -Tps2 -o "$base".ps | ps2pdf "$base".ps ;;
 	*) sed 1q "$file" | grep "^#!/" | sed "s/^#!//" | xargs -r -I % "$file" ;;
 esac
