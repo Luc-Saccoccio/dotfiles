@@ -4,31 +4,22 @@ This is my collection of [configuration files](https://dotfiles.github.io/).
 
 ## Usage
 
-Clone this repository, and create symbolic links using [GNU Stow](https://alexpearce.me/2016/02/managing-dotfiles-with-stow/) : 
+Clone this repository, and create symbolic links using the Makefile:
 ```shell
 gt clone git@github.com:Luc-Saccoccio/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-stow nvim zsh # whatever else you'd like
+make nvim zsh # for example
 ```
 
 ## Advanced description
 
-### Organization
+### Makefile
 
-Each directory contains a representation of the home directory, and contains one program configuration files.
-
-### Scripts
-
-All of the scripts I wrote or took are located in `bin/.local/bin`, just type
-```shell
-stow bin
-```
-to have them installed on your local bin. Don't forget to add `.local/bin` to your PATH !
+Please read the Makefile (at least a little) before trying to use it.
 
 ### Configuration files
 
 There are settings for :
-  * [X](https://x.org/wiki/) (X server)
   * [catgirl](https://git.causal.agency/catgirl/) (IRC client)
   * [bspwm](https://github.com/baskerville/bspwm) (WM)
   * [dunst](https://github.com/dunst-project/dunst) (notifications)
@@ -65,4 +56,4 @@ Check all my other repositories :
 
 ## TODO
 * [ ] Include screenshots
-* [ ] Try to switch from `stow` to a `Makefile`
+* [ ] Manage ssh

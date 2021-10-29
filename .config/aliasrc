@@ -67,11 +67,4 @@ allatexcomp() { # Compile all latex documents in a directory
 	done
 }
 
-run() {
-	number=$1
-	shift
-	for _ in $(seq "$number"); do
-		"$@"
-	done
-}
 # vim: filetype=sh
