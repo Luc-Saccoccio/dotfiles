@@ -42,7 +42,7 @@ backup: ## Backup arch linux packages
 	pacman -Qqem > $(PWD)/archlinux/aurlist
 
 bin: ## Init all my scripts
-	for file in $(ls ${PWD}/.local/bin); do \
+	for file in $(shell ls ${PWD}/.local/bin); do \
 		rm -f $(HOME)/.local/bin/$$file; \
 		$(LN) {${PWD},${HOME}}/.local/bin/$$file; \
 	done

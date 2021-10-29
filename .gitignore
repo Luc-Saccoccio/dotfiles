@@ -14,4 +14,3 @@
 .config/nvim/spell
 .config/nvim/ftplugin/vimwiki.vim
 .config/nvim/lua/packer_compiled.lua
-archlinux/
