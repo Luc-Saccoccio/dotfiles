@@ -6,4 +6,5 @@ augroup END
 set foldmethod=indent
 let b:ale_linters = ['pylint']
 
-nnoremap <leader>P :10split term://python -i %<CR>i
+nnoremap <F9> :60vsplit term://ipython -i %<CR>i
+inoremap <F9> :60vsplit term://ipython -i %<CR>i

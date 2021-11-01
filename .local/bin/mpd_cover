@@ -6,7 +6,7 @@ ffmpeg -i "/home/luc/Musique/$(mpc current -f %file%)" "$COVER" -y &>/dev/null
 STATUS=$?
 if [ "$STATUS" -eq 0 ];then
 	image=$COVER
-	else
+else
         DIR="/home/luc/Musique/$(dirname "$(mpc current -f %file%)")"
 	cd "$DIR" || exit
 	image=$(ls | grep -E '.jpg|.png|.jpeg' || echo "$HOME/Musique/fallback.png")

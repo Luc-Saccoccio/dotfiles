@@ -62,9 +62,9 @@ catgirl: ## Init catgirl IRC client
 desktop: ## Init all dekstop files related settings
 	rm -f $(HOME)/.config/mimeapps.list
 	$(LN) {${PWD},${HOME}}/.config/mimeapps.list
-	for file in dmenufm html img mimeinfo pdf surf svg tab text video; do \
-		rm -f $(HOME)/.local/share/$$file.desktop; \
-		$(LN) {${PWD},${HOME}}/.local/share/$$file.desktop; \
+	for file in html img mimeinfo pdf surf svg tab text video; do \
+		rm -f $(HOME)/.local/share/applications/$$file.desktop; \
+		$(LN) {${PWD},${HOME}}/.local/share/applications/$$file.desktop; \
 	done
 
 dunst: ## Init dunst notification daemon
@@ -162,10 +162,12 @@ piprecover: ## Recover python packages
 
 tex: ## Install TinyTex and TeX packages
 	wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
-	tlmgr install $(shell cat ${PWD}/archlinux/installed_package.txt)
 
 texbackup: ## Backup TeX packages
 	tlmgr info --only-installed --data "name" > $(PWD)/archlinux/installed_package.txt
+
+texrecover: ## Recover tex packages
+	tlmgr install $(shell cat ${PWD}/archlinux/installed_package.txt)
 
 repos: git ## Create the repos directory and clone a few repos
 	$(MKDIR) $(HOME)/repos/perso

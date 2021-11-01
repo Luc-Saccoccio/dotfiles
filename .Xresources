@@ -20,8 +20,8 @@ pmenu.borderWidth: 2px
 ! st*alpha: 1
 
 ! Sxiv
-Nsxiv.image.background: #11161b
-Nsxiv.image.foreground: #41535b
+Nsxiv*background: #11161b
+Nsxiv*foreground: #41535b
 
 ! Theme for uxrvt
 URxvt*background: #171718

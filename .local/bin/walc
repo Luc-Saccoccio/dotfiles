@@ -3,25 +3,25 @@
 while getopts 'sdt' c
 do
 	case $c in
-		s) menu="sxiv" ;;
+		s) menu="nsxiv" ;;
 		d) menu="dmenu" ;;
 		t) menu="both" ;;
 		*) printf "Unkown Argument\n" ;;
 	esac
 done
 
-if [ "$menu" = "sxiv" ]; then
-	walls=$(sxiv -t -o -r -g 750x750+585+165 "$WALLPAPER" | xargs)  # running sxiv in thumbnail mode.
+if [ "$menu" = "nsxiv" ]; then
+	walls=$(nsxiv -t -o -r -g 750x750+585+165 "$WALLPAPER" | xargs)  # running nsxiv in thumbnail mode.
 	wall1=$(printf "%s" "$walls" | grep -o '[^\ ]*$') # Only print the last marked Wallpaper
 elif [ "$menu" = "dmenu" ]; then
 	wall1=$(find "$WALLPAPER" | sort | dmenu -p "Wallpaper: " -l 7 | xargs)
 else
 	tag=$(dmenu -in -c -bw 3 -p "Tag:")
-	wall1=$(sxiv -t -o -r -g 750x750+585+165 $(find "$WALLPAPER" -name "*$tag*" | sort))
+	wall1=$(nsxiv -t -o -r -g 750x750+585+165 $(find "$WALLPAPER" -name "*$tag*" | sort))
 fi
 
 
-# if no picture is marked in sxiv, exit.
+# if no picture is marked in nsxiv, exit.
 if [ -z "$wall1" ]
 then
 	exit 0
@@ -29,7 +29,7 @@ else
 	$SingleWallMenu
 fi
 
-SingleWallMenu="dmenu -i -c -bw 3 -l 5 -p Options"
+SingleWallMenu="dmenu -c -bw 3 -l 5 -p Options"
 #SingleWallOptions=$(printf "fill\ncenter\ntile\nscale\nseamless" | $SingleWallMenu)
 SingleWallOptions="fill"
 

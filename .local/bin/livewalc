@@ -1,8 +1,8 @@
 #!/bin/sh
 #Az : A live wallpaper selector that run "livewallpaper" command on the selected preview (livewallpaper works with xwinwrap and mpv)
 
-CACHE_DIR="$HOME/.cache/sxivlivewall/"
-TMP_DIR="/tmp/sxivlivewall/"
+CACHE_DIR="$HOME/.cache/nsxivlivewall/"
+TMP_DIR="/tmp/nsxivlivewall/"
 WALLPAPE_DIR="$HOME/Images/live-wallpapers"
 NOTIFIER="dunstify -a LiveWallpaper"
 SXIVINPUT=""
@@ -25,7 +25,7 @@ for file in "$WALLPAPE_DIR"/*; do
 done
 
 bspc rule -a '*' -o state=floating
-selected=$(sxiv -tboa -s f -N "Live Wallpaper" ${SXIVINPUT})     #select
+selected=$(nsxiv -tboa -s f -N "Live Wallpaper" ${SXIVINPUT})     #select
 [ "$selected" != "" ] && "$HOME"/.local/bin/livewallpaper "${hashdico[${selected: ${#CACHE_DIR}:-4}]}"    #Hash make livewallpaper apply the selected wallpaper
 #[ $selected != "" ] && $HOME/scripts/livewallpaper $WALLPAPE_DIR${selected: ${#CACHE_DIR}:-4}.mp4    #NoHash make livewallpaper apply the selected wallpaper
 
