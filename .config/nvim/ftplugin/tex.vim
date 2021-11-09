@@ -21,9 +21,9 @@ inoremap ,cas \begin{cases}<Enter>\end{cases}<Enter><++><Up><Up><End><Enter>
 inoremap ,ce \begin{center}<Enter><Enter>\end{center}<Esc>ji
 inoremap ,chap \chapter{}<Enter><Enter><++><Esc>2kf}i
 inoremap ,col \begin{multicols}{2}<Enter><Enter>\columnbreak<Enter><Enter>\end{multicols}
-inoremap ,cor \begin{corollary}<Enter>\end{corollary}<Enter><Enter><++><Esc>3ko
+inoremap ,cor \begin{corollary}<Enter><BS>\end{corollary}<Enter><Enter><++><Esc>3ko
 inoremap ,dec \begin{description}<Enter><Enter>\end{description}<Enter><Enter><++><Esc>3kA\item<Space>
-inoremap ,def \begin{definition}<Enter>\end{definition}<Enter><Enter><++><Esc>3ko
+inoremap ,def \begin{definition}<Enter><BS>\end{definition}<Enter><Enter><++><Esc>3ko
 inoremap ,dq \begin{description}<Enter><Enter>\end{description}<Enter><Enter><++><Esc>3kA\item[$\circ$]<Space><Enter>\item[$\circ$]<Space><Enter>\item[$\circ$]<Space>
 inoremap ,em \emph{}<++><Esc>T{i
 inoremap ,emp \begin{empheq}[box=\fbox]{align}<Enter><Enter>\end{empheq}
@@ -43,10 +43,10 @@ inoremap ,ol \begin{enumerate}<Enter><Enter>\end{enumerate}<Enter><++><Esc>2kA\i
 inoremap ,ov \overrightarrow{}<Esc>i
 inoremap ,pm \begin{pmatrix}<Enter>\end{pmatrix}<Enter><Enter><++><Esc>3ko
 inoremap ,pre \begin{proof}<Enter>\end{proof}<Enter><Enter><++><Esc>3ko
-inoremap ,pro \begin{proposition}<Enter>\end{proposition}<Enter><Enter><++><Esc>3ko
+inoremap ,pro \begin{proposition}<Enter><BS>\end{proposition}<Enter><Enter><++><Esc>3ko
 inoremap ,qu \begin{quote}<Enter>\attrib{ {\em }}<Enter>\end{quote}
 inoremap ,rb \rrbracket
-inoremap ,re \begin{remark}<Enter>\end{remark}<Enter><Enter><++><Esc>3ko
+inoremap ,re \begin{remark}<Enter><BS>\end{remark}<Enter><Enter><++><Esc>3ko
 inoremap ,sc \textsc{}<Space><++><Esc>T{i
 inoremap ,se \section{}<Enter><Enter><++><Esc>2kf}i
 inoremap ,sp \vspace{\baselineskip}

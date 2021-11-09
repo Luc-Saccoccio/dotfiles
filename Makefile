@@ -34,7 +34,7 @@ yay: git base repos ## Install yay
 	git clone https://aur.archlinux.org/yay.git
 	cd yay
 	makepkg -si
-	
+
 
 backup: ## Backup arch linux packages
 	$(MKDIR) $(PWD)/archlinux
@@ -104,6 +104,7 @@ newsboat: ## Init newsboat RSS/Atom feed reader
 nvim: ## Init nvim editor
 	rm -f $(HOME)/.config/$@
 	$(LN) {${PWD},${HOME}}/.config/$@
+	$(LN) {${PWD},${HOME}}/.config/pycodestyle
 
 picom: ## Init picom compositor
 	rm -f $(HOME)/.config/$@
@@ -129,12 +130,16 @@ tmux: ## Init tmux terminal multiplexer
 	rm -f $(HOME)/.config/$@
 	$(LN) {${PWD},${HOME}}/.config/$@
 
+vimus: ## Init vimus mpd interface
+	rm -f $(HOME)/.config/$@
+	$(LN) {${PWD},${HOME}}/.$@rc
+
 X: ## Init Xmodmap and Xresources
-	rm -f $(HOME)/{.Xmoadmap,.Xresources}
-	$(LN) {${PWD},${HOME}}/.Xmoadmap
+	rm -f $(HOME)/{.Xmodmap,.Xresources}
+	$(LN) {${PWD},${HOME}}/.Xmodmap
 	$(LN) {${PWD},${HOME}}/.Xresources
 
-xmonad: ## Init xmonad WM
+xmonad: ## Init xmonad WM (TODO)
 	rm -f $(HOME)/.$@
 	$(LN) {${PWD},${HOME}}/.$@
 
@@ -147,6 +152,7 @@ zsh: ## Init zsh shell
 	$(LN) {${PWD},${HOME}}/.profile
 	$(LN) {${PWD},${HOME}}/.zshrc
 	$(LN) {${PWD},${HOME}}/.config/aliasrc
+	$(LN) {${PWD},${HOME}}/.config/completions
 
 pip: ## Install python packages
 	pip install --user --upgrade pip

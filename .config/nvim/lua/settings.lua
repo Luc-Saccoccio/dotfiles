@@ -61,6 +61,7 @@ g.vimwiki_list = {
 cmd('autocmd BufEnter *.Rmd set spell spelllang=fr')
 cmd('autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %')
 cmd('autocmd FileType ocaml,haskell inoremap ,l λ')
+cmd('autocmd BufWritePre * :%s/\\s\\+$//e')
 cmd('command C !compiler %')
 cmd('command O !opout %')
 cmd('command CO !compiler % && opout %')

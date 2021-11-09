@@ -20,18 +20,19 @@ nest.applyKeymaps({
 		{ "<leader>", "<Esc>/<++><Enter>\"_c4l", mode = 'ni' },
 
 		{ 'f', { -- Telescope
+			{ 'c', "<cmd>Telescope fd cwd=$HOME/.config/nvim/<CR>" },
+			{ 'd', "<cmd>Telescope lsp_document_symbols<CR>" },
 			{ 'f', '<cmd>Telescope find_files<cr>' },
-			{ 'l', '<cmd>Telescope live_grep<cr>' },
 			{ 'g', {
 				{ 'b', '<cmd>Telescope git_branches<CR>' },
 				{ 'c', '<cmd>Telescope git_commits<CR>' },
 				{ 's', '<cmd>Telescope git_status<CR>' },
 			}},
-			{ 'r', "<cmd>Telescope oldfiles<CR>" }, 
-			{ 'm', "<cmd>Telescope man_pages sections=1,2,3,7,8<CR>" },
 			{ 'h', "<cmd>Telescope help_tags<CR>" },
+			{ 'l', '<cmd>Telescope live_grep<cr>' },
+			{ 'm', "<cmd>Telescope man_pages sections=1,2,3,7,8<CR>" },
 			{ 'o', "<cmd>Telescope vim_options<CR>" },
-			{ 'c', "<cmd>Telescope fd cwd=$HOME/.config/nvim/<CR>" },
+			{ 'r', "<cmd>Telescope oldfiles<CR>" },
 		}},
 		{ 't', { -- Tabs
 			{ "<Left>", "<cmd>tabfirst<CR>" },
@@ -59,9 +60,6 @@ nest.applyKeymaps({
 				{ "<S-Left>", "<cmd>wincmd H<CR>" },
 				{ "<S-Right>", "<cmd>wincmd L<CR>" },
 		}},
-		{ "-a>", "<C-O>za", mode='io' },
-		{ "-a>", "za" },
-		{ "-a>", "zf", mode='v' },
 		{ "-j>", ":m .+1<CR>==", mode='niv'},
 		{ "-k>", ":m .-2<CR>==", mode='niv'},
 		{ "-l>", "<cmd>TroubleToggle<CR>" },
@@ -71,7 +69,11 @@ nest.applyKeymaps({
 	{ "<Space>", "<cmd>nohlsearch<Bar>:echo<CR>" },
 	{ "<Esc>", "<C-\\><C-n>", mode='t' },
 	{ "<F5>", ":term<CR>" },
-	{ "gd", vim.lsp.buf.definition },
+	{ "g", {
+		{ "d", vim.lsp.buf.definition },
+		{ "[", vim.lsp.diagnostic.goto_prev },
+		{ "]", vim.lsp.diagnostic.goto_next },
+	}},
 	{ mode='i', options = { expr = true, noremap = true, silent = false }, {
 		{ "<Tab>", 'pumvisible() ? "\\<C-n>" : "\\<Tab>"' },
 		{ "<S-Tab>", 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"' },

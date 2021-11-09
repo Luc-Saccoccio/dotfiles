@@ -51,7 +51,7 @@ cmp.setup {
 		{ name = 'nvim_lsp' },
 		{ name = 'luasnip' },
 		{ name = 'buffer' },
-		{ name = 'spell' },
+		-- { name = 'spell' },
 	},
 	experimental = {
 		native_menu = false,

@@ -1,25 +1,22 @@
-return require('packer').startup({
+local packer = require "packer"
+local use = packer.use
+return packer.startup({
 	function()
-		use 'dense-analysis/ale'
-		use 'hrsh7th/cmp-nvim-lsp'
+		use {
+			'hrsh7th/cmp-nvim-lsp',
+		}
+		use {
+			'hrsh7th/cmp-nvim-lua',
+		}
 		use 'hrsh7th/cmp-buffer'
 		use 'f3fora/cmp-spell'
-		use 'saadparwaiz1/cmp_luasnip'
 		use {
-			'glepnir/dashboard-nvim',
-			disable = true
+			'saadparwaiz1/cmp_luasnip',
 		}
+		use 'nathom/filetype.nvim'
 		use {
-			'ObserverOfTime/discord.nvim',
-			run = ':UpdateRemotePlugins',
-			disable = true
-		}
-		use {
-			'ndmitchell/ghcid',
-			ft = 'haskell',
-			rtp = 'plugins/nvims',
-			cmd = 'Ghcid',
-			disable = true
+			'rafamadriz/friendly-snippets',
+			event = "InsertEnter",
 		}
 		use {
 			'neovimhaskell/haskell-vim',
@@ -32,19 +29,27 @@ return require('packer').startup({
 			'nvim-lualine/lualine.nvim',
 			requires = {'kyazdani42/nvim-web-devicons', opt = true}
 		}
-		use 'L3MON4D3/LuaSnip'
+		use {
+			'L3MON4D3/LuaSnip',
+			wants = "friendly-snippets",
+		}
 		use {
 			'tami5/lspsaga.nvim',
 			commit = "373bc031b39730cbfe492533c3acfac36007899a"
 		}
 		use 'LionC/nest.nvim'
-		use 'hrsh7th/nvim-cmp'
+		use {
+			'hrsh7th/nvim-cmp',
+		}
 		use 'norcalli/nvim-colorizer.lua'
 		use 'neovim/nvim-lspconfig'
 		use 'kyazdani42/nvim-tree.lua'
 		use 'kyazdani42/nvim-web-devicons'
 		use 'wbthomason/packer.nvim'
 		use 'tversteeg/registers.nvim'
+		use {
+			"tweekmonster/startuptime.vim",
+		}
 		use 'simrat39/symbols-outline.nvim'
 		use {
 			'nvim-telescope/telescope.nvim',

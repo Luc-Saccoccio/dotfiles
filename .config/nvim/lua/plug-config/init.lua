@@ -1,4 +1,3 @@
--- require('plug-config.dashboard')
 require('plug-config.cmp')
 require('plug-config.indent')
 require('plug-config.lsp')
