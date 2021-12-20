@@ -167,6 +167,7 @@ plain
 platex
 platex-tools
 platex.x86_64-linux
+psnfss
 pstricks
 ptex
 ptex-base
@@ -191,6 +192,7 @@ stix
 stmaryrd
 stringenc
 svn-prov
+symbol
 tcolorbox
 tex
 tex-ini-files
