@@ -11,7 +11,6 @@ fortune-mod-hitchhiker
 fortune-tontons-flingueurs-fr
 fswebcam
 funny-manpages
-gdu
 glow
 gotop
 gtk3-nocsd-git
@@ -24,8 +23,8 @@ libxlsxwriter
 musikcube
 neovim-remote
 networkmanager-dmenu-git
-nodejs-ungit
 nouveau-fw
+nsxiv
 opustags
 otf-font-awesome-4
 pa-applet-git
@@ -45,4 +44,3 @@ xmeasure
 xob
 xtitle
 yay
-ytfzf

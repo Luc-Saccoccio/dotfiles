@@ -27,7 +27,7 @@ require('lualine').setup {
 		lualine_c = {
 			{'filename', file_status = true, separator = ''},
 			{'diagnostics',
-				sources = { 'nvim_lsp' },
+				sources = { 'nvim_diagnostic' },
 				symbols = { error = ' ', warn = ' ', info = ' ' },
 				separator = ''
 			},

@@ -42,6 +42,7 @@ bat
 bc
 bdf-unifont
 binutils
+bison
 bluez-libs
 boost
 boost-libs
@@ -51,7 +52,6 @@ bspwm
 btrfs-progs
 bubblewrap
 bzip2
-c-ares
 c-client
 ca-certificates
 ca-certificates-mozilla
@@ -110,7 +110,9 @@ docbook-xml
 docbook-xsl
 docbook2x
 dosfstools
+double-conversion
 doxygen
+dua-cli
 dunst
 e2fsprogs
 edk2-shell
@@ -165,7 +167,6 @@ gd
 gdb
 gdb-common
 gdbm
-gdk-pixbuf-xlib
 gdk-pixbuf2
 gegl
 gendesk
@@ -191,6 +192,7 @@ glu
 gmime3
 gmp
 gnupg
+gnuplot
 gnutls
 go
 gobject-introspection
@@ -258,7 +260,6 @@ haskell-blaze-builder
 haskell-blaze-html
 haskell-blaze-markup
 haskell-blaze-textual
-haskell-brick
 haskell-byteable
 haskell-byteorder
 haskell-bytestring-encoding
@@ -279,7 +280,6 @@ haskell-comonad
 haskell-conduit
 haskell-conduit-extra
 haskell-conduit-parse
-haskell-config-ini
 haskell-connection
 haskell-constraints
 haskell-constraints-extras
@@ -291,7 +291,6 @@ haskell-cryptohash-sha1
 haskell-cryptohash-sha256
 haskell-cryptonite
 haskell-cryptonite-conduit
-haskell-data-clist
 haskell-data-default
 haskell-data-default-class
 haskell-data-default-instances-containers
@@ -523,7 +522,6 @@ haskell-texmath
 haskell-text-conversions
 haskell-text-icu
 haskell-text-metrics
-haskell-text-zipper
 haskell-tf-random
 haskell-th-abstraction
 haskell-th-compat
@@ -554,8 +552,6 @@ haskell-uuid-types
 haskell-vector
 haskell-vector-algorithms
 haskell-void
-haskell-vty
-haskell-word-wrap
 haskell-x509
 haskell-x509-store
 haskell-x509-system
@@ -614,11 +610,8 @@ jbig2dec
 jdk-openjdk
 jfsutils
 jp2a
-jq
 jre-openjdk
 jre-openjdk-headless
-jre7-openjdk
-jre7-openjdk-headless
 jre8-openjdk
 jre8-openjdk-headless
 js78
@@ -779,6 +772,7 @@ libcddb
 libcdio
 libcdio-paranoia
 libcdr
+libcerf
 libcloudproviders
 libcmis
 libcolord
@@ -827,6 +821,7 @@ libgusb
 libhandy
 libheif
 libibus
+libical
 libice
 libicns
 libid3tag
@@ -1010,6 +1005,7 @@ libzip
 libzmf
 licenses
 light
+lilv
 linux
 linux-api-headers
 linux-firmware
@@ -1032,6 +1028,7 @@ lua-language-server
 lua52
 lua53
 luajit
+lv2
 lvm2
 lxappearance
 lynx
@@ -1045,6 +1042,7 @@ make
 man-db
 man-pages
 mathjax2
+md4c
 mdadm
 mediainfo
 mednafen
@@ -1092,13 +1090,9 @@ nim
 nimble
 ninja
 nm-connection-editor
-node-gyp
-nodejs
-nodejs-nopt
 notmuch-runtime
 noto-fonts
 noto-fonts-emoji
-npm
 npth
 nspr
 nss
@@ -1106,7 +1100,7 @@ numactl
 numlockx
 ocaml
 ocaml-compiler-libs
-oniguruma
+onefetch
 opam
 openal
 openblas
@@ -1264,8 +1258,9 @@ python-mistune1
 python-more-itertools
 python-mpmath
 python-msgpack
+python-mutagen
 python-natsort
-python-nest_asyncio
+python-nest-asyncio
 python-networkx
 python-numpy
 python-ordered-set
@@ -1288,6 +1283,7 @@ python-psutil
 python-ptyprocess
 python-pyaml
 python-pycparser
+python-pycryptodomex
 python-pycups
 python-pycurl
 python-pyelftools
@@ -1332,12 +1328,16 @@ python-urwidtrees
 python-userpath
 python-wcwidth
 python-webencodings
+python-websockets
 python-xlib
 python-yaml
 python-zipp
 python-zstandard
 qhull
 qpdf
+qt5-base
+qt5-svg
+qt5-translations
 r
 raptor
 rasqal
@@ -1387,7 +1387,7 @@ sdl_image
 sdl_mixer
 sdl_ttf
 sed
-semver
+serd
 sfml
 sgml-common
 shaderc
@@ -1401,6 +1401,7 @@ slang
 slop
 smbclient
 smpeg
+sord
 sound-theme-freedesktop
 source-highlight
 speedtest-cli
@@ -1408,6 +1409,7 @@ speex
 speexdsp
 spirv-tools
 sqlite
+sratom
 srt
 sshfs
 stack
@@ -1450,6 +1452,7 @@ tracker3
 transmission-cli
 tree
 tree-sitter
+tslib
 ttf-bitstream-vera
 ttf-dejavu
 ttf-droid
@@ -1507,6 +1510,8 @@ wmctrl
 woff2
 wpa_supplicant
 wpebackend-fdo
+wxgtk-common
+wxgtk3
 x264
 x265
 xapian-core
@@ -1544,7 +1549,6 @@ xfsprogs
 xkeyboard-config
 xmlsec
 xmlto
-xorg-appres
 xorg-docs
 xorg-fonts-100dpi
 xorg-fonts-75dpi
@@ -1598,13 +1602,12 @@ xorg-xwd
 xorg-xwininfo
 xorg-xwud
 xorgproto
-xscreensaver
 xsel
 xvidcore
 xxhash
 xz
 yajl
-youtube-dl
+yt-dlp
 zathura
 zathura-cb
 zathura-djvu

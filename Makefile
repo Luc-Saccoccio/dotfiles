@@ -101,7 +101,7 @@ newsboat: ## Init newsboat RSS/Atom feed reader
 	rm -f $(HOME)/.config/$@
 	$(LN) {${PWD},${HOME}}/.config/$@
 
-nim: ## Settings for nimble
+nimble: ## Settings for nimble
 	rm -f $(HOME)/.config/$@
 	$(LN) {${PWD},${HOME}}/.config/$@
 
