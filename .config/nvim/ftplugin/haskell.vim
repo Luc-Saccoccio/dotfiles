@@ -3,6 +3,8 @@ set expandtab
 set shiftwidth=4
 set smartindent
 set autoindent
+set formatprg=stylish-haskell
+let g:cmp_enabled = 0
 let g:haskell_enable_quantification = 1
 let g:haskell_enable_recursivedo = 1
 let g:haskell_enable_arrowsyntax = 1
@@ -48,7 +50,9 @@ let g:tagbar_type_haskell = {
     \ }
 \ }
 
+colorscheme base16-seti
+lua require('lualine').setup{options={theme='aurora'}}
+
 map <C-s> :%!stylish-haskell<CR>
-nnoremap <leader>g :Ghcid<CR>
 nnoremap <leader>G :10split term://ghci %<CR>i
 nnoremap <leader>h :10split term://hlint %; read<CR>

@@ -15,6 +15,7 @@ endif
 unlet! b:current_syntax
 
 syntax match wikidotComment '\[!--.*--\]'
+syntax match wikidotDone '\~#.*#\~'
 syntax match wikidotElement '\[\[\([^\]]\|\n\)\+\]\]'
 syntax match wikidotLink '\(\[\[\[\([^\]]\|\n\)\+\]\]\]\|\[\w\+:\/\/[\w-]\+\.\w\+[^\]]*\]\)'
 syntax match wikidotBullet '^\s*\* '
@@ -24,7 +25,8 @@ syntax match wikidotClearFloat '\~\{4,}\(<\|=\|>\)\?'
 syntax match wikidotColor '##\(#\?\w\+|\)\?'
 syntax match wikidotQuoteBlock '^>\+ '
 syntax match wikidotAlign '^='
-syntax match wikidotToCorrect '\~\~.\+\~\~'
+
+syn keyword wTodo	TODO FIXME XXX
 
 syntax region wikidotRaw matchgroup=wikidotRaw start='@@' end='@@' oneline
 syntax region wikidotRaw matchgroup=wikidotRawLegacy start='``' end='``' oneline
@@ -50,6 +52,7 @@ highlight def BoldUnderline term=bold,underline cterm=bold,underline gui=bold,un
 highlight def ItalicUnderline term=italic,underline cterm=italic,underline gui=italic,underline
 
 highlight default link wikidotComment Comment
+highlight default link wikidotDone Comment
 highlight default link wikidotElement Structure
 highlight default link wikidotLink String
 highlight default link wikidotBullet Statement
@@ -58,7 +61,7 @@ highlight default link wikidotSeparator PreProc
 highlight default link wikidotColor Statement
 highlight default link wikidotQuoteBlock Type
 highlight default link wikidotAlign Statement
-highlight wikidotToCorrect guifg=#c1c3cc ctermfg=166 guibg=#e33400 ctermbg=NONE gui=bold cterm=NONE
+highlight default link wTodo Todo
 
 highlight default link wikidotRaw PreProc
 highlight default link wikidotRawLegacy PreProc

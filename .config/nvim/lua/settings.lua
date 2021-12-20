@@ -17,6 +17,7 @@ o.updatetime = 100
 -- Files
 o.encoding = 'utf-8'
 o.fileencoding = 'utf-8'
+g.vimwiki_global_ext = 0
 
 -- LSP
 bo.omnifunc = 'v:lua.vim.lsp.omnifunc'

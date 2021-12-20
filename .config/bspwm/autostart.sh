@@ -42,7 +42,6 @@ xrdb ~/.Xresources # colors
 pgrep picom || picom -b --dbus & # Compositor
 pgrep polybar || "$HOME"/.config/polybar/launch.sh & # Polybar
 echo > Images/wallpapers/.wall-list # Recreate wall list
-# pgrep xautolock || xautolock -locker "$HOME/.local/bin/i3lock-blue.sh" -time 15 & # Autolock
 pgrep mpd || mpd & # Music Player Daemon
 "$HOME"/.local/bin/pulse-volume-watcher.py | xob & # Volume Watcher
 

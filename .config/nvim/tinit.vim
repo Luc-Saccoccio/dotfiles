@@ -246,7 +246,7 @@ nmap <silent> <A-S-Down> :wincmd J<CR>
 nmap <silent> <A-S-Left> :wincmd H<CR>
 nmap <silent> <A-S-Right> :wincmd L<CR>
 
-" Moving lines 
+" Moving lines
 nnoremap <C-j> :m .+1<CR>==
 nnoremap <C-k> :m .-2<CR>==
 inoremap <C-j> <Esc>:m .+1<CR>==gi
@@ -265,11 +265,11 @@ nnoremap <F8> :tabn<CR>
 " Term
 nnoremap <F5> :term<CR>
 
-" Folding
-inoremap <C-a> <C-O>za
-nnoremap <C-a> za
-onoremap <C-a> <C-C>za
-vnoremap <C-a> zf
+" Quickfix
+nnoremap cc :cclose<CR>
+nnoremap cp :cprevious<CR>
+nnoremap cn :cnext<CR>
+nnoremap co :copen<CR>
 
 " Advanced Searching
 nnoremap <leader>/ :BLines<CR>

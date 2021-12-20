@@ -101,6 +101,10 @@ newsboat: ## Init newsboat RSS/Atom feed reader
 	rm -f $(HOME)/.config/$@
 	$(LN) {${PWD},${HOME}}/.config/$@
 
+nim: ## Settings for nimble
+	rm -f $(HOME)/.config/$@
+	$(LN) {${PWD},${HOME}}/.config/$@
+
 nvim: ## Init nvim editor
 	rm -f $(HOME)/.config/$@
 	$(LN) {${PWD},${HOME}}/.config/$@
@@ -141,7 +145,9 @@ X: ## Init Xmodmap and Xresources
 
 xmonad: ## Init xmonad WM (TODO)
 	rm -f $(HOME)/.$@
+	rm -f $(HOME)/.xmobarrc
 	$(LN) {${PWD},${HOME}}/.$@
+	$(LN) {${PWD},${HOME}}/.xmobarrc
 
 zathura: ## Init zathura PDF viewer
 	rm -f $(HOME)/.config/$@
@@ -170,6 +176,7 @@ tex: ## Install TinyTex and TeX packages
 	wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
 
 texbackup: ## Backup TeX packages
+	$(MKDIR) $(PWD)/archlinux
 	tlmgr info --only-installed --data "name" > $(PWD)/archlinux/installed_package.txt
 
 texrecover: ## Recover tex packages

@@ -1,11 +1,10 @@
 #!/bin/sh
 
-while getopts 'sdt' c
+while getopts 'sd' c
 do
 	case $c in
 		s) menu="nsxiv" ;;
 		d) menu="dmenu" ;;
-		t) menu="both" ;;
 		*) printf "Unkown Argument\n" ;;
 	esac
 done
@@ -13,11 +12,8 @@ done
 if [ "$menu" = "nsxiv" ]; then
 	walls=$(nsxiv -t -o -r -g 750x750+585+165 "$WALLPAPER" | xargs)  # running nsxiv in thumbnail mode.
 	wall1=$(printf "%s" "$walls" | grep -o '[^\ ]*$') # Only print the last marked Wallpaper
-elif [ "$menu" = "dmenu" ]; then
-	wall1=$(find "$WALLPAPER" | sort | dmenu -p "Wallpaper: " -l 7 | xargs)
 else
-	tag=$(dmenu -in -c -bw 3 -p "Tag:")
-	wall1=$(nsxiv -t -o -r -g 750x750+585+165 $(find "$WALLPAPER" -name "*$tag*" | sort))
+	wall1=$(find "$WALLPAPER" | sort | dmenu -p "Wallpaper: " -l 7 | xargs)
 fi
 
 

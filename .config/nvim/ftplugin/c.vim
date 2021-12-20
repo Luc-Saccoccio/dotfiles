@@ -1,1 +1,1 @@
-" nnoremap gd :ALEGoToDefinition<CR>
+set tabstop=4

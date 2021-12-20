@@ -2,14 +2,18 @@ local cmp = require('cmp')
 local luasnip = require('luasnip')
 local mapping = require('cmp.config.mapping')
 
+vim.g.cmp_enabled = true
+
 cmp.setup {
+	enabled = function()
+		return vim.g.cmp_enabled
+	end,
 	formatting = {
 		format = function(entry, vim_item)
 			vim_item.menu = ({
 				nvim_lsp = "[LSP]",
 				luasnip = "[Snip]",
 				buffer = "[Buffer]",
-				spell = "[Spell]",
 			})[entry.source.name]
 			return vim_item
 		end,
@@ -40,8 +44,8 @@ cmp.setup {
 		end, {'i'}),
 		['<C-d>'] = mapping(cmp.mapping.scroll_docs(-4), {'i'}),
 		['<C-f>'] = mapping(cmp.mapping.scroll_docs(4), {'i'}),
-		['<Left>'] = mapping(cmp.mapping.close(), {'i'}),
-		['<Right>'] = mapping(cmp.mapping.close(), {'i'}),
+		--[[ ['<Left>'] = mapping(cmp.mapping.close(), {'i'}),
+		['<Right>'] = mapping(cmp.mapping.close(), {'i'}), ]]
 		['<C-e>'] = mapping(cmp.mapping.confirm({
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = true
@@ -51,7 +55,6 @@ cmp.setup {
 		{ name = 'nvim_lsp' },
 		{ name = 'luasnip' },
 		{ name = 'buffer' },
-		-- { name = 'spell' },
 	},
 	experimental = {
 		native_menu = false,

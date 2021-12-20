@@ -6,7 +6,7 @@ alias \
 	mv="mv -iv" \
 	rm="rm -Iv" \
 	mkd="mkdir -pv" \
-	yt="youtube-dl --add-metadata -i" \
+	yt="yt-dlp --add-metadata -i" \
 	yta="yt -x -f bestaudio/best" \
 	ffmpeg="ffmpeg -hide_banner" \
 	tmux="tmux -f ~/.config/tmux/tmux.conf" \
@@ -39,12 +39,12 @@ alias \
 	film="mpv --sub-auto=all --sub-file-paths=Subs" \
 
 fr() { # FZF Repos
-	choices=$(find "$HOME"/repos/ -maxdepth 2 -type d && find /home/luc/work/ -maxdepth 5 -type d)
+	choices=$(find "$HOME"/repos/ -maxdepth 2 -type d)
 	cd "$(echo "$choices" | fzf --layout=reverse --height 40%)" || exit 1
 }
 
 ft() { # FZF Tmux
-	config=$(find "$HOME"/.config/tmux/configs/ -maxdepth 1 | sed '1d' | fzf --layout=reverse --height 40%) 
+	config=$(find "$HOME"/.config/tmux/configs/ -maxdepth 1 | sed '1d' | fzf --layout=reverse --height 40%)
 	sh "$config" 2>/dev/null || :
 }
 

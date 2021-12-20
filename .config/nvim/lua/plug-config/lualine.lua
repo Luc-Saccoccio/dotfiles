@@ -1,3 +1,19 @@
+local function lsp_status()
+    local msg = 'No Active Lsp'
+    local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+    local clients = vim.lsp.get_active_clients()
+    if next(clients) == nil then
+        return msg
+    end
+    for _, client in ipairs(clients) do
+        local filetypes = client.config.filetypes
+        if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+            return client.name
+        end
+    end
+    return msg
+end
+
 require('lualine').setup {
 	options = {
 		theme = 'spaceduck',
@@ -9,30 +25,15 @@ require('lualine').setup {
 		lualine_a = { {'mode', {upper = true,},}, },
 		lualine_b = { {'branch', {icon = '',}, }, },
 		lualine_c = {
-			{'filename', {file_status = true,}, separator = ''},
+			{'filename', file_status = true, separator = ''},
 			{'diagnostics',
 				sources = { 'nvim_lsp' },
 				symbols = { error = ' ', warn = ' ', info = ' ' },
 				separator = ''
 			},
-			{function() return '%=' end, separator = ''},
-			{function()
-				local msg = 'No Active Lsp'
-				local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-				local clients = vim.lsp.get_active_clients()
-				if next(clients) == nil then
-				  return msg
-				end
-				for _, client in ipairs(clients) do
-				  local filetypes = client.config.filetypes
-				  if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-				    return client.name
-				  end
-				end
-				return msg
-			end,
-			icon = ' LSP:',},
-			color = { fg = '#ffffff', gui = 'bold' },
+			{ '%=', separator = '' },
+                        { lsp_status, icon = ' LSP:'},
+			-- color = { fg = '#ffffff', gui = 'bold' },
 		},
 		lualine_x = { 'encoding', 'fileformat', 'filetype' },
 		lualine_y = { 'progress' },

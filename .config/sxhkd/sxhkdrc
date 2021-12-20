@@ -17,24 +17,18 @@ super + shift + Return
 	st -c floating
 super + BackSpace
 	alacritty
-super + c
-	/home/luc/.local/bin/draw_term
+
+################
+# Command Tree #
+################
+super + e
+	cmdtree
 
 #####################
 # Program launchers #
 #####################
-super + o
-	rofi -show drun -columns 2 -show-icons
-super + shift + o
-	rofi -show window
 super + d
 	dmenu_run
-super + shift + d
-	networkmanager_dmenu
-super + e
-	rofi -show calc -modi calc -no-show-match -no-sort -lines 2
-super + u 
-	rofi-theme-selector
 super + shift + m
 	clipmenu
 super + shift + p
@@ -53,8 +47,6 @@ super + p
 ################
 super + t
 	firefox
-super + n
-	qutebrowser
 
 #########
 # Print #
@@ -63,14 +55,6 @@ Print
 	/home/luc/.local/bin/perscrot
 super + shift + Print
 	scrot '%Y-%m-%d-%s_$wx$h.png' -e 'mv $f ~/Images/screenshots/' && notify-send --icon=itmages-information "Screenshot" "Screenshot saved to /home/luc/Images/screenshots"
-
-################
-# Ruler & Zoom #
-################
-super + shift + l
-	dunstify "xmeasure" "$(xmeasure)"
-super + k
-	boomer &> /dev/null
 
 ##################
 # Volume Control #
@@ -105,37 +89,17 @@ super + q
 super + shift + e
 	/home/luc/.local/bin/powermenu
 
-##############
-# Lock bspwm #
-##############
-super + shift + z
-	/home/luc/.local/bin/lock.sh
-
 #####################
 # Wallpaper Control #
 #####################
 super + i
 	/home/luc/.local/bin/random-wall
-super + shift + i
-	/home/luc/.local/bin/current-wal
-super + shift + u
-	/home/luc/.local/bin/walw &> /dev/null
-super + w
-	/home/luc/.local/bin/walc -s
-super + shift + s
-	/home/luc/.local/bin/walc -d
-super + shift + t
-	/home/luc/.local/bin/walc -t
-super + shift + w
-	/home/luc/.local/bin/livewalc
 
 ###############
 # MPD Control #
 ###############
 XF86Audio{Play,Pause,Next,Prev,Stop}
 	mpc {toggle,toggle,next,prev,stop}
-XF86Eject
-	mpd_cover
 
 #####################
 # Backlight Control #
@@ -202,9 +166,3 @@ super + alt + {Left,Down,Up,Right}
 ############################
 super + ctrl + {Left,Down,Up,Right}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-
-####################
-# Screenkey toggle #
-####################
-super + b
-	/home/luc/.local/bin/toggle-screenkey
