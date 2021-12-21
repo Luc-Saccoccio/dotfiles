@@ -95,6 +95,7 @@ ncmpcpp: ## Init ncmpcpp mpd's interface
 neomutt: ## Init neomutt mail client
 	rm -f $(HOME)/.mbsyncrc $(HOME)/.config/$@
 	$(LN) {${PWD},${HOME}}/.mbsyncrc
+	$(LN) {${PWD},${HOME}}/.urlview
 	$(LN) {${PWD},${HOME}}/.config/$@
 
 newsboat: ## Init newsboat RSS/Atom feed reader

@@ -68,7 +68,6 @@ celt
 celt0.5.1
 chromaprint
 cifs-utils
-clang
 clipmenu
 clipnotify
 clucene
@@ -76,7 +75,6 @@ cmake
 cmatrix
 colord
 colord-sane
-compiler-rt
 confuse
 coreutils
 cowfortune
@@ -1011,7 +1009,6 @@ linux-api-headers
 linux-firmware
 linux-headers
 lirc
-lld
 llvm
 llvm-libs
 lm_sensors
@@ -1615,7 +1612,6 @@ zathura-pdf-mupdf
 zathura-ps
 zenity
 zeromq
-zig
 zimg
 zip
 zita-alsa-pcmi
