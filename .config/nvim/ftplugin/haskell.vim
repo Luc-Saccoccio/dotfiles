@@ -1,9 +1,9 @@
-set foldmethod=indent
-set expandtab
-set shiftwidth=4
-set smartindent
-set autoindent
-set formatprg=stylish-haskell
+setlocal foldmethod=indent
+setlocal expandtab
+setlocal shiftwidth=4
+setlocal smartindent
+setlocal autoindent
+setlocal formatprg=stylish-haskell
 let g:cmp_enabled = 0
 let g:haskell_enable_quantification = 1
 let g:haskell_enable_recursivedo = 1
