@@ -30,8 +30,6 @@ alias \
 	la="lsd -la" \
 	ll="lsd -l" \
 	lsa="lsd -a" \
-	lexa="exa -Tla" \
-	lext="exa -Tl" \
 	vim="nvim -u ~/.config/nvim/minimal.vim" \
 	open="xdg-open" \
 	scim="sc-im" \
