@@ -31,12 +31,10 @@ attr
 audiofile
 audit
 autoconf
-automake
 autorandr
 avahi
 avisynthplus
 awesome-terminal-fonts
-babl
 bash
 bat
 bc
@@ -56,10 +54,10 @@ c-client
 ca-certificates
 ca-certificates-mozilla
 ca-certificates-utils
+cabextract
 cairo
 cairomm
 calcurse
-camlp4
 cantarell-fonts
 capitaine-cursors
 cbindgen
@@ -68,13 +66,14 @@ celt
 celt0.5.1
 chromaprint
 cifs-utils
+clang
 clipmenu
 clipnotify
 clucene
 cmake
-cmatrix
 colord
 colord-sane
+compiler-rt
 confuse
 coreutils
 cowfortune
@@ -118,13 +117,13 @@ eigen
 elfutils
 enchant
 entr
-exa
-exiv2
+evince
 exo
 expat
 expect
 faad2
 fakeroot
+fasm
 faudio
 fcgi
 fdupes
@@ -142,7 +141,6 @@ firefox
 fish
 flac
 flex
-fltk
 fluidsynth
 fmt
 fontconfig
@@ -166,7 +164,6 @@ gdb
 gdb-common
 gdbm
 gdk-pixbuf2
-gegl
 gendesk
 gettext
 ghc
@@ -177,7 +174,6 @@ giblib
 giflib
 gifsicle
 gifski
-gimp
 girara
 git
 glew
@@ -189,6 +185,7 @@ glslang
 glu
 gmime3
 gmp
+gnome-desktop
 gnupg
 gnuplot
 gnutls
@@ -211,6 +208,7 @@ gsettings-desktop-schemas
 gsfonts
 gsl
 gsm
+gspell
 gst-libav
 gst-plugins-base-libs
 gstreamer
@@ -372,10 +370,6 @@ haskell-hslua
 haskell-hslua-module-path
 haskell-hslua-module-system
 haskell-hslua-module-text
-haskell-hspec
-haskell-hspec-core
-haskell-hspec-discover
-haskell-hspec-expectations
 haskell-hsyaml
 haskell-hsyaml-aeson
 haskell-http
@@ -385,7 +379,6 @@ haskell-http-client-tls
 haskell-http-conduit
 haskell-http-download
 haskell-http-types
-haskell-hunit
 haskell-implicit-hie
 haskell-implicit-hie-cradle
 haskell-indexed-traversable
@@ -468,7 +461,6 @@ haskell-profunctors
 haskell-project-template
 haskell-psqueues
 haskell-quickcheck
-haskell-quickcheck-io
 haskell-random
 haskell-random-shuffle
 haskell-refact
@@ -489,8 +481,6 @@ haskell-safe
 haskell-safe-exceptions
 haskell-scientific
 haskell-semigroupoids
-haskell-semigroups
-haskell-setenv
 haskell-sha
 haskell-shake
 haskell-shelly
@@ -520,7 +510,6 @@ haskell-texmath
 haskell-text-conversions
 haskell-text-icu
 haskell-text-metrics
-haskell-tf-random
 haskell-th-abstraction
 haskell-th-compat
 haskell-th-expand-syns
@@ -575,6 +564,7 @@ hunspell-fr
 hwids
 hwloc
 hyphen
+i2c-tools
 iana-etc
 icu
 id3lib
@@ -582,7 +572,6 @@ id3v2
 ijs
 imagemagick
 imap
-imath
 imlib2
 inetutils
 iniparser
@@ -637,7 +626,6 @@ lapack
 lcms2
 ldb
 ldns
-lensfun
 less
 lib32-acl
 lib32-alsa-lib
@@ -807,7 +795,6 @@ libfreehand
 libftdi
 libgcrypt
 libgdiplus
-libgexiv2
 libgit2
 libglvnd
 libgme
@@ -816,6 +803,7 @@ libgphoto2
 libgtop
 libgudev
 libgusb
+libgxps
 libhandy
 libheif
 libibus
@@ -851,11 +839,9 @@ libmd
 libmediainfo
 libmfx
 libmgba
-libmicrohttpd
 libmikmod
 libmm-glib
 libmms
-libmng
 libmnl
 libmodplug
 libmp4v2
@@ -865,7 +851,6 @@ libmpdclient
 libmspub
 libmtp
 libmwaw
-libmypaint
 libndp
 libnet
 libnetfilter_conntrack
@@ -901,7 +886,6 @@ libpulse
 libqalculate
 libqxp
 libraqm
-libraw
 libraw1394
 libreoffice-fresh
 libreoffice-fresh-fr
@@ -922,7 +906,6 @@ libsoup
 libsoup3
 libsoxr
 libspectre
-libspiro
 libssh
 libssh2
 libstaroffice
@@ -957,7 +940,6 @@ libvpx
 libvterm
 libwacom
 libwebp
-libwmf
 libwpd
 libwpe
 libwpg
@@ -1009,6 +991,7 @@ linux-api-headers
 linux-firmware
 linux-headers
 lirc
+lld
 llvm
 llvm-libs
 lm_sensors
@@ -1045,8 +1028,6 @@ mediainfo
 mednafen
 mesa
 mesa-vdpau
-meson
-metis
 mgba-sdl
 mkinitcpio
 mkinitcpio-busybox
@@ -1065,10 +1046,8 @@ mtools
 mujs
 mupdf
 musl
-mypaint-brushes1
+mypy
 namcap
-nasm
-ncdu
 ncmpcpp
 ncurses
 ndctl
@@ -1085,7 +1064,6 @@ networkmanager-openvpn
 newsboat
 nim
 nimble
-ninja
 nm-connection-editor
 notmuch-runtime
 noto-fonts
@@ -1103,7 +1081,6 @@ openal
 openblas
 openbsd-netcat
 opencore-amr
-openexr
 openjade
 openjpeg2
 openmpi
@@ -1182,7 +1159,6 @@ pkcs11-helper
 pkgconf
 polkit
 poppler
-poppler-data
 poppler-glib
 popt
 portaudio
@@ -1256,6 +1232,7 @@ python-more-itertools
 python-mpmath
 python-msgpack
 python-mutagen
+python-mypy_extensions
 python-natsort
 python-nest-asyncio
 python-networkx
@@ -1318,7 +1295,10 @@ python-testpath
 python-toml
 python-tomli
 python-tornado
+python-tqdm
 python-traitlets
+python-typed-ast
+python-typing_extensions
 python-urllib3
 python-urwid
 python-urwidtrees
@@ -1405,6 +1385,7 @@ speedtest-cli
 speex
 speexdsp
 spirv-tools
+splint
 sqlite
 sratom
 srt
@@ -1417,7 +1398,6 @@ stow
 strace
 stylish-haskell
 sudo
-suitesparse
 svt-av1
 sxhkd
 sysfsutils
@@ -1425,6 +1405,7 @@ system-config-printer
 systemd
 systemd-libs
 systemd-sysvcompat
+t1lib
 taglib
 talloc
 tar
@@ -1502,6 +1483,7 @@ which
 wildmidi
 wine
 wine-mono
+winetricks
 wireless_tools
 wmctrl
 woff2
@@ -1585,6 +1567,7 @@ xorg-xkbutils
 xorg-xkill
 xorg-xlsatoms
 xorg-xlsclients
+xorg-xmessage
 xorg-xmodmap
 xorg-xpr
 xorg-xprop
@@ -1612,6 +1595,7 @@ zathura-pdf-mupdf
 zathura-ps
 zenity
 zeromq
+zig
 zimg
 zip
 zita-alsa-pcmi

@@ -5,7 +5,6 @@ cava
 clight
 djvu2pdf
 dmenu-git
-doukutsu
 fortune-mod-chucknorris
 fortune-mod-hitchhiker
 fortune-tontons-flingueurs-fr
@@ -20,7 +19,6 @@ i3-gaps-next-git
 i3lock-color-git
 libxft-bgra-git
 libxlsxwriter
-musikcube
 neovim-remote
 networkmanager-dmenu-git
 nouveau-fw
@@ -32,6 +30,7 @@ papirus-libreoffice-theme
 picom-git
 pod2man
 polybar
+protontricks
 proxyman-git
 so-git
 toilet
@@ -44,3 +43,4 @@ xmeasure
 xob
 xtitle
 yay
+zls-bin
