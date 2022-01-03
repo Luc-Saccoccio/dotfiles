@@ -8,3 +8,4 @@ lspconfig.ocamllsp.setup({ root_dir = vim.loop.cwd, capabilities = capabilities 
 lspconfig.pylsp.setup({ capabilities = capabilities })
 lspconfig.sumneko_lua.setup({ cmd = {"/usr/bin/lua-language-server"}, capabilities = capabilities })
 lspconfig.rust_analyzer.setup({ root_dir = vim.loop.cwd, capabilities = capabilities })
+lspconfig.zls.setup({ root_dir = vim.loop.cwd, capabilities = capabilities })
