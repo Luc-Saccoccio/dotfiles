@@ -1,0 +1,7 @@
+configuration {
+	modi: "window,drun,run,calc,ssh";
+	show-icons: true;
+	sidebar-mode: true;
+	m: "-4";
+}
+@theme "/usr/share/rofi/themes/sidebar.rasi"
