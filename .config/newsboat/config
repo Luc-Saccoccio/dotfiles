@@ -1,5 +1,9 @@
 auto-reload yes
 
+confirm-exit yes
+confirm-mark-all-feeds-read no
+confirm-mark-feed-read no
+
 notify-always yes
 notify-program "~/.local/bin/newsboat-notifier"
 
