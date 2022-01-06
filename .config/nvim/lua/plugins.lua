@@ -7,9 +7,6 @@ return packer.startup({
 	use {
 		'hrsh7th/cmp-nvim-lsp',
 	}
-	use {
-		'hrsh7th/cmp-nvim-lua',
-	}
 	use 'hrsh7th/cmp-buffer'
 	use {
 		'saadparwaiz1/cmp_luasnip',
@@ -20,7 +17,6 @@ return packer.startup({
 	}
 	use 'neovimhaskell/haskell-vim'
 	use 'lewis6991/impatient.nvim'
-	use 'lukas-reineke/indent-blankline.nvim'
 	use 'b3nj5m1n/kommentary'
 	use {
 		'nvim-lualine/lualine.nvim',
@@ -37,10 +33,10 @@ return packer.startup({
 	use 'kyazdani42/nvim-tree.lua'
 	use 'kyazdani42/nvim-web-devicons'
 	use 'wbthomason/packer.nvim'
+	use 'steelsojka/pears.nvim'
 	use {
 		"tweekmonster/startuptime.vim",
 	}
-	use 'preservim/tagbar'
 	use {
 		'nvim-telescope/telescope.nvim',
 		requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}

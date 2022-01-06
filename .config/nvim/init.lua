@@ -32,7 +32,6 @@ end
 vim.g.mapleader = "µ"
 
 require('plugins')
-require('scripts')
 require('settings')
 require('mappings')
 require('plug-config')

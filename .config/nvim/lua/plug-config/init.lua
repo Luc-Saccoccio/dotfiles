@@ -1,7 +1,7 @@
 require('plug-config.cmp')
-require('plug-config.indent')
 require('plug-config.lsp')
 require('plug-config.lualine')
 require('plug-config.nvim-colorizer')
 require('plug-config.nvim-tree')
+require('plug-config.pears')
 require('plug-config.treesitter')

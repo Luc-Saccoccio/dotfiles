@@ -84,4 +84,3 @@ nest.applyKeymaps({
 })
 
 map('c', 'vh', 'vert help ', { noremap = true, silent = false })
-map('v', '<leader>a', ":lua require('scripts.align').align('", { noremap = true, silent = false })

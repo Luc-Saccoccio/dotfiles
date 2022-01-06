@@ -1527,15 +1527,6 @@ call s:HL('CtrlPStats', s:palette.grey, s:palette.bg3, 'bold')
 highlight! link CtrlPNoEntries Red
 highlight! link CtrlPPrtCursor Blue
 " }}}
-" majutsushi/tagbar{{{
-highlight! link TagbarFoldIcon Green
-highlight! link TagbarSignature Green
-highlight! link TagbarKind Red
-highlight! link TagbarScope Orange
-highlight! link TagbarNestedKind Cyan
-highlight! link TagbarVisibilityPrivate Red
-highlight! link TagbarVisibilityPublic Blue
-" }}}
 " liuchengxu/vista.vim{{{
 highlight! link VistaBracket Grey
 highlight! link VistaChildrenNr Orange
