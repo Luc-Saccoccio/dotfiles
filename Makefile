@@ -198,36 +198,26 @@ ext-repos: repos
 dmenu:
 	cd $(HOME)/repos/perso
 	git clone https://github.com/Luc-Saccoccio/dmenu && \
-	cd dmenu && \
-	make && sudo make install
 
 .ONESHELL:
 dwm:
 	cd $(HOME)/repos/perso
 	git clone https://github.com/Luc-Saccoccio/dwm && \
-	cd dwm && \
-	make && sudo make install
 
 .ONESHELL:
 dwmblocks:
 	cd $(HOME)/repos/perso
 	git clone https://github.com/Luc-Saccoccio/dwmblocks && \
-	cd dwmblocks && \
-	make && sudo make install
 
 .ONESHELL:
 st:
 	cd $(HOME)/repos/perso
 	git clone https://github.com/Luc-Saccoccio/st && \
-	cd st && \
-	make && sudo make install
 
 .ONESHELL:
 tabbed:
 	cd $(HOME)/repos/perso
 	git clone https://github.com/Luc-Saccoccio/tabbed && \
-	cd tabbed && \
-	make && sudo make install
 
 suckless: dmenu dwm st dwmblocks tabbed
 
