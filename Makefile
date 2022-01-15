@@ -42,115 +42,115 @@ arch-backup: ## Backup system packages
 bin: ## Init all my scripts
 	for file in $(shell ls ${PWD}/.local/bin); do \
 		rm -f $(HOME)/.local/bin/$$file; \
-		$(LN) {${PWD},${HOME}}/.local/bin/$$file; \
+		$(LN) ${PWD}/.local/bin/$$file ${HOME}/.local/bin/$$file; \
 	done
 
 alacritty: ## Init alacritty terminal
 	rm -f $(HOME)/.config/$@
-	$(LN) {${PWD},${HOME}}/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
 bspwm: ## Init bspwm WM
 	rm -f $(HOME)/.config/$@
-	$(LN) {${PWD},${HOME}}/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
 catgirl: ## Init catgirl IRC client
 	rm -f $(HOME)/.config/$@
-	$(LN) {${PWD},${HOME}}/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
 desktop: ## Init all dekstop files related settings
 	rm -f $(HOME)/.config/mimeapps.list
 	$(LN) {${PWD},${HOME}}/.config/mimeapps.list
 	for file in html img mimeinfo pdf surf svg tab text video; do \
 		rm -f $(HOME)/.local/share/applications/$$file.desktop; \
-		$(LN) {${PWD},${HOME}}/.local/share/applications/$$file.desktop; \
+		$(LN) ${PWD}/.local/share/applications/$$file.desktop ${HOME}/.local/share/applications/$$file.desktop; \
 	done
 
 dunst: ## Init dunst notification daemon
 	rm -f $(HOME)/.config/$@
-	$(LN) {${PWD},${HOME}}/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
 git: ## Init git
 	$(PKGINSTALL) $@
 	rm -f $(HOME)/.config/$@
-	$(LN) {${PWD},${HOME}}/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
 i3: ## Init i3 WM
 	rm -f $(HOME)/.config/$@
-	$(LN) {${PWD},${HOME}}/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
 mpd: ## Init the Music Player Daemon
 	rm -f $(HOME)/.config/$@
-	$(LN) {${PWD},${HOME}}/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
 mpv: ## Init mpv media player
 	rm -f $(HOME)/.config/$@
-	$(LN) {${PWD},${HOME}}/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
 ncmpcpp: ## Init ncmpcpp mpd's interface
 	rm -f $(HOME)/.config/$@
-	$(LN) {${PWD},${HOME}}/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
 neomutt: ## Init neomutt mail client
 	rm -f $(HOME)/.mbsyncrc $(HOME)/.config/$@
-	$(LN) {${PWD},${HOME}}/.mbsyncrc
-	$(LN) {${PWD},${HOME}}/.urlview
-	$(LN) {${PWD},${HOME}}/.config/$@
+	$(LN) ${PWD}/.mbsyncrc ${HOME}/.mbsyncrc
+	$(LN) ${PWD}/.urlview ${HOME}/.urlview
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
 newsboat: ## Init newsboat RSS/Atom feed reader
 	rm -f $(HOME)/.config/$@
-	$(LN) {${PWD},${HOME}}/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
 nimble: ## Settings for nimble
 	rm -f $(HOME)/.config/$@
-	$(LN) {${PWD},${HOME}}/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
 nvim: ## Init nvim editor
 	rm -f $(HOME)/.config/$@
-	$(LN) {${PWD},${HOME}}/.config/$@
-	$(LN) {${PWD},${HOME}}/.config/pycodestyle
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
+	$(LN) ${PWD}/.config/pycodestyle ${HOME}/.config/pycodestyle
 
 picom: ## Init picom compositor
 	rm -f $(HOME)/.config/$@
-	$(LN) {${PWD},${HOME}}/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
 polybar: ## Init polybar
 	rm -f $(HOME)/.config/$@
-	$(LN) {${PWD},${HOME}}/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
 proxyman: ## Init poxyman proxy manager
 	rm -f $(HOME)/.config/$@
-	$(LN) {${PWD},${HOME}}/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
 rofi: ## Init rofi (to clean !!!)
 	rm -f $(HOME)/.config/$@
-	$(LN) {${PWD},${HOME}}/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
 sxhkd: ## Init shkd hotkey daemon
 	rm -f $(HOME)/.config/$@
-	$(LN) {${PWD},${HOME}}/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
 tmux: ## Init tmux terminal multiplexer
 	rm -f $(HOME)/.config/$@
-	$(LN) {${PWD},${HOME}}/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
 vimus: ## Init vimus mpd interface
 	rm -f $(HOME)/.config/$@
-	$(LN) {${PWD},${HOME}}/.$@rc
+	$(LN) ${PWD}/.$@rc ${HOME}/.$@rc
 
 X: ## Init Xmodmap and Xresources
 	rm -f $(HOME)/{.Xmodmap,.Xresources}
-	$(LN) {${PWD},${HOME}}/.Xmodmap
-	$(LN) {${PWD},${HOME}}/.Xresources
+	$(LN) ${PWD}/.Xmodmap ${HOME}/.Xmodmap
+	$(LN) ${PWD}/.Xresources ${HOME}/.Xresources
 
 xmonad: ## Init xmonad WM (TODO)
 	rm -f $(HOME)/.$@
 	rm -f $(HOME)/.xmobarrc
-	$(LN) {${PWD},${HOME}}/.$@
-	$(LN) {${PWD},${HOME}}/.xmobarrc
+	$(LN) ${PWD}/.$@ ${HOME}/.$@
+	$(LN) ${PWD}/.xmobarrc ${HOME}/.xmobarrc
 
 zathura: ## Init zathura PDF viewer
 	rm -f $(HOME)/.config/$@
-	$(LN) {${PWD},${HOME}}/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
 zsh: ## Init zsh shell
 	rm -f $(HOME)/.zshrc $(HOME)/.config/aliasrc $(HOME)/.profile
