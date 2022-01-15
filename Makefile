@@ -197,27 +197,27 @@ ext-repos: repos
 .ONESHELL:
 dmenu:
 	cd $(HOME)/repos/perso
-	git clone https://github.com/Luc-Saccoccio/dmenu && \
+	git clone https://github.com/Luc-Saccoccio/dmenu
 
 .ONESHELL:
 dwm:
 	cd $(HOME)/repos/perso
-	git clone https://github.com/Luc-Saccoccio/dwm && \
+	git clone https://github.com/Luc-Saccoccio/dwm
 
 .ONESHELL:
 dwmblocks:
 	cd $(HOME)/repos/perso
-	git clone https://github.com/Luc-Saccoccio/dwmblocks && \
+	git clone https://github.com/Luc-Saccoccio/dwmblocks
 
 .ONESHELL:
 st:
 	cd $(HOME)/repos/perso
-	git clone https://github.com/Luc-Saccoccio/st && \
+	git clone https://github.com/Luc-Saccoccio/st
 
 .ONESHELL:
 tabbed:
 	cd $(HOME)/repos/perso
-	git clone https://github.com/Luc-Saccoccio/tabbed && \
+	git clone https://github.com/Luc-Saccoccio/tabbed
 
 suckless: dmenu dwm st dwmblocks tabbed
 
