@@ -3,23 +3,22 @@ SCRIPTS=$(HOME)/.local/bin
 MKDIR=mkdir -p
 LN=ln -vsfn
 PKGINSTALL=sudo -E pacman --noconfirm -S
+OS=archlinux
 
 .DEFAULT_GOAl := help
-.PHONY: all allinstall allupdate allbackup
+.PHONY: allinstall allupdate allbackup
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
 	| sort \
 	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-all: allinstall allupdate allbackup
-
 pacmancolors:
 	# Make pacman and yay colorful and adds eye candy on the progress bar
 	sudo sed -i "s/^#Color/Color/" /etc/pacman.conf
 	sudo sed -i "/#VerbosePkgLists/a ILoveCandy" /etc/pacman.conf
 
-install: ## Install arch linux packages using pacman
+pac-install: ## Install arch linux packages using pacman
 	$(PKGINSTALL) --needed - < $(PWD)/archlinux/pacmanlist
 
 aur : ## Install arch linux AUR packages using yay
@@ -35,9 +34,8 @@ yay: git base repos ## Install yay
 	cd yay
 	makepkg -si
 
-
-backup: ## Backup arch linux packages
-	$(MKDIR) $(PWD)/archlinux
+arch-backup: ## Backup system packages
+	$(MKDIR) $(PWD)/${OS}
 	pacman -Qnq > $(PWD)/archlinux/pacmanlist
 	pacman -Qqem > $(PWD)/archlinux/aurlist
 
@@ -156,32 +154,32 @@ zathura: ## Init zathura PDF viewer
 
 zsh: ## Init zsh shell
 	rm -f $(HOME)/.zshrc $(HOME)/.config/aliasrc $(HOME)/.profile
-	$(LN) {${PWD},${HOME}}/.profile
-	$(LN) {${PWD},${HOME}}/.zshrc
-	$(LN) {${PWD},${HOME}}/.config/aliasrc
-	$(LN) {${PWD},${HOME}}/.config/completions
+	$(LN) ${PWD}/.profile ${HOME}/.profile
+	$(LN) ${PWD}/.zshrc ${HOME}/.zshrc
+	$(LN) ${PWD}/.config/aliasrc ${HOME}/.config/aliasrc
+	$(LN) ${PWD}/.config/completions ${HOME}/.config/completions
 
 pip: ## Install python packages
 	pip install --user --upgrade pip
 	pip install --user 'python-language-server[all]'
 
 pipbackup: ## Backup python packages
-	$(MKDIR) $(PWD)/archlinux
-	pip freeze > $(PWD)/archlinux/requirements.txt
+	$(MKDIR) $(PWD)/${OS}
+	pip freeze > $(PWD)/${OS}/requirements.txt
 
 piprecover: ## Recover python packages
-	mkdir -p ${PWD}/archlinux
-	pip install --user -r ${PWD}/archlinux/requirements.txt
+	mkdir -p ${PWD}/${OS}
+	pip install --user -r ${PWD}/${OS}/requirements.txt
 
 tex: ## Install TinyTex and TeX packages
 	wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
 
 texbackup: ## Backup TeX packages
-	$(MKDIR) $(PWD)/archlinux
-	tlmgr info --only-installed --data "name" > $(PWD)/archlinux/installed_package.txt
+	$(MKDIR) $(PWD)/${OS}
+	tlmgr info --only-installed --data "name" > $(PWD)/${OS}/installed_package.txt
 
 texrecover: ## Recover tex packages
-	tlmgr install $(shell cat ${PWD}/archlinux/installed_package.txt)
+	tlmgr install $(shell cat ${PWD}/${OS}/installed_package.txt)
 
 repos: git ## Create the repos directory and clone a few repos
 	$(MKDIR) $(HOME)/repos/perso
@@ -194,7 +192,6 @@ ext-repos: repos
 	git clone https://notabug.org/PangolinTurtle/BLAG-fortune
 	git clone https://git.causal.agency/catgirl
 	git clone https://github.com/OliverLew/fontpreview-ueberzug
-	git clone https://github.com/nsxiv/nsxiv
 	git clone https://github.com/himanshub16/ProxyMan
 
 .ONESHELL:
