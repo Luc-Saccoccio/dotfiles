@@ -74,6 +74,10 @@ git: ## Init git
 	rm -f $(HOME)/.config/$@
 	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
+ghci: ## Init GHCi
+	rm -f $(HOME)/.$@
+	$(LN) ${PWD}/.$@ ${HOME}/.$@
+
 i3: ## Init i3 WM
 	rm -f $(HOME)/.config/$@
 	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@

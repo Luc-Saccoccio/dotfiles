@@ -1,0 +1,9 @@
+:set prompt "\ESC[0;35m┌─<\ESC[1;34m%s\ESC[0;35m>\n\ESC[0;35m└─<\ESC[1;34mλ\ESC[0;35m>──\ESC[1;33m» \ESC[m"
+:set +m
+:set +s
+:set -fwarn-unused-binds -fwarn-unused-imports -ferror-spans -freverse-errors -fprint-expanded-synonyms
+:set -isrc
+:set -XOverloadedStrings -XTypeApplications
+:def hoogle \s -> return $ ":! hoogle --count=15 \"" ++ s ++ "\""
+:def! doc \ x -> return $ ":!hoogle --info \"" ++ x ++ "\""
+:def pf \str -> return $ ":! pointfree \"" ++ str ++ "\""
