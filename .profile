@@ -7,7 +7,7 @@ export TERMINAL="st"
 export BROWSER="firefox"
 export READER="zathura"
 export PAGER="less -r"
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER="man-pager"
 
 # Hardware Acceleration
 export LIBVA_DRIVER_NAME="nouveau"
