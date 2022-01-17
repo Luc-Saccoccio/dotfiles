@@ -34,10 +34,14 @@ yay: git base repos ## Install yay
 	cd yay
 	makepkg -si
 
-arch-backup: ## Backup system packages
+backup: ## Backup system packages
 	$(MKDIR) $(PWD)/${OS}
+ifeq ($(OS), archlinux)
 	pacman -Qnq > $(PWD)/archlinux/pacmanlist
 	pacman -Qqem > $(PWD)/archlinux/aurlist
+else
+	xpkg > ${PWD}/voidlinux/packages-list
+endif
 
 bin: ## Init all my scripts
 	for file in $(shell ls ${PWD}/.local/bin); do \
