@@ -235,6 +235,7 @@ testpath: ## Echo PATH
 allupdate:
 	@echo "Python: pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip3 install -U"
 	@echo "Arch Linux: yay -S"
+	@echo "Void Linux: xi"
 	@echo "LaTeX: tlmgr update --all"
 
 allinstall: install aur pip piprecover tex bin alacritty bspwm catgirl desktop dunst git i3 mpd mpv ncmpcpp neomutt newsboat nvim picom polybar proxyman sxhkd tmux X xmonad zathura zsh repos suckless
