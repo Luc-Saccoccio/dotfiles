@@ -51,10 +51,11 @@ nest.applyKeymaps({
 	}},
 	{ 'c', {
 		{ 'c', "<cmd>cclose<CR>" },
-		{ 'p', "<cmd>cprevious<CR>" },
+		{ 'd', "<cmd>cd %:p:h<bar>lua print('current directory is ' .. vim.fn.getcwd())<CR>", silent = false },
+		{ 'l', vim.diagnostic.setloclist },
 		{ 'n', "<cmd>cnext<CR>" },
 		{ 'o', "<cmd>copen<CR>" },
-		{ 'd', "<cmd>cd %:p:h<bar>lua print('current directory is ' .. vim.fn.getcwd())<CR>", silent = false },
+		{ 'p', "<cmd>cprevious<CR>" },
 	}},
 	{ "<C-", {
 		{ "w>", { -- Windows

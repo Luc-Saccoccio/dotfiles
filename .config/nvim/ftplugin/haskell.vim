@@ -4,7 +4,7 @@ set shiftwidth=4
 set smartindent
 set autoindent
 set formatprg=stylish-haskell
-set keywordprg=doc\ haskell
+set keywordprg=:split\ \|\ terminal\ doc\ haskell
 let g:cmp_enabled = 0
 let g:haskell_enable_quantification = 1
 let g:haskell_enable_recursivedo = 1

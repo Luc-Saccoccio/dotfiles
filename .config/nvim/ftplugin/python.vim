@@ -4,6 +4,7 @@ augroup pyfiles
 augroup END
 
 setlocal foldmethod=indent
+setlocal formatprg=autopep8\ -
 setlocal makeprg=mypy\ \%:S\ \$*
 let b:ale_linters = ['pylint']
 

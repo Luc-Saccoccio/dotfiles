@@ -17,6 +17,7 @@ return packer.startup({
 	}
 	use 'neovimhaskell/haskell-vim'
 	use 'lewis6991/impatient.nvim'
+	use 'hkupty/iron.nvim'
 	use 'b3nj5m1n/kommentary'
 	use {
 		'nvim-lualine/lualine.nvim',
@@ -33,7 +34,6 @@ return packer.startup({
 	use 'kyazdani42/nvim-tree.lua'
 	use 'kyazdani42/nvim-web-devicons'
 	use 'wbthomason/packer.nvim'
-	use 'steelsojka/pears.nvim'
 	use {
 		"tweekmonster/startuptime.vim",
 	}
