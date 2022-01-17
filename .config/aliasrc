@@ -41,21 +41,6 @@ fr() { # FZF Repos
 	cd "$(echo "$choices" | fzf --layout=reverse --height 40%)" || exit 1
 }
 
-ft() { # FZF Tmux
-	config=$(find "$HOME"/.config/tmux/configs/ -maxdepth 1 | sed '1d' | fzf --layout=reverse --height 40%)
-	sh "$config" 2>/dev/null || :
-}
-
-ce() { # Edit Config
-	choices="$(find "$HOME"/.dotfiles/ -maxdepth 4 -path /home/luc/.dotfiles/.git -prune -o -name "*")"
-	nvim "$(echo "$choices" | fzf --layout=reverse --height 40%)" || exit 1
-}
-
-haste() { # Hase pastebin
-	a=$(cat)
-	curl -X POST -s -d "$a" https://hastebin.com/documents | awk -F '"' '{print "https://hastebin.com/"$4}'
-}
-
 allatexcomp() { # Compile all latex documents in a directory
 	for file in $(ls | grep ".tex")
 	do
