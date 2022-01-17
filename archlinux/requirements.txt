@@ -5,6 +5,7 @@ argcomplete==1.12.3
 argon2-cffi==21.1.0
 argon2-cffi-bindings==21.2.0
 asciinema==2.1.0
+asttokens==2.0.5
 async-generator==1.10
 attrs==21.3.0
 autopep8==1.6.0
@@ -12,8 +13,9 @@ Babel==2.9.1
 backcall==0.2.0
 Beaker==1.11.0
 beautifulsoup4==4.10.0
+black==21.12b0
 bleach==4.1.0
-btrfsutil==5.15.1
+btrfsutil==5.16
 CacheControl==0.12.6
 certifi==2021.10.8
 cffi==1.15.0
@@ -37,6 +39,7 @@ dnspython==2.1.0
 docopt==0.6.2
 docutils==0.16
 entrypoints==0.3
+executing==0.8.2
 eyeD3==0.9.5
 filetype==1.0.9
 flake8==4.0.1
@@ -73,12 +76,13 @@ MarkupSafe==2.0.1
 matplotlib==3.5.1
 matplotlib-inline==0.1.3
 mccabe==0.6.1
+meld==3.20.4
 mistune==0.8.4
 more-itertools==8.10.0
 mpmath==1.2.1
 msgpack==1.0.3
 mutagen==1.45.1
-mypy==0.930
+mypy==0.931
 mypy-extensions==0.4.3
 namcap==3.2.10
 natsort==8.0.2
@@ -95,6 +99,7 @@ packaging==20.9
 pandas==1.3.5
 pandocfilters==1.4.3
 parso==0.8.2
+pathspec==0.9.0
 pdfarranger==1.8.2
 pep517==0.12.0
 pexpect==4.8.0
@@ -108,10 +113,11 @@ ply==3.11
 progress==1.6
 prometheus-client==0.11.0
 prompt-toolkit==3.0.24
-protontricks==1.6.2
+protontricks==1.7.0
 psutil==5.9.0
 ptyprocess==0.7.0
 pulsemixer==1.5.1
+pure-eval==0.2.1
 pyalpm==0.10.6
 pyaml==21.8.3
 pycairo==1.20.1
@@ -123,7 +129,7 @@ pycurl==7.44.1
 pydocstyle==6.1.1
 pyelftools==0.27
 pyflakes==2.4.0
-Pygments==2.11.1
+Pygments==2.11.2
 PyGObject==3.42.0
 pylint==2.12.2
 pynvim==0.4.3
@@ -158,6 +164,7 @@ sphinxcontrib-htmlhelp==2.0.0
 sphinxcontrib-jsmath==1.0.1
 sphinxcontrib-qthelp==1.0.3
 sphinxcontrib-serializinghtml==1.1.5
+stack-data==0.1.4
 sympy==1.9
 tabulate==0.8.9
 TBB==0.2

@@ -18,7 +18,6 @@ aom
 arandr
 archlinux-keyring
 argon2
-asciidoc
 asciinema
 aspell
 aspell-fr
@@ -63,7 +62,6 @@ capitaine-cursors
 cbindgen
 cblas
 celt
-celt0.5.1
 chromaprint
 cifs-utils
 clang
@@ -103,18 +101,16 @@ discord
 djvulibre
 dmraid
 dnssec-anchors
-docbook-xml
-docbook-xsl
 docbook2x
 dosfstools
 double-conversion
-doxygen
 dua-cli
 dunst
 e2fsprogs
 edk2-shell
 eigen
 elfutils
+emacs
 enchant
 entr
 evince
@@ -218,6 +214,7 @@ gtk-update-icon-cache
 gtk2
 gtk3
 gtkmm3
+gtksourceview3
 gtkspell
 gts
 gufw
@@ -327,6 +324,7 @@ haskell-fsnotify
 haskell-fuzzy
 haskell-generic-deriving
 haskell-ghc-api-compat
+haskell-ghc-bignum-orphans
 haskell-ghc-check
 haskell-ghc-exactprint
 haskell-ghc-lib-parser
@@ -561,7 +559,7 @@ htop
 http-parser
 hunspell
 hunspell-fr
-hwids
+hwdata
 hwloc
 hyphen
 i2c-tools
@@ -597,6 +595,7 @@ jbig2dec
 jdk-openjdk
 jfsutils
 jp2a
+jq
 jre-openjdk
 jre-openjdk-headless
 jre8-openjdk
@@ -614,7 +613,6 @@ jupyter-widgetsnbextension
 jupyter_console
 jupyterlab_pygments
 kbd
-kernel-headers-musl
 keyutils
 kmod
 krb5
@@ -870,6 +868,7 @@ libogg
 libomxil-bellagio
 libopenmpt
 liborcus
+libotf
 libotr
 libp11-kit
 libpagemaker
@@ -911,6 +910,7 @@ libssh2
 libstaroffice
 libstemmer
 libsynctex
+libsysprof-capture
 libtasn1
 libteam
 libtermkey
@@ -1015,6 +1015,8 @@ lynx
 lz4
 lzip
 lzo
+m17n-db
+m17n-lib
 m4
 macchanger
 mailcap
@@ -1026,6 +1028,7 @@ md4c
 mdadm
 mediainfo
 mednafen
+meld
 mesa
 mesa-vdpau
 mgba-sdl
@@ -1045,7 +1048,6 @@ mtdev
 mtools
 mujs
 mupdf
-musl
 mypy
 namcap
 ncmpcpp
@@ -1065,6 +1067,7 @@ newsboat
 nim
 nimble
 nm-connection-editor
+nnn
 notmuch-runtime
 noto-fonts
 noto-fonts-emoji
@@ -1076,6 +1079,7 @@ numlockx
 ocaml
 ocaml-compiler-libs
 onefetch
+oniguruma
 opam
 openal
 openblas
@@ -1137,10 +1141,13 @@ perl-http-date
 perl-http-message
 perl-http-negotiate
 perl-io-html
+perl-io-socket-ssl
 perl-libwww
 perl-lwp-mediatypes
+perl-lwp-protocol-https
 perl-mailtools
 perl-net-http
+perl-net-ssleay
 perl-path-tiny
 perl-sgmls
 perl-timedate
@@ -1316,6 +1323,7 @@ qpdf
 qt5-base
 qt5-svg
 qt5-translations
+qt5-x11extras
 r
 raptor
 rasqal
@@ -1467,6 +1475,8 @@ vdpauinfo
 vid.stab
 vim
 vim-runtime
+virtualbox
+virtualbox-host-modules-arch
 vmaf
 volume_key
 vorbis-tools

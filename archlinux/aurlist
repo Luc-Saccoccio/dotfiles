@@ -5,6 +5,7 @@ cava
 clight
 djvu2pdf
 dmenu-git
+etcher-bin
 fortune-mod-chucknorris
 fortune-mod-hitchhiker
 fortune-tontons-flingueurs-fr
@@ -19,7 +20,6 @@ i3-gaps-next-git
 i3lock-color-git
 libxft-bgra-git
 libxlsxwriter
-neovim-remote
 networkmanager-dmenu-git
 nouveau-fw
 nsxiv
