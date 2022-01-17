@@ -59,7 +59,7 @@ catgirl: ## Init catgirl IRC client
 
 desktop: ## Init all dekstop files related settings
 	rm -f $(HOME)/.config/mimeapps.list
-	$(LN) {${PWD},${HOME}}/.config/mimeapps.list
+	$(LN) ${PWD}/.config/mimeapps.list ${HOME}/.config/mimeapps.list
 	for file in html img mimeinfo pdf surf svg tab text video; do \
 		rm -f $(HOME)/.local/share/applications/$$file.desktop; \
 		$(LN) ${PWD}/.local/share/applications/$$file.desktop ${HOME}/.local/share/applications/$$file.desktop; \
@@ -112,6 +112,7 @@ nvim: ## Init nvim editor
 	rm -f $(HOME)/.config/$@
 	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 	$(LN) ${PWD}/.config/pycodestyle ${HOME}/.config/pycodestyle
+	$(LN) ${PWD}/.pylintrc ${HOME}/.pylintrc
 
 picom: ## Init picom compositor
 	rm -f $(HOME)/.config/$@
