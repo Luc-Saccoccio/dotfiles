@@ -66,7 +66,6 @@ nest.applyKeymaps({
 		}},
 		{ "-j>", ":m .+1<CR>==", mode='niv'},
 		{ "-k>", ":m .-2<CR>==", mode='niv'},
-		{ "-l>", "<cmd>TroubleToggle<CR>" },
 		{ "-n>", require('nvim-tree').toggle },
 		{ "-p>", "<cmd>TagbarToggle<CR>" },
 	}},
