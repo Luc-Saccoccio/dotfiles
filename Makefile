@@ -157,6 +157,10 @@ xmonad: ## Init xmonad WM (TODO)
 	$(LN) ${PWD}/.$@ ${HOME}/.$@
 	$(LN) ${PWD}/.xmobarrc ${HOME}/.xmobarrc
 
+xob: ## Init xob
+	rm -f $(HOME)/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
+
 zathura: ## Init zathura PDF viewer
 	rm -f $(HOME)/.config/$@
 	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
