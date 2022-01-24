@@ -1,5 +1,4 @@
 require('plug-config.cmp')
-require('plug-config.iron')
 require('plug-config.lsp')
 require('plug-config.lualine')
 require('plug-config.nvim-colorizer')

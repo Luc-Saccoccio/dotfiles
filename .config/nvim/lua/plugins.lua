@@ -17,7 +17,6 @@ return packer.startup({
 	}
 	use 'neovimhaskell/haskell-vim'
 	use 'lewis6991/impatient.nvim'
-	use 'hkupty/iron.nvim'
 	use 'b3nj5m1n/kommentary'
 	use {
 		'nvim-lualine/lualine.nvim',
@@ -37,6 +36,7 @@ return packer.startup({
 	use {
 		"tweekmonster/startuptime.vim",
 	}
+	use 'Lattay/slimy.vim'
 	use {
 		'nvim-telescope/telescope.nvim',
 		requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
