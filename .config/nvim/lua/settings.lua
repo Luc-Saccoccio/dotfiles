@@ -59,6 +59,12 @@ g.vimwiki_list = {
 	path_html = '~/.local/share/vimwiki/html'},
 	{ path = '~/.local/share/vimwikin',
 	path_html = '~/.local/share/vimwikin/html'}}
+g.slimy_config = {
+	python = { cmd = "python" },
+	ocaml = { cmd = "utop" },
+	haskell = { cmd = "ghci" },
+}
+g.slimy_terminal_config = {vertical = 1}
 cmd('autocmd BufEnter *.Rmd set spell spelllang=fr')
 cmd('autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %')
 cmd('autocmd FileType ocaml,haskell inoremap ,l λ')
