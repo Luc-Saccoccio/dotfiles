@@ -15,8 +15,6 @@ super + Return
 	st
 super + shift + Return
 	st -c floating
-super + BackSpace
-	alacritty
 
 ################
 # Command Tree #

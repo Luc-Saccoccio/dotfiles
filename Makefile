@@ -49,10 +49,6 @@ bin: ## Init all my scripts
 		$(LN) ${PWD}/.local/bin/$$file ${HOME}/.local/bin/$$file; \
 	done
 
-alacritty: ## Init alacritty terminal
-	rm -f $(HOME)/.config/$@
-	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
-
 bspwm: ## Init bspwm WM
 	rm -f $(HOME)/.config/$@
 	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
@@ -246,8 +242,8 @@ allupdate:
 	@echo "Void Linux: xi"
 	@echo "LaTeX: tlmgr update --all"
 
-allinstall: install aur pip piprecover tex bin alacritty bspwm catgirl desktop dunst git i3 mpd mpv ncmpcpp neomutt newsboat nvim picom polybar proxyman sxhkd tmux X xmonad zathura zsh repos suckless
-allconfig: bin alacritty bspwm catgirl desktop dunst git i3 mpd mpv ncmpcpp neomutt newsboat nvim picom polybar proxyman sxhkd tmux X xmonad zathura zsh
+allinstall: install aur pip piprecover tex bin bspwm catgirl desktop dunst git i3 mpd mpv ncmpcpp neomutt newsboat nvim picom polybar proxyman sxhkd tmux X xmonad zathura zsh repos suckless
+allconfig: bin bspwm catgirl desktop dunst git i3 mpd mpv ncmpcpp neomutt newsboat nvim picom polybar proxyman sxhkd tmux X xmonad zathura zsh
 
 archinstall: install nvim neomutt suckless yay pacmancolors aur bin
 

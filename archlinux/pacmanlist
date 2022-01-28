@@ -4,7 +4,6 @@ acpi
 acpid
 adobe-source-code-pro-fonts
 adwaita-icon-theme
-alacritty
 alsa-card-profiles
 alsa-firmware
 alsa-lib
@@ -35,6 +34,7 @@ avahi
 avisynthplus
 awesome-terminal-fonts
 bash
+bash-completion
 bat
 bc
 bdf-unifont
@@ -177,6 +177,7 @@ glib-networking
 glib2
 glibc
 glibmm
+glow
 glslang
 glu
 gmime3
@@ -989,6 +990,7 @@ lilv
 linux
 linux-api-headers
 linux-firmware
+linux-firmware-whence
 linux-headers
 lirc
 lld
@@ -1182,12 +1184,14 @@ python
 python-appdirs
 python-argcomplete
 python-argon2_cffi
+python-asttokens
 python-async_generator
 python-attrs
 python-babel
 python-backcall
 python-beaker
 python-beautifulsoup4
+python-black
 python-bleach
 python-cachecontrol
 python-cairo
@@ -1209,6 +1213,7 @@ python-dnspython
 python-docopt
 python-docutils
 python-entrypoints
+python-executing
 python-eyed3
 python-filetype
 python-fonttools
@@ -1250,6 +1255,7 @@ python-packaging
 python-pandas
 python-pandocfilters
 python-parso
+python-pathspec
 python-pep517
 python-pexpect
 python-pickleshare
@@ -1257,12 +1263,14 @@ python-pikepdf
 python-pillow
 python-pip
 python-pipx
+python-platformdirs
 python-ply
 python-progress
 python-prometheus_client
 python-prompt_toolkit
 python-psutil
 python-ptyprocess
+python-pure-eval
 python-pyaml
 python-pycparser
 python-pycryptodomex
@@ -1296,6 +1304,7 @@ python-sphinxcontrib-htmlhelp
 python-sphinxcontrib-jsmath
 python-sphinxcontrib-qthelp
 python-sphinxcontrib-serializinghtml
+python-stack-data
 python-sympy
 python-tabulate
 python-terminado
@@ -1347,6 +1356,7 @@ ruby-irb
 ruby-manpages
 ruby-optimist
 ruby-paint
+ruby-psych
 ruby-rainbow
 ruby-rdoc
 ruby-reline
@@ -1355,6 +1365,7 @@ ruby-rspec-core
 ruby-rspec-expectations
 ruby-rspec-mocks
 ruby-rspec-support
+ruby-stringio
 ruby-term-ansicolor
 ruby-tins
 rubygems

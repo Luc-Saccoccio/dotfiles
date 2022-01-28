@@ -72,7 +72,6 @@ floating_modifier $mod
 ####################
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+Return exec $term -c floating
-# bindsym $mod+Shift+Return exec alacritty
 bindsym $mod+c exec /home/luc/.local/bin/draw_term
 
 #######################
