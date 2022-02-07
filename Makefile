@@ -48,6 +48,8 @@ bin: ## Init all my scripts
 		rm -f $(HOME)/.local/bin/$$file; \
 		$(LN) ${PWD}/.local/bin/$$file ${HOME}/.local/bin/$$file; \
 	done
+	$(LN) ${PWD}/.local/share/math ${HOME}/.local/share/math
+	$(LN) ${PWD}/.local/share/emojis ${HOME}/.local/share/emojis
 
 bspwm: ## Init bspwm WM
 	rm -f $(HOME)/.config/$@

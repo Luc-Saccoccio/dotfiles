@@ -1,3 +1,8 @@
 #!/bin/sh
 
-col -bx < "$1" | bat --language man -p
+if [ $# -eq 0 ]
+then
+	sh -c 'col -bx | bat -l man -p'
+else
+	cat "$1" | col -bx | bat --language man --style plain
+fi

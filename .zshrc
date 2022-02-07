@@ -77,8 +77,6 @@ zle-line-init() {
 }
 zle -N zle-line-init
 
-setopt auto_cd
-
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
 source /home/luc/.config/completions
