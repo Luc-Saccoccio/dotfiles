@@ -17,7 +17,27 @@ o.updatetime = 100
 -- Files
 o.encoding = 'utf-8'
 o.fileencoding = 'utf-8'
-g.vimwiki_global_ext = 0
+--[[ g.repl = {
+    python = {
+        bin = 'python',
+        args = '',
+        syntax = 'python',
+        title = 'Python REPL',
+    },
+    haskell = {
+        bin = 'ghci',
+        args = '',
+        syntax = 'haskell',
+        title = 'Haskell REPL',
+    },
+    ocaml = {
+        bin = 'utop',
+        args = '',
+        syntax = 'ocaml',
+        title = 'OCaml REPL',
+    }
+} ]]
+g.slime_target = "neovim"
 
 -- LSP
 bo.omnifunc = 'v:lua.vim.lsp.omnifunc'
@@ -30,6 +50,7 @@ o.clipboard = 'unnamedplus'
 o.guifont = 'FiraCode Nerd Font:h15'
 g.nocompatible = true
 g.loaded_netrwPlugin = true
+o.title = true
 o.mouse = 'a'
 cmd('colorscheme spaceduck')
 o.number = true
@@ -54,17 +75,6 @@ g.tmuxline_preset = {
       x    = '',
       y    = {'%T', '%a', '%Y'},
       z    = '#(battery)'}
-g.vimwiki_list = {
-	{ path = '~/.local/share/vimwiki',
-	path_html = '~/.local/share/vimwiki/html'},
-	{ path = '~/.local/share/vimwikin',
-	path_html = '~/.local/share/vimwikin/html'}}
-g.slimy_config = {
-	python = { cmd = "python" },
-	ocaml = { cmd = "utop" },
-	haskell = { cmd = "ghci" },
-}
-g.slimy_terminal_config = {vertical = 1}
 cmd('autocmd BufEnter *.Rmd set spell spelllang=fr')
 cmd('autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %')
 cmd('autocmd FileType ocaml,haskell inoremap ,l λ')
