@@ -13,4 +13,5 @@ xmodmap "$HOME/.Xmodmap"
 pgrep nm-applet || nm-applet &
 pgrep clipmenud || clipmenud &
 pgrep udiskie || udiskie -t &
+pgrep xscreensaver || xscreensaver &
 echo > Images/wallpapers/.wall-list
