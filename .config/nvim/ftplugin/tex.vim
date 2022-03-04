@@ -51,10 +51,10 @@ inoremap ,rb \rrbracket
 inoremap ,re \begin{remark}<Enter><BS>\end{remark}<Enter><Enter><++><Esc>3ko
 inoremap ,sc \textsc{}<Space><++><Esc>T{i
 inoremap ,se \section{}<Enter><Enter><++><Esc>2kf}i
-inoremap ,sp \vspace{\baselineskip}
 inoremap ,sse \subsection{}<Enter><Enter><++><Esc>2kf}i
 inoremap ,ssse \subsubsection{}<Enter><Enter><++><Esc>2kf}i
-inoremap ,su $\left\{\begin{array}{l}<Enter><Enter><Enter>\end{array}<Enter>\right.$<Up><Up><Up>
+inoremap ,sp \vspace{\baselineskip}
+inoremap ,ssi si et seulement si
 inoremap ,tab \begin{tabular}<Enter><++><Enter>\end{tabular}<Enter><Enter><++><Esc>4kA{}<Esc>i
 inoremap ,the \begin{theorem}<Enter>\end{theorem}<Enter><Enter><++><Esc>3ko
 inoremap ,tikz \begin{tikzpicture}<CR><CR>\end{tikzpicture}<Up>
