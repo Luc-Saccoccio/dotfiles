@@ -1,18 +1,9 @@
 #!/usr/bin/env bash
 
-BAR_ICON=""
+BAR_ICON=""
 NOTIFY_ICON=/usr/share/icons/Papirus/32x32/apps/system-software-update.svg
 
-if ! updates_arch=$(checkupdates 2> /dev/null | wc -l ); then
-    updates_arch=0
-fi
-
-# if ! updates_aur=$(cower -u 2> /dev/null | wc -l); then
-if ! updates_aur=$(yay -Qum | wc -l); then
-    updates_aur=0
-fi
-
-get_total_updates() { UPDATES=$(("$updates_arch" + "$updates_aur")); }
+get_total_updates() { UPDATES=$(checkupdates 2>/dev/null | wc -l); }
 
 while true; do
     get_total_updates
@@ -35,9 +26,9 @@ while true; do
     # every 10 seconds another check for updates is done
     while (( UPDATES > 0 )); do
         if (( UPDATES == 1 )); then
-            echo " $UPDATES Update"
+            echo " $UPDATES Update"
         elif (( UPDATES > 1 )); then
-            echo " $UPDATES Updates"
+            echo " $UPDATES Updates"
         else
             echo $BAR_ICON
         fi
@@ -48,7 +39,7 @@ while true; do
     # when no updates are available, use a longer loop, this saves on CPU
     # and network uptime, only checking once every 30 min for new updates
     while (( UPDATES == 0 )); do
-        echo "$BAR_ICON 0 Updates"
+        echo $BAR_ICON
         sleep 1800
         get_total_updates
     done

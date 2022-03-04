@@ -3,7 +3,7 @@ set expandtab
 set shiftwidth=4
 set smartindent
 set autoindent
-set formatprg=stylish-haskell
+set formatprg=brittany
 set keywordprg=:split\ \|\ terminal\ doc\ haskell
 let g:cmp_enabled = 0
 let g:haskell_enable_quantification = 1
@@ -17,9 +17,8 @@ let g:necoghc_enable_detailed_browse = 1
 let g:haskellmode_completion_ghc = 0
 let b:ale_linters = ['hlint', 'stack_build', 'stack_ghc', 'cabal_ghc', 'brittany']
 
-colorscheme base16-seti
-lua require('lualine').setup{options={theme='aurora'}}
+" colorscheme base16-seti
+" lua require('lualine').setup{options={theme='aurora'}}
 
-map <C-s> :%!stylish-haskell<CR>
 nnoremap <leader>G :10split term://ghci %<CR>i
 nnoremap <leader>h :10split term://hlint %; read<CR>
