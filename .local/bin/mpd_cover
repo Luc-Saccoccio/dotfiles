@@ -2,16 +2,10 @@
 
 COVER=/tmp/cover.jpg
 
-ffmpeg -i "/home/luc/Musique/$(mpc current -f %file%)" "$COVER" -y &>/dev/null
-STATUS=$?
-if [ "$STATUS" -eq 0 ];then
-	image=$COVER
-else
-        DIR="/home/luc/Musique/$(dirname "$(mpc current -f %file%)")"
-	cd "$DIR" || exit
-	image=$(ls | grep -E '.jpg|.png|.jpeg' || echo "$HOME/Musique/fallback.png")
-        convert "$image" "$COVER"
-fi
+DIR="/home/luc/Musique/$(dirname "$(mpc current -f %file%)")"
+cd "$DIR" || exit
+image=$(ls | grep -E '.jpg|.png|.jpeg' || echo "$HOME/Musique/fallback.png")
+convert "$image" "$COVER"
 
 notify-send -t 3000 -i "$(readlink -f "$image")" "♪ Now Playing:
 
