@@ -2,4 +2,4 @@
 
 unread="$(find /home/luc/.local/share/mail/*/INBOX/new/ -type f | wc -l 2>/dev/null)"
 pidof mbsync >/dev/null 2>&1 && echo "Updating" && exit 0
-echo "Mails: $unread"
+[ "$unread" -eq 0 ] || echo "Mails: $unread"
