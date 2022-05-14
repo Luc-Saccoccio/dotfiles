@@ -21,7 +21,7 @@ SAVEHIST=10000
 setopt HIST_IGNORE_SPACE
 
 # Load aliases
-[ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
+[ -f "$HOME/.config/zsh/aliasrc" ] && source "$HOME/.config/zsh/aliasrc"
 
 autoload -U compinit
 zstyle ':completion:*' menu select
@@ -79,7 +79,7 @@ zle -N zle-line-init
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
-source /home/luc/.config/completions
+source /home/luc/.config/zsh/completions
 source /usr/share/fzf/key-bindings.zsh
 
 # opam configuration

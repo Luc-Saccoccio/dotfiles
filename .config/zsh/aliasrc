@@ -15,6 +15,7 @@ alias \
 	lsblkv='lsblk -o name,size,type,fstype,mountpoint,label,uuid' \
 	df='df --total -h' \
 	bat='PAGER="less -R" bat' \
+	rmg='MESA_GL_VERSION_OVERRIDE=3.3 RMG' \
 	stig='stig -c ~/.config/pipx/rc'
 
 # Colorize commands when possible

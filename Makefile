@@ -1,9 +1,10 @@
+include config.mk
+
 BASE=$(PWD)
 SCRIPTS=$(HOME)/.local/bin
 MKDIR=mkdir -p
 LN=ln -vsfn
 PKGINSTALL=sudo -E pacman --noconfirm -S
-OS=archlinux
 
 .DEFAULT_GOAl := help
 .PHONY: allinstall allupdate allbackup
@@ -164,11 +165,9 @@ zathura: ## Init zathura PDF viewer
 	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
 zsh: ## Init zsh shell
-	rm -f $(HOME)/.zshrc $(HOME)/.config/aliasrc $(HOME)/.profile
+	rm -f $(HOME)/.config/$@ $(HOME)/.profile
 	$(LN) ${PWD}/.profile ${HOME}/.profile
-	$(LN) ${PWD}/.zshrc ${HOME}/.zshrc
-	$(LN) ${PWD}/.config/aliasrc ${HOME}/.config/aliasrc
-	$(LN) ${PWD}/.config/completions ${HOME}/.config/completions
+	$(LN) ${PWD}/.config/zsh ${HOME}/.config/zsh
 
 pip: ## Install python packages
 	pip install --user --upgrade pip
