@@ -26,7 +26,7 @@ setopt HIST_IGNORE_SPACE
 autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-compinit
+compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 
 # Include hidden files in autocomplete:
 _comp_options+=(globdots)
