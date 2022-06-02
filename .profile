@@ -16,7 +16,7 @@ export MOZ_DISABLE_RDD_SANDBOX=1
 export MOZ_X11_EGL=1
 
 # Path
-export PATH=/home/luc/.opam/default/bin:/home/luc/.local/share/cargo/bin:/home/luc/.local/share/go/bin:/home/luc/.local/share/gem/ruby/3.0.0/bin:/home/luc/.TinyTeX/bin/x86_64-linux:/home/luc/.local/bin:$PATH
+export PATH=/home/luc/.local/share/opam/default/bin:/home/luc/.local/share/cargo/bin:/home/luc/.local/share/go/bin:/home/luc/.local/share/gem/ruby/3.0.0/bin:/home/luc/.TinyTeX/bin/x86_64-linux:/home/luc/.local/bin:$PATH
 
 # Useful directories
 export WALLPAPER="/home/luc/Images/wallpapers"
@@ -30,11 +30,19 @@ export FZF_DEFAULT_OPTS='--layout=reverse --preview-window right:70%'
 export NNN_LOCKER="binarix"
 export NNN_PLUG='p:preview-tabbed;P:preview-tui'
 
-# Cleanup
-export TERMINFO="$HOME/.locah/share/terminfo"
+# XDG
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_STATE_HOME="$HOME/.local/state"
+
+# Cleanup
+export HISTFILE="${XDG_CACHE_HOME}/bash/history"
+export XAUTHORITY="$XDG_CONFIG_HOME/X11/Xauthority"
+export USERXSESSION="$XDG_CACHE_HOME/X11/xsession"
+export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
+export PYLINTHOME="${XDG_CACHE_HOME}"/pylint
+export TERMINFO="$HOME/.locah/share/terminfo"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
 export LESSHISTFILE="/dev/null"
 export PULSE_COOKIE="$HOME/.cache/pulse-cookie"
