@@ -25,8 +25,9 @@ setxkbmap -layout fr # Put the keyboard in azerty
 xmodmap "$HOME/.Xmodmap" # Custom keyboard mappings
 xsetroot -cursor_name left_ptr # Basic cursor and not a cross
 pgrep sxhkd || sxhkd & # Start Simple Hotkey Daemon
-"$HOME/.fehbg" # Restore last wallpaper
-# "$HOME"/.local/bin/random-wall # Random wallpaper
+echo > Images/wallpapers/.wall-list # Recreate wall list
+# "$HOME/.fehbg" # Restore last wallpaper
+"$HOME"/.local/bin/random-wall # Random wallpaper
 xrdb ~/.Xresources # colors
 
 
@@ -36,7 +37,6 @@ xrdb ~/.Xresources # colors
 
 pgrep picom || picom -b --dbus & # Compositor
 pgrep polybar || "$HOME"/.config/polybar/launch.sh & # Polybar
-echo > Images/wallpapers/.wall-list # Recreate wall list
 pgrep mpd || mpd & # Music Player Daemon
 "$HOME"/.local/bin/pulse-volume-watcher.py | xob & # Volume Watcher
 

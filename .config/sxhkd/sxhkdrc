@@ -92,6 +92,18 @@ super + shift + e
 #####################
 super + i
 	/home/luc/.local/bin/random-wall
+super + shift + i
+	/home/luc/.local/bin/current-wal
+super + shift + u
+	/home/luc/.local/bin/walw &> /dev/null
+super + w
+	/home/luc/.local/bin/walc -s
+super + shift + s
+	/home/luc/.local/bin/walc -d
+super + shift + t
+	/home/luc/.local/bin/walc -t
+super + shift + w
+	/home/luc/.local/bin/livewalc
 
 ###############
 # MPD Control #
