@@ -1,1 +1,5 @@
 keycode 32 = o O o O oe OE
+remove Lock = twosuperior
+add Lock = Escape
+keysym twosuperior = Escape
+keysym Escape = twosuperior
