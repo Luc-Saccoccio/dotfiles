@@ -9,7 +9,7 @@ PKGINSTALL=sudo -E pacman --noconfirm -S
 .DEFAULT_GOAl := help
 .PHONY: allinstall allupdate allbackup
 
-help:
+help: ## Display Help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
 	| sort \
 	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
@@ -97,7 +97,11 @@ ncmpcpp: ## Init ncmpcpp mpd's interface
 	rm -f $(HOME)/.config/$@
 	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
-neomutt: ## Init neomutt mail client
+msmtp:
+	rm -f $(HOME)/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
+
+neomutt: msmtp ## Init neomutt mail client
 	rm -f $(HOME)/.mbsyncrc $(HOME)/.config/$@
 	$(LN) ${PWD}/.mbsyncrc ${HOME}/.mbsyncrc
 	$(LN) ${PWD}/.urlview ${HOME}/.urlview
