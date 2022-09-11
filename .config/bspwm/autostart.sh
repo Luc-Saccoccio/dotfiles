@@ -52,8 +52,8 @@ pgrep udiskie || udiskie -t & # Udiskie automount
 # GUI Applications #
 ####################
 
-pgrep Discord || discord & # Discord
-sleep 2; pgrep ncmpcpp || st -n "ncmpcpp" -c "ncmpcpp" -e ncmpcpp & bspc rule -a ncmpcpp:ncmpcpp desktop='^1' &
-sleep 2; pgrep newsboat || st -n "newsboat" -c "newsboat" -e newsboat & bspc rule -a newsboat:newsboat desktop='^10' &
+pgrep Discord || discord-canary & # Discord
+pgrep ncmpcpp || st -n "ncmpcpp" -c "ncmpcpp" -e ncmpcpp & bspc rule -a ncmpcpp:ncmpcpp desktop='^1' &
+pgrep newsboat || st -n "newsboat" -c "newsboat" -e newsboat & bspc rule -a newsboat:newsboat desktop='^10' &
 # sleep 2; pgrep calcurse || st -n "calcurse" -c "calcurse" -e calcurse & bspc rule -a calcurse:calcurse desktop='^9' &
 "$HOME"/.local/bin/updates & # Check for updates
