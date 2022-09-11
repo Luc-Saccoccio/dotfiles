@@ -4,6 +4,7 @@
 :set -fwarn-unused-binds -fwarn-unused-imports -ferror-spans -freverse-errors -fprint-expanded-synonyms
 :set -isrc
 :set -XOverloadedStrings -XTypeApplications
+-- :set -XNoStarIsType
 :def hoogle \s -> return $ ":! hoogle --count=15 \"" ++ s ++ "\""
 :def! doc \ x -> return $ ":!hoogle --info \"" ++ x ++ "\""
 :def pf \str -> return $ ":! pointfree \"" ++ str ++ "\""
