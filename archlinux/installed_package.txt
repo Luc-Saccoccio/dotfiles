@@ -38,6 +38,7 @@ datetime
 dehyph
 dehyph-exptl
 dirtytalk
+doublestroke
 dvipdfmx
 dvipdfmx.x86_64-linux
 dvips
