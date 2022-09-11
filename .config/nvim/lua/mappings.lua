@@ -17,16 +17,18 @@ nest.applyKeymaps({
 		{ 'F', "<cmd>setlocal spell spelllang=fr<CR>" },
 		{ 'E', "<cmd>setlocal spell spelllang=en<CR>" },
 
-		{ 'A', "<cmd>colorscheme aurora<CR>" },
-		{ 'S', "<cmd>colorscheme spaceduck<CR>" },
-		{ 'B', "<cmd>colorscheme base16-seti<CR>" },
+		{ 'A', "<cmd>colorscheme aurora<CR><cmd>lua require('lualine').setup { options = { theme = 'aurora'}}<CR>" },
+		{ 'S', "<cmd>colorscheme spaceduck<CR><cmd>lua require('lualine').setup { options = { theme = 'spaceduck'}}<CR>" },
+		{ 'B', "<cmd>colorscheme base16-seti<CR><cmd>lua require('lualine').setup { options = { theme = 'aurora'}}<CR>" },
 		{ 'L', "<cmd>colorscheme rusticated<CR>" },
+
+		{ 'C', toggle_cmp },
 
 		{ "<leader>", "<Esc>/<++><Enter>\"_c4l", mode = 'ni' },
 
 		{ 'f', { -- Telescope
-			{ 'c', "<cmd>Telescope fd cwd=$HOME/.config/nvim/<CR>" },
-			{ 'd', "<cmd>Telescope lsp_document_symbols<CR>" },
+			{ 'c', "<cmd>Telescope fd cwd=$HOME/.config/nvim/ hidden=true no_ignore=true<CR>" },
+			{ 'd', "<cmd>Telescope fd cwd=$HOME/.dotfiles hidden=true no_ignore=true<CR>" },
 			{ 'f', '<cmd>Telescope find_files<cr>' },
 			{ 'g', {
 				{ 'b', '<cmd>Telescope git_branches<CR>' },
@@ -40,22 +42,15 @@ nest.applyKeymaps({
 			{ 'r', "<cmd>Telescope oldfiles<CR>" },
 			{ 't', "<cmd>Telescope buffers<CR>" },
 		}},
-		{ 't', { -- Tabs
-			{ "<Left>", "<cmd>tabfirst<CR>" },
-			{ "<Right>", "<cmd>tablast<CR>" },
-			{ 't', "<cmd>tabnew<CR>" },
-			{ 'n', "<cmd>tabnext<CR>" },
-			{ 'p', "<cmd>tabprev<CR>" }
+		{ 'tt', "<cmd>tabnew<CR>" },
+		{ 'c', {
+			{ 'c', "<cmd>cclose<CR>" },
+			{ 'd', "<cmd>cd %:p:h<bar>lua print('current directory is ' .. vim.fn.getcwd())<CR>", silent = false },
+			{ 'l', vim.diagnostic.setloclist },
+			{ 'n', "<cmd>cnext<CR>" },
+			{ 'o', "<cmd>copen<CR>" },
+			{ 'p', "<cmd>cprevious<CR>" },
 		}},
-		{ 'c', toggle_cmp },
-	}},
-	{ 'c', {
-		{ 'c', "<cmd>cclose<CR>" },
-		{ 'd', "<cmd>cd %:p:h<bar>lua print('current directory is ' .. vim.fn.getcwd())<CR>", silent = false },
-		{ 'l', vim.diagnostic.setloclist },
-		{ 'n', "<cmd>cnext<CR>" },
-		{ 'o', "<cmd>copen<CR>" },
-		{ 'p', "<cmd>cprevious<CR>" },
 	}},
 	{ "<C-", {
 		{ "w>", { -- Windows
@@ -64,8 +59,8 @@ nest.applyKeymaps({
 				{ "<S-Left>", "<cmd>wincmd H<CR>" },
 				{ "<S-Right>", "<cmd>wincmd L<CR>" },
 		}},
-		{ "-j>", ":m .+1<CR>==", mode='niv'},
-		{ "-k>", ":m .-2<CR>==", mode='niv'},
+		{ "-j>", ":m .+1<CR>==", mode='nv'},
+		{ "-k>", ":m .-2<CR>==", mode='nv'},
 		{ "-n>", require('nvim-tree').toggle },
 		{ "-p>", "<cmd>TagbarToggle<CR>" },
 	}},

@@ -1,3 +1,8 @@
+set expandtab
+set shiftwidth=4
+set tabstop=4
+set smartindent
+set autoindent
 let g:tex_flavor="xelatex"
 set spell spelllang=fr
 autocmd VimLeave * !texclear %
@@ -30,7 +35,7 @@ inoremap ,dq \begin{description}<Enter><Enter>\end{description}<Enter><Enter><++
 inoremap ,em \emph{}<++><Esc>T{i
 inoremap ,emp \begin{empheq}[box=\fbox]{align}<Enter><Enter>\end{empheq}
 inoremap ,fi \begin{figure}<Enter>\centering<Enter><Enter>\end{figure}<Enter><Enter><++><Esc>3kA
-inoremap ,fr \begin{frame}<Enter>\frametitle{}<Enter><Enter><++><Enter><Enter>\end{frame}<Enter><Enter><++><Esc>6kf}i
+inoremap ,fr \begin{frame}{}<Enter><Enter><++><Enter><Enter>\end{frame}<Enter><Enter><++><Esc>6kf}i
 inoremap ,func \begin{tikzpicture}<CR>\draw[thin, dashed, gray] (startx, starty) grid (endx, endy);<CR>\draw[->] (startx, 0) -- (endx, 0) node[right] {$x$};<CR>\draw[->] (0, starty) -- (0, endy) node[above] {$y$};<CR>\end{tikzpicture}<Esc>$v4<Up>0:Coordinates
 inoremap ,gh \left\\|\vec{}\right\\|<Esc>8hi
 inoremap ,img \begin{figure}[h]<Enter>\centering<Enter>\includegraphics[width=\textwidth]{}<Enter>\caption{}<Enter>\end{figure}<Enter><Enter>

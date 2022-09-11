@@ -1,9 +1,10 @@
 set foldmethod=indent
 set expandtab
-set shiftwidth=4
+set shiftwidth=2
+set tabstop=2
 set smartindent
 set autoindent
-set formatprg=brittany
+set formatprg=stylish-haskell
 set keywordprg=:split\ \|\ terminal\ doc\ haskell
 let g:cmp_enabled = 0
 let g:haskell_enable_quantification = 1

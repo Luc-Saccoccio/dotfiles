@@ -1,4 +1,5 @@
 syntax off
+set clipboard=unnamedplus
 filetype off
 set noundofile
 set noswapfile

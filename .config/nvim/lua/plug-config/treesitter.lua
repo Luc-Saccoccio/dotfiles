@@ -1,12 +1,13 @@
--- local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 local treesitter = require('nvim-treesitter.configs')
 
---[[ parser_config.haskell = {
+parser_config.hare = {
   install_info = {
-    url = "~/path/to/tree-sitter-haskell",
-    files = {"src/parser.c", "src/scanner.cc"}
-  }
-} ]]
+    url = "https://git.sr.ht/~ecmma/tree-sitter-hare",
+    files = {"src/parser.c"}
+  },
+  filetype = "hare",
+}
 
 treesitter.setup {
     ensure_installed = "all",

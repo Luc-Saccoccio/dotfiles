@@ -2,7 +2,7 @@ local packer = require "packer"
 local use = packer.use
 return packer.startup({
     function()
-        use 'dense-analysis/ale'
+	use 'derekelkins/agda-vim'
 	use 'erikbackman/aurora.vim'
 	use {
 		'hrsh7th/cmp-nvim-lsp',
@@ -28,6 +28,7 @@ return packer.startup({
 	}
 	use 'LionC/nest.nvim'
 	use 'hrsh7th/nvim-cmp'
+	use 'ObserverOfTime/nvimcord'
 	use 'norcalli/nvim-colorizer.lua'
 	use 'neovim/nvim-lspconfig'
 	use 'kyazdani42/nvim-tree.lua'
@@ -53,6 +54,14 @@ return packer.startup({
 		'vimwiki/vimwiki',
 		branch = "dev"
 	}
+	use 'vlime/vlime'
+	--[[ use{
+		'ray-x/navigator.lua',
+		requires = {
+			{ 'ray-x/guihua.lua', run = 'cd lua/fzy && make' },
+			{ 'neovim/nvim-lspconfig' },
+		},
+	} ]]
     end,
     config = {
     -- Move to lua dir so impatient.nvim can cache it
