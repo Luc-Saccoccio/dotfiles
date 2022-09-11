@@ -7,6 +7,6 @@ cd "$DIR" || exit
 image=$(ls | grep -E '.jpg|.png|.jpeg' || echo "$HOME/Musique/fallback.png")
 convert "$image" "$COVER"
 
-notify-send -t 3000 -i "$(readlink -f "$image")" "♪ Now Playing:
+notify-send -r 14 -t 3000 -i "$(readlink -f "$image")" "♪ Now Playing:
 
 $(mpc --format '%track% - %title%' | head -n1)" "$(mpc --format '%album%\nby %artist%\n\n%time%' | head -n4)"
