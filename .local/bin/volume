@@ -1,3 +1,3 @@
 #!/bin/sh
 
-echo "Vol: $(pamixer --get-volume)%"
+echo "VOL $(pamixer --get-volume)%"

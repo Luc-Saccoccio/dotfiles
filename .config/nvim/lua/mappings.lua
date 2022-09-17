@@ -40,9 +40,15 @@ nest.applyKeymaps({
 			{ 'm', "<cmd>Telescope man_pages sections=1,2,3,7,8<CR>" },
 			{ 'o', "<cmd>Telescope vim_options<CR>" },
 			{ 'r', "<cmd>Telescope oldfiles<CR>" },
-			{ 't', "<cmd>Telescope buffers<CR>" },
+			{ 'b', "<cmd>Telescope buffers<CR>" },
 		}},
-		{ 'tt', "<cmd>tabnew<CR>" },
+		{ 't', {
+			{ "<Left>", "<cmd>tabfirst<CR>" },
+			{ "<Right>", "<cmd>tablast<CR>" },
+			{ 't', "<cmd>tabnew<CR>" },
+			{ 'n', "<cmd>tabnext<CR>" },
+			{ 'p', "<cmd>tabprev<CR>" },
+		}},
 		{ 'c', {
 			{ 'c', "<cmd>cclose<CR>" },
 			{ 'd', "<cmd>cd %:p:h<bar>lua print('current directory is ' .. vim.fn.getcwd())<CR>", silent = false },
@@ -59,9 +65,9 @@ nest.applyKeymaps({
 				{ "<S-Left>", "<cmd>wincmd H<CR>" },
 				{ "<S-Right>", "<cmd>wincmd L<CR>" },
 		}},
-		{ "-j>", ":m .+1<CR>==", mode='nv'},
-		{ "-k>", ":m .-2<CR>==", mode='nv'},
-		{ "-n>", require('nvim-tree').toggle },
+		{ "-j>", ":m .+1<CR>==", mode='niv'},
+		{ "-k>", ":m .-2<CR>==", mode='niv'},
+		{ "-n>", "<cmd>NvimTreeFindFileToggle<CR>" },
 		{ "-p>", "<cmd>TagbarToggle<CR>" },
 	}},
 	{ "<Space>", "<cmd>nohlsearch<Bar>:echo<CR>" },
@@ -69,8 +75,7 @@ nest.applyKeymaps({
 	{ "<F5>", ":term<CR>" },
 	{ "g", {
 		{ "d", vim.lsp.buf.definition },
-		{ "[", vim.lsp.diagnostic.goto_prev },
-		{ "]", vim.lsp.diagnostic.goto_next },
+		{ 'l', vim.diagnostic.open_float },
 	}},
 	{ mode='i', options = { expr = true, noremap = true, silent = false }, {
 		{ "<Tab>", 'pumvisible() ? "\\<C-n>" : "\\<Tab>"' },
@@ -79,3 +84,5 @@ nest.applyKeymaps({
 })
 
 map('c', 'vh', 'vert help ', { noremap = true, silent = false })
+map('c', 'vg', 'vert helpgrep', { noremap = true, silent = false })
+map('c', 'hg', 'helpgrep', { noremap = true, silent = false })

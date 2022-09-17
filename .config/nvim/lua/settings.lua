@@ -87,6 +87,8 @@ cmd('autocmd BufWritePre * :%s/\\s\\+$//e')
 cmd('command C !compiler %')
 cmd('command O !opout %')
 cmd('command CO !compiler % && opout %')
+cmd('hi NormalFloat guifg=#ecf0c1 ctermfg=255 guibg=#0f111b ctermbg=233 gui=NONE cterm=NONE')
+cmd('hi FloatBorder guifg=#ecf0c1 ctermfg=255 guibg=#0f111b ctermbg=233 gui=NONE cterm=NONE')
 cmd([[
 command -bar Hexmode call ToggleHex()
 

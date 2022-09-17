@@ -37,7 +37,7 @@ return packer.startup({
 	use {
 		"tweekmonster/startuptime.vim",
 	}
-	use 'Lattay/slimy.vim'
+	use 'jpalardy/slimy.vim'
 	use {
 		'nvim-telescope/telescope.nvim',
 		requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}

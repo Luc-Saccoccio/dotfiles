@@ -3,7 +3,7 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 
 lspconfig.clangd.setup({ capabilities = capabilities })
 lspconfig.gopls.setup({ capabilities = capabilities })
-lspconfig.hls.setup({ root_dir = vim.loop.cwd, autostart = false, capabilities = capabilities })
+lspconfig.hls.setup({ capabilities = capabilities })
 lspconfig.ocamllsp.setup({ root_dir = vim.loop.cwd, capabilities = capabilities })
 lspconfig.pylsp.setup({ capabilities = capabilities })
 lspconfig.sumneko_lua.setup({ cmd = {"/usr/bin/lua-language-server"}, capabilities = capabilities, autostart = false })
