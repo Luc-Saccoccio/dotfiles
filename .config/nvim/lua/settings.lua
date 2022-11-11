@@ -13,6 +13,7 @@ o.hidden = true
 o.splitbelow = true
 o.splitright = true
 o.updatetime = 100
+o.relativenumber = true
 
 -- Files
 o.encoding = 'utf-8'
@@ -61,7 +62,7 @@ o.foldmethod = 'indent'
 g.python3_host_prog = "/usr/bin/python3"
 g.python_host_prog = "/usr/bin/python"
 g.nvim_agda_settings = {
-	agda = "/usr/bin/agda",
+	agda = "/home/luc/.local/bin/agda",
 	-- agda_args = [ "--arg1", "--arg2"  ]
 }
 

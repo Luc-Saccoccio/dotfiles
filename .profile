@@ -15,8 +15,9 @@ export VDPAU_DRIVER="nouveau"
 export MOZ_DISABLE_RDD_SANDBOX=1
 export MOZ_X11_EGL=1
 
-# Path
+# Path & MAN
 export PATH=/home/luc/.local/share/opam/default/bin:/home/luc/.local/share/cargo/bin:/home/luc/.local/share/go/bin:/home/luc/.local/share/gem/ruby/3.0.0/bin:/home/luc/.TinyTeX/bin/x86_64-linux:/home/luc/.local/bin:$PATH
+export MANPATH=/usr/share/man:/usr/local/share/man:$MANPATH
 
 # Useful directories
 export WALLPAPER="/home/luc/Images/wallpapers"
@@ -59,3 +60,6 @@ export STACK_ROOT="$XDG_DATA_HOME/stack"
 export WINEPREFIX="$XDG_DATA_HOME/wine"
 export ZDOTDIR=$HOME/.config/zsh
 export QT_QPA_PLATFORMTHEME=gtk2
+export PYTHONSTARTUP="/etc/python/pythonrc"
+
+export HUNT=name=Hilde,host=puffypenguin.cyb.no

@@ -7,7 +7,7 @@ LN=ln -vsfn
 PKGINSTALL=sudo -E pacman --noconfirm -S
 
 .DEFAULT_GOAl := help
-.PHONY: allinstall allupdate allbackup
+.PHONY: allinstall update allbackup
 
 help: ## Display Help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
@@ -241,7 +241,7 @@ testpath: ## Echo PATH
 	GOPATH=$$GOPATH
 	@echo $$GOPATH
 
-allupdate:
+update:
 	@echo "Python: pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip3 install -U"
 	@echo "Arch Linux: yay -S"
 	@echo "Void Linux: xi -Su"
