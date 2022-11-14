@@ -19,3 +19,10 @@ config.mk
 .config/nvim/spell
 .config/nvim/ftplugin/vimwiki.vim
 .config/nvim/lua/packer_compiled.lua
+.config/xmonad/xmonad
+.config/xmonad/xmonad-contrib
+.config/xmonad/stack.yaml.lock
+.config/xmonad/.stack-work
+.config/xmobar/xmobar
+.config/xmobar/xmobar.hi
+.config/xmobar/xmobar.o

@@ -42,6 +42,11 @@ nest.applyKeymaps({
 			{ 'r', "<cmd>Telescope oldfiles<CR>" },
 			{ 'b', "<cmd>Telescope buffers<CR>" },
 		}},
+		{ 'n', {
+			{'h', "<cmd>Neorg workspace home<CR>"},
+			{'s', "<cmd>Neorg workspace scp<CR>"},
+		}},
+		{ 'l', "<cmd>TroubleToggle<CR>" },
 		{ 't', {
 			{ "<Left>", "<cmd>tabfirst<CR>" },
 			{ "<Right>", "<cmd>tablast<CR>" },

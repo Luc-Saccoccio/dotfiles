@@ -32,7 +32,6 @@ alias \
 	ll="lsd -l" \
 	lsa="lsd -a" \
 	vim="nvim -u ~/.config/nvim/minimal.vim" \
-	open="xdg-open" \
 	scim="sc-im" \
 	wm-name="xprop | grep 'WM_NAME'" \
 	film="mpv --sub-auto=all --sub-file-paths=Subs" \

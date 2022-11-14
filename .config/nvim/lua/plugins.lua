@@ -2,7 +2,7 @@ local packer = require "packer"
 local use = packer.use
 return packer.startup({
     function()
-	use 'derekelkins/agda-vim'
+	use 'ashinkarov/nvim-agda'
 	use 'erikbackman/aurora.vim'
 	use {
 		'hrsh7th/cmp-nvim-lsp',
@@ -26,9 +26,21 @@ return packer.startup({
 		'L3MON4D3/LuaSnip',
 		wants = "friendly-snippets",
 	}
+	use {
+		'nvim-neorg/neorg',
+		requires = { "nvim-lua/plenary.nvim", "nvim-neorg/neorg-telescope" },
+	}
+
+	use {
+		"folke/trouble.nvim",
+		requires = "kyazdani42/nvim-web-devicons",
+	}
+	use {
+		'ray-x/navigator.lua',
+		requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'},
+	}
 	use 'LionC/nest.nvim'
 	use 'hrsh7th/nvim-cmp'
-	use 'ObserverOfTime/nvimcord'
 	use 'norcalli/nvim-colorizer.lua'
 	use 'neovim/nvim-lspconfig'
 	use 'kyazdani42/nvim-tree.lua'
@@ -37,12 +49,12 @@ return packer.startup({
 	use {
 		"tweekmonster/startuptime.vim",
 	}
-	use 'jpalardy/slimy.vim'
 	use {
 		'nvim-telescope/telescope.nvim',
 		requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
 	}
 	use 'edkolev/tmuxline.vim'
+	use 'p00f/nvim-ts-rainbow'
 	use {
 		'nvim-treesitter/nvim-treesitter',
 		run = ':TSUpdate'

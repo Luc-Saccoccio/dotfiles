@@ -154,11 +154,13 @@ X: ## Init Xmodmap and Xresources
 	$(LN) ${PWD}/.Xmodmap ${HOME}/.Xmodmap
 	$(LN) ${PWD}/.Xresources ${HOME}/.Xresources
 
-xmonad: ## Init xmonad WM (TODO)
-	rm -f $(HOME)/.$@
-	rm -f $(HOME)/.xmobarrc
-	$(LN) ${PWD}/.$@ ${HOME}/.$@
-	$(LN) ${PWD}/.xmobarrc ${HOME}/.xmobarrc
+xmonad: ## Init xmonad WM
+	rm -f $(HOME)/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
+
+xmobar: ## Init xmobar
+	rm -f $(HOME)/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
 xob: ## Init xob
 	rm -f $(HOME)/.config/$@

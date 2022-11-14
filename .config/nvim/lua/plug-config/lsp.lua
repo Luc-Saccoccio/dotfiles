@@ -1,7 +1,7 @@
 local lspconfig = require('lspconfig')
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-lspconfig.clangd.setup({ capabilities = capabilities })
+lspconfig.clangd.setup({ capabilities = capabilities, autostart = false })
 lspconfig.gopls.setup({ capabilities = capabilities })
 lspconfig.hls.setup({ capabilities = capabilities })
 lspconfig.ocamllsp.setup({ root_dir = vim.loop.cwd, capabilities = capabilities })
