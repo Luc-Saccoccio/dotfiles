@@ -46,6 +46,9 @@
 	defaultBranch = master
 
 [sendemail]
-	smtpserver = disroot.org
-	smtpuser = lucsaccoccio@disroot.org
-	smtpserverport = 587
+	smtpServer = /usr/bin/msmtp
+	smtpServerOption = -a
+	smtpServerOption = lucsaccoccio@disroot.org
+	annotate = yes
+[format]
+	signOff = yes
