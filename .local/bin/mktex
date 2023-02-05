@@ -18,6 +18,12 @@ cat << EOF > "$name"
 \graphicspath{ {images/} }
 \usepackage{wrapfig}
 \usepackage[french]{datetime}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{stmaryrd}
+\usepackage{amsthm}
+\usepackage{fiches}
 
 
 \begin{document}

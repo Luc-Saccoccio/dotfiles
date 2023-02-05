@@ -1,3 +1,4 @@
+import           Data.Char                          (toUpper)
 import qualified Data.Map                           as M
 import           Graphics.X11.ExtraTypes.XF86
 import           System.Exit
@@ -14,9 +15,14 @@ import           XMonad.Layout.Accordion
 import           XMonad.Layout.BinarySpacePartition
 import           XMonad.Layout.Circle
 import           XMonad.Layout.Grid
+import           XMonad.Layout.IndependentScreens
+import           XMonad.Layout.MultiToggle
+import           XMonad.Layout.MultiToggle.Instances
+import           XMonad.Layout.NoBorders
 import           XMonad.Layout.Roledex
 import           XMonad.Layout.Tabbed
 import           XMonad.Prompt
+import           XMonad.Prompt.FuzzyMatch
 import           XMonad.Prompt.ConfirmPrompt
 import           XMonad.Prompt.Man
 import           XMonad.Prompt.Shell
@@ -34,9 +40,10 @@ import           XMonad.Util.Ungrab
    https://xmonad.github.io/xmonad-docs/xmonad-contrib/XMonad-Layout-Fullscreen.html
    https://xmonad.github.io/xmonad-docs/xmonad-contrib/XMonad-Prompt-Man.html
    https://xmonad.github.io/xmonad-docs/xmonad-contrib/XMonad-Prompt-Unicode.html
-   https://xmonad.github.io/xmonad-docs/xmonad-contrib/XMonad-Actions-Search.html myModMask xK_e
-   https://xmonad.github.io/xmonad-docs/xmonad-contrib/XMonad-Actions-ShowText.html
 -}
+
+instance HasColorizer SearchEngine where
+  defaultColorizer (SearchEngine n _) = defaultColorizer n
 
 myModMask :: KeyMask
 myModMask = mod4Mask
@@ -50,9 +57,12 @@ myTextEditor = "nvim"
 myWorkspaces :: [String]
 myWorkspaces = ["α", "β", "γ", "δ", "ε", "ζ", "η", "θ", "ι", "κ"]
 
+myFont :: String
+myFont = "xft:SpaceMono Nerd Font:style=Regular:size="
+
 myXPConfig :: XPConfig
 myXPConfig = def
-  { font = "xft:SpaceMono Nerd Font:style=Regular:size=11",
+  { font = myFont ++ "11",
   position = Top,
   bgColor = "#222222",
   fgColor = "#bbbbbb",
@@ -60,7 +70,58 @@ myXPConfig = def
   fgHLight = "#eeeeee",
   promptBorderWidth = 0,
   complCaseSensitivity = CaseInSensitive,
+  searchPredicate = fuzzyMatch,
+  sorter = fuzzySort,
   changeModeKey = xK_twosuperior }
+
+buildGSConfig :: (a -> Bool -> X (String, String)) -> GSConfig a
+buildGSConfig col = GSConfig 60 130 10 col (myFont++"9") defaultNavigation noRearranger (1/2) (1/2) "white"
+
+myGSConfig :: HasColorizer a => GSConfig a
+myGSConfig = buildGSConfig defaultColorizer
+
+myLayout = smartBorders . mkToggle (NOBORDERS ?? FULL ?? EOT) $
+  tiled
+    ||| Mirror tiled
+    ||| Full
+    ||| Roledex
+    ||| Accordion
+    ||| emptyBSP
+    ||| Circle
+    ||| Grid
+    ||| simpleTabbed
+    where
+      nmaster = 1
+      ratio = 1 / 2
+      delta = 3 / 100
+      tiled = Tall nmaster delta ratio
+
+layoutGrid :: X (Maybe String)
+layoutGrid = gridselect myGSConfig . map (\x -> (x, x)) $! layouts
+  where
+    layouts = ["Tall", "Mirror Tall", "Full", "Roledex", "Accordion", "BSP", "Circle", "Grid", "Tabbed Simplest"]
+
+choseLayout :: X ()
+choseLayout = layoutGrid >>= flip whenJust (sendMessage . JumpToLayout)
+
+searchGrid :: X (Maybe SearchEngine)
+searchGrid = gridselect myGSConfig . map f $! engines
+  where
+    maj :: String -> String
+    maj (x:xs) = toUpper x : xs
+    maj []     = []
+    f :: SearchEngine -> (String, SearchEngine)
+    f s@(SearchEngine name _) = (maj name, s)
+    engines :: [SearchEngine]
+    engines = [duckduckgo, hoogle, github, hackage, imdb, alpha, mathworld, wikipedia, youtube, aur, cratesIo, flora, ncatlab, protondb, rosettacode, rustStd, sourcehut, steam, voidpgks_x86_64]
+
+choseSearch :: X ()
+choseSearch = searchGrid >>= flip whenJust (promptSearch myXPConfig)
+
+{- myXMonadPrompt :: X ()
+myXMonadPrompt = do
+  cmds <- defaultsCommands
+ -}
 
 keyBindings :: [((KeyMask, KeySym), X ())]
 keyBindings =
@@ -69,12 +130,14 @@ keyBindings =
     ((myModMask, xK_Right), windows W.focusUp),
     ((shiftMask .|. myModMask, xK_Left), windows W.swapDown),
     ((shiftMask .|. myModMask, xK_Right), windows W.swapUp),
-    ((myModMask, xK_space), sendMessage NextLayout),
+    ((myModMask, xK_a), sendMessage NextLayout),
+    ((myModMask, xK_m), sendMessage $ Toggle FULL),
     ((shiftMask .|. myModMask, xK_space), withFocused $ windows . W.sink),
+    ((myModMask, xK_q), sendMessage ToggleStruts),
 
     -- Prompts
-    ((myModMask, xK_Tab), goToSelected def),
-    ((myModMask, xK_l), choseLayout),
+    ((myModMask, xK_Tab), goToSelected myGSConfig),
+    ((myModMask, xK_space), choseLayout),
     ((myModMask, xK_e), choseSearch),
     ((myModMask, xK_F1), manPrompt myXPConfig),
     ((myModMask, xK_F2), xmonadPrompt myXPConfig),
@@ -82,6 +145,7 @@ keyBindings =
     ((myModMask, xK_d), shellPrompt myXPConfig),
     ((shiftMask .|. myModMask, xK_BackSpace), confirmPrompt greenXPConfig "exit" $ io exitSuccess),
     ((shiftMask .|. myModMask, xK_q), confirmPrompt greenXPConfig "recompile" $ spawn "xmonad --recompile && xmonad --restart"),
+    ((shiftMask .|. myModMask, xK_r), confirmPrompt greenXPConfig "restart" $ spawn "xmonad --restart"),
 
     -- Apps
     ((shiftMask .|. myModMask, xK_m), spawn "clipmenu"),
@@ -98,7 +162,12 @@ keyBindings =
     -- Others
     ((noModMask, xF86XK_MonBrightnessDown), spawn "backlight-control dec"),
     ((noModMask, xF86XK_MonBrightnessUp), spawn "backlight-control inc"),
-    ((myModMask, xK_b), spawn "toggle-screenkey")
+    ((myModMask, xK_b), spawn "toggle-screenkey"),
+    ((noModMask, xF86XK_ScreenSaver), spawn "xscreensaver-command --lock"),
+    ((noModMask, xF86XK_AudioMute), spawn "pulsemixer --toggle-mute"),
+    ((noModMask, xF86XK_AudioMicMute), spawn "thinkpad-mutemic"),
+    ((noModMask, xF86XK_AudioRaiseVolume), spawn "pulsemixer --change-volume +5"),
+    ((noModMask, xF86XK_AudioLowerVolume), spawn "pulsemixer --change-volume -5")
   ]
     ++ wsKeys
   where
@@ -109,47 +178,14 @@ keyBindings =
           (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
       ]
 
-myLayout =
-  tiled
-    ||| Mirror tiled
-    ||| Full
-    ||| Roledex
-    ||| Accordion
-    ||| emptyBSP
-    ||| Circle
-    ||| Grid
-    ||| simpleTabbed
-    where tiled = Tall nmaster delta ratio
-          nmaster = 1
-          ratio = 1 / 2
-          delta = 3 / 100
-
-layoutGrid :: X (Maybe String)
-layoutGrid = gridselect def . map (\x -> (x, x)) $! layouts
-  where
-    layouts = ["Tall", "Mirror Tall", "Full", "Roledex", "Accordion", "BSP", "Circle", "Grid", "Tabbed Simplest"]
-
-choseLayout :: X ()
-choseLayout = layoutGrid >>= flip whenJust (sendMessage . JumpToLayout)
-
-searchGrid :: X (Maybe SearchEngine)
-searchGrid = gridselect def . map f $! engines
-  where
-    f :: SearchEngine -> (String, SearchEngine)
-    f s@(SearchEngine name _) = (name, s)
-    engines :: [SearchEngine]
-    engines = [duckduckgo, hoogle, github, hackage, imdb, alpha, mathworld, wikipedia, youtube]
-
-choseSearch :: X ()
-choseSearch = searchGrid >>= flip whenJust (promptSearch def)
-
 myStartupHook :: X ()
 myStartupHook =
   -- spawnOnce "$HOME/.fehbg"
   spawnOnce "random-wall"
     >> spawnOnce "xsetroot -cursor_name left_ptr"
     >> spawnOnce "setxkbmap -layout fr -variant azerty"
-    >> spawnOnce "picom -b &"
+    >> spawnOnce "picom -fb &"
+    >> spawnOnce "xscreensaver &"
 
 myXmobarPP :: PP
 myXmobarPP =
@@ -167,6 +203,7 @@ myXmobarPP =
 myManageHook :: ManageHook
 myManageHook = manageDocks <+> composeAll [ className =? "floating" --> doFloat'
                                           , className =? "mpv"      --> doFloat'
+                                          -- , className =? "tabbed"   --> doIgnore
                                           , className =? "discord"  --> doShift "κ"]
   where
     doFloat' :: ManageHook
@@ -174,6 +211,7 @@ myManageHook = manageDocks <+> composeAll [ className =? "floating" --> doFloat'
 
 main :: IO ()
 main = do
+  -- nScreens <- countScreens
   xmproc <- spawnPipe "xmobar"
   xmonad $
     ewmh
@@ -184,6 +222,7 @@ main = do
           normalBorderColor = "#575976",
           focusedBorderColor = "#007a01",
           focusFollowsMouse = True,
+          -- workspaces = withScreens nScreens myWorkspaces,
           workspaces = myWorkspaces,
           manageHook = myManageHook,
           layoutHook = avoidStruts myLayout,

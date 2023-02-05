@@ -18,7 +18,7 @@ config =
           Run $ Wireless "wlp3s0" ["-t", "net <quality>", "-S", "True"] 10,
           Run $ Cpu ["-t", "cpu <total>%", "-H", "50", "--high", "red"] 10,
           Run $ Memory ["-t", "mem <usedratio>%"] 10,
-          Run $ DiskU [("/", "root <usedbar> (<free>)")] [] 3600,
+          Run $ DiskU [("/", "root <usedbar> (<free>)")] [] 360,
           Run $ Volume "default" "Master" ["-t", "vol <volume>% <status>"] 10,
           Run $ BatteryP ["BAT0"] ["-t", "bat <left>%"] 10,
           Run StdinReader

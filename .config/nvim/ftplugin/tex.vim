@@ -21,7 +21,7 @@ command -range -nargs=+ Coordinates call ReplaceCoordinates(<f-args>)
 " Mappings
 nnoremap <C-p> :VimtexTocToggle<CR>
 inoremap ,V \vect{}<Left>
-inoremap ,al \begin{align*}<Enter>\end{align*}<Enter><Enter><++><Esc>3ko
+inoremap ,al \begin{align*}<Enter>\end{align*}<Enter><++><Esc>2ko
 inoremap ,bf \textbf{}<++><Esc>T{i
 inoremap ,cal \mathcal{}<Left>
 inoremap ,cas \begin{cases}<Enter>\end{cases}<Enter><++><Up><Up><End><Enter>
@@ -31,6 +31,7 @@ inoremap ,col \begin{multicols}{2}<Enter><Enter>\columnbreak<Enter><Enter>\end{m
 inoremap ,cor \begin{corollary}<Enter><BS>\end{corollary}<Enter><Enter><++><Esc>3ko
 inoremap ,dec \begin{description}<Enter><Enter>\end{description}<Enter><Enter><++><Esc>3kA\item<Space>
 inoremap ,def \begin{definition}<Enter><BS>\end{definition}<Enter><Enter><++><Esc>3ko
+inoremap ,eg \begin{example}<Enter><BS>\end{example}<Enter><Enter><++><Esc>3ko
 inoremap ,dq \begin{description}<Enter><Enter>\end{description}<Enter><Enter><++><Esc>3kA\item[$\circ$]<Space><Enter>\item[$\circ$]<Space><Enter>\item[$\circ$]<Space>
 inoremap ,em \emph{}<++><Esc>T{i
 inoremap ,emp \begin{empheq}[box=\fbox]{align}<Enter><Enter>\end{empheq}
@@ -49,7 +50,7 @@ inoremap ,nt \newpage<Enter>\begin{center}<Enter>\Large{}<Enter>\end{center}<Ent
 inoremap ,ol \begin{enumerate}<Enter><Enter>\end{enumerate}<Enter><++><Esc>2kA\item<Space>
 inoremap ,ov \overrightarrow{}<Esc>i
 inoremap ,pm \begin{pmatrix}<Enter>\end{pmatrix}<Enter><Enter><++><Esc>3ko
-inoremap ,pre \begin{proof}<Enter>\end{proof}<Enter><Enter><++><Esc>3ko
+inoremap ,dem \begin{proof}<Enter>\end{proof}<Enter><Enter><++><Esc>3ko
 inoremap ,pro \begin{proposition}<Enter><BS>\end{proposition}<Enter><Enter><++><Esc>3ko
 inoremap ,qu \begin{quote}<Enter>\attrib{ {\em }}<Enter>\end{quote}
 inoremap ,rb \rrbracket

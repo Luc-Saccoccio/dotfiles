@@ -8,14 +8,15 @@ alias \
 	mkd="mkdir -pv" \
 	yt="yt-dlp --add-metadata -i" \
 	yta="yt -x -f bestaudio/best" \
+    ytap="yta --audio-format mp3 -o  '%(playlist_index)s-%(title)s.%(ext)s'" \
 	ffmpeg="ffmpeg -hide_banner" \
-	tmux="tmux -f ~/.config/tmux/tmux.conf" \
 	nnn="nnn -a" \
 	lsblk='lsblk -o name,size,type,mountpoint,label' \
 	lsblkv='lsblk -o name,size,type,fstype,mountpoint,label,uuid' \
 	df='df --total -h' \
 	bat='PAGER="less -R" bat' \
 	rmg='MESA_GL_VERSION_OVERRIDE=3.3 RMG' \
+    wget='wget --hsts-file=.local/share/wget-hsts' \
 	stig='stig -c ~/.config/pipx/rc'
 
 # Colorize commands when possible
@@ -35,6 +36,13 @@ alias \
 	scim="sc-im" \
 	wm-name="xprop | grep 'WM_NAME'" \
 	film="mpv --sub-auto=all --sub-file-paths=Subs" \
+
+# Cleaning
+alias \
+    tmux="tmux -f ~/.config/tmux/tmux.conf" \
+    abook=abook --config "$XDG_CONFIG_HOME"/abookrc --datafile "$XDG_DATA_HOME"/abook/addressbook \
+    mbsync=mbsync -c "$XDG_CONFIG_HOME"/mbsyncrc \
+    wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
 
 fr() { # FZF Repos
 	choices=$(find "$HOME"/repos/ -maxdepth 2 -type d)

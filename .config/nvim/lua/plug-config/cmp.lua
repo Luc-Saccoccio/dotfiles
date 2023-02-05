@@ -1,5 +1,4 @@
 local cmp = require('cmp')
-local luasnip = require('luasnip')
 local mapping = require('cmp.config.mapping')
 
 vim.g.cmp_enabled = true
@@ -12,23 +11,15 @@ cmp.setup {
 		format = function(entry, vim_item)
 			vim_item.menu = ({
 				nvim_lsp = "[LSP]",
-				luasnip = "[Snip]",
 				buffer = "[Buffer]",
 			})[entry.source.name]
 			return vim_item
-		end,
-	},
-	snippet = {
-		expand = function(args)
-			luasnip.lsp_expand(args.body)
 		end,
 	},
 	mapping = {
 		['<Tab>'] = mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
 			else
 				fallback()
 			end
@@ -36,8 +27,6 @@ cmp.setup {
 		['<S-Tab>'] = mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
 			else
 				fallback()
 			end
@@ -49,7 +38,6 @@ cmp.setup {
 	},
 	sources = cmp.config.sources {
 		{ name = 'nvim_lsp' },
-		{ name = 'luasnip' },
 		{
 			name = 'buffer',
 			option = {
@@ -63,4 +51,3 @@ cmp.setup {
 	}
 }
 
-require("luasnip/loaders/from_vscode").lazy_load()

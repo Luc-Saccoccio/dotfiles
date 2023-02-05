@@ -1,5 +1,4 @@
 require('plug-config.cmp')
-require('plug-config.navigator')
 require('plug-config.neorg')
 require('plug-config.lsp')
 require('plug-config.lualine')

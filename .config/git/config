@@ -27,6 +27,7 @@
 
 	c = commit
 	ca = commit -a
+	caa = commit -a --amend
 	cae = commit -a --no-edit
 
 	s = status
@@ -50,5 +51,6 @@
 	smtpServerOption = -a
 	smtpServerOption = lucsaccoccio@disroot.org
 	annotate = yes
+	confirm = auto
 [format]
 	signOff = yes

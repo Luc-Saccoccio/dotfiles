@@ -10,13 +10,13 @@ export PAGER="less -r"
 export MANPAGER="man-pager"
 
 # Hardware Acceleration
-export LIBVA_DRIVER_NAME="nouveau"
-export VDPAU_DRIVER="nouveau"
-export MOZ_DISABLE_RDD_SANDBOX=1
-export MOZ_X11_EGL=1
+# export LIBVA_DRIVER_NAME="nouveau"
+# export VDPAU_DRIVER="nouveau"
+# export MOZ_DISABLE_RDD_SANDBOX=1
+# export MOZ_X11_EGL=1
 
 # Path & MAN
-export PATH=/home/luc/.local/share/opam/default/bin:/home/luc/.local/share/cargo/bin:/home/luc/.local/share/go/bin:/home/luc/.local/share/gem/ruby/3.0.0/bin:/home/luc/.TinyTeX/bin/x86_64-linux:/home/luc/.local/bin:$PATH
+export PATH=/home/luc/.local/share/opam/default/bin:/home/luc/.local/share/cargo/bin:/home/luc/.local/share/go/bin:/home/luc/.local/share/gem/ruby/3.0.0/bin:/home/luc/.TinyTeX/bin/x86_64-linux:/home/luc/.local/bin:/home/luc/.cabal/bin:$PATH
 export MANPATH=/usr/share/man:/usr/local/share/man:$MANPATH
 
 # Useful directories
@@ -36,8 +36,12 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_STATE_HOME="$HOME/.local/state"
+# export XDG_RUNTIME_DIR="/run/user/$UID"
 
 # Cleanup
+export PYTHONSTARTUP="/etc/python/pythonrc"
+export MBSYNCRC="$XDG_CONFIG_HOME"/mbsyncrc
+export CABAL_DIR="${XDG_DATA_HOME}/cabal"
 export HISTFILE="${XDG_CACHE_HOME}/bash/history"
 export XAUTHORITY="$XDG_CONFIG_HOME/X11/Xauthority"
 export USERXSESSION="$XDG_CACHE_HOME/X11/xsession"

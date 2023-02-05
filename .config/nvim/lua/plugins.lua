@@ -2,19 +2,16 @@ local packer = require "packer"
 local use = packer.use
 return packer.startup({
     function()
+	use {
+		'nvim-treesitter/nvim-treesitter',
+		run = ':TSUpdate'
+	}
 	use 'ashinkarov/nvim-agda'
 	use 'erikbackman/aurora.vim'
 	use {
 		'hrsh7th/cmp-nvim-lsp',
 	}
 	use 'hrsh7th/cmp-buffer'
-	use {
-		'saadparwaiz1/cmp_luasnip',
-	}
-	use {
-		'rafamadriz/friendly-snippets',
-		event = "InsertEnter",
-	}
 	use 'neovimhaskell/haskell-vim'
 	use 'lewis6991/impatient.nvim'
 	use 'b3nj5m1n/kommentary'
@@ -23,21 +20,9 @@ return packer.startup({
 		requires = {'kyazdani42/nvim-web-devicons', opt = true}
 	}
 	use {
-		'L3MON4D3/LuaSnip',
-		wants = "friendly-snippets",
-	}
-	use {
 		'nvim-neorg/neorg',
+		run = ":Neorg sync-parsers",
 		requires = { "nvim-lua/plenary.nvim", "nvim-neorg/neorg-telescope" },
-	}
-
-	use {
-		"folke/trouble.nvim",
-		requires = "kyazdani42/nvim-web-devicons",
-	}
-	use {
-		'ray-x/navigator.lua',
-		requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'},
 	}
 	use 'LionC/nest.nvim'
 	use 'hrsh7th/nvim-cmp'
@@ -55,25 +40,8 @@ return packer.startup({
 	}
 	use 'edkolev/tmuxline.vim'
 	use 'p00f/nvim-ts-rainbow'
-	use {
-		'nvim-treesitter/nvim-treesitter',
-		run = ':TSUpdate'
-	}
 	use 'pineapplegiant/spaceduck'
 	use 'tpope/vim-fugitive'
-	use 'lervag/vimtex'
-	use {
-		'vimwiki/vimwiki',
-		branch = "dev"
-	}
-	use 'vlime/vlime'
-	--[[ use{
-		'ray-x/navigator.lua',
-		requires = {
-			{ 'ray-x/guihua.lua', run = 'cd lua/fzy && make' },
-			{ 'neovim/nvim-lspconfig' },
-		},
-	} ]]
     end,
     config = {
     -- Move to lua dir so impatient.nvim can cache it
