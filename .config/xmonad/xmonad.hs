@@ -1,5 +1,5 @@
-import           Data.Char                          (toUpper)
-import qualified Data.Map                           as M
+import           Data.Char                           (toUpper)
+import qualified Data.Map                            as M
 import           Graphics.X11.ExtraTypes.XF86
 import           System.Exit
 import           System.IO
@@ -11,6 +11,7 @@ import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.EwmhDesktops
 import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.Place
+import           XMonad.Hooks.StatusBar
 import           XMonad.Layout.Accordion
 import           XMonad.Layout.BinarySpacePartition
 import           XMonad.Layout.Circle
@@ -22,16 +23,17 @@ import           XMonad.Layout.NoBorders
 import           XMonad.Layout.Roledex
 import           XMonad.Layout.Tabbed
 import           XMonad.Prompt
-import           XMonad.Prompt.FuzzyMatch
 import           XMonad.Prompt.ConfirmPrompt
+import           XMonad.Prompt.FuzzyMatch
 import           XMonad.Prompt.Man
 import           XMonad.Prompt.Shell
 import           XMonad.Prompt.Ssh
 import           XMonad.Prompt.Unicode
 import           XMonad.Prompt.XMonad
-import qualified XMonad.StackSet                    as W
-import           XMonad.Util.EZConfig               (additionalKeys)
-import           XMonad.Util.Run                    (spawnPipe)
+import qualified XMonad.StackSet                     as W
+import           XMonad.Util.EZConfig                (additionalKeys)
+import           XMonad.Util.Loggers
+import           XMonad.Util.Run                     (spawnPipe)
 import           XMonad.Util.SpawnOnce
 import           XMonad.Util.Ungrab
 
@@ -123,8 +125,8 @@ myXMonadPrompt = do
   cmds <- defaultsCommands
  -}
 
-keyBindings :: [((KeyMask, KeySym), X ())]
-keyBindings =
+keyBindings :: ScreenId -> [((KeyMask, KeySym), X ())]
+keyBindings nScreens =
   [ ((shiftMask .|. myModMask, xK_a), kill),
     ((myModMask, xK_Left), windows W.focusDown),
     ((myModMask, xK_Right), windows W.focusUp),
@@ -134,6 +136,7 @@ keyBindings =
     ((myModMask, xK_m), sendMessage $ Toggle FULL),
     ((shiftMask .|. myModMask, xK_space), withFocused $ windows . W.sink),
     ((myModMask, xK_q), sendMessage ToggleStruts),
+    ((myModMask, xK_s), windows nextScreen),
 
     -- Prompts
     ((myModMask, xK_Tab), goToSelected myGSConfig),
@@ -171,9 +174,13 @@ keyBindings =
   ]
     ++ wsKeys
   where
+    nextScreen :: WindowSet -> WindowSet
+    nextScreen ws =
+      let currentScreenId = W.screen $ W.current ws
+       in focusScreen ((currentScreenId + 1) `mod` nScreens) ws
     wsKeys :: [((KeyMask, KeySym), X ())]
     wsKeys =
-      [ ((m .|. myModMask, k), windows $ f i)
+      [ ((m .|. myModMask, k), windows $ onCurrentScreen f i)
         | (i, k) <- zip myWorkspaces [0x26, 0xe9, 0x22, 0x27, 0x28, 0x2d, 0xe8, 0x5f, 0xe7, 0xe0],
           (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
       ]
@@ -184,8 +191,9 @@ myStartupHook =
   spawnOnce "random-wall"
     >> spawnOnce "xsetroot -cursor_name left_ptr"
     >> spawnOnce "setxkbmap -layout fr -variant azerty"
-    >> spawnOnce "picom -fb &"
+    >> spawnOnce "picom -fb"
     >> spawnOnce "xscreensaver &"
+    >> spawnOnce "xrdb ~/.Xresources"
 
 myXmobarPP :: PP
 myXmobarPP =
@@ -197,7 +205,7 @@ myXmobarPP =
       ppHiddenNoWindows = xmobarColor "gray" "",
       ppVisibleNoWindows = Just $ xmobarColor "yellow" "",
       ppSep = " ",
-      ppTitle = xmobarColor "pink" "" . shorten 36
+      ppTitle = const ""
     }
 
 myManageHook :: ManageHook
@@ -211,10 +219,9 @@ myManageHook = manageDocks <+> composeAll [ className =? "floating" --> doFloat'
 
 main :: IO ()
 main = do
-  -- nScreens <- countScreens
-  xmproc <- spawnPipe "xmobar"
-  xmonad $
-    ewmh
+  nScreens <- countScreens
+  xmobars <- sequence [statusBarPipe ("xmobar -x " ++ show i) . pure $ marshallPP si (myXmobarPP { ppExtras = [(xmobarColor "pink" "" . shorten 36) `onLogger` logTitleOnScreen si] }) | si@(S i) <- [0..nScreens-1]]
+  xmonad . ewmh . docks . withSB (mconcat xmobars) $
       desktopConfig
         { modMask = mod4Mask,
           terminal = myTerminal,
@@ -222,15 +229,9 @@ main = do
           normalBorderColor = "#575976",
           focusedBorderColor = "#007a01",
           focusFollowsMouse = True,
-          -- workspaces = withScreens nScreens myWorkspaces,
-          workspaces = myWorkspaces,
+          workspaces = withScreens nScreens myWorkspaces,
           manageHook = myManageHook,
           layoutHook = avoidStruts myLayout,
-          logHook =
-            dynamicLogWithPP $
-              myXmobarPP
-                { ppOutput = hPutStrLn xmproc
-                },
           startupHook = myStartupHook
         }
-      `additionalKeys` keyBindings
+      `additionalKeys` keyBindings nScreens
