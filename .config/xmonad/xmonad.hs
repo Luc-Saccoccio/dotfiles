@@ -6,6 +6,7 @@ import           System.IO
 import           XMonad
 import           XMonad.Actions.GridSelect
 import           XMonad.Actions.Search
+import           XMonad.Actions.UpdatePointer
 import           XMonad.Config.Desktop
 import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.EwmhDesktops
@@ -120,11 +121,6 @@ searchGrid = gridselect myGSConfig . map f $! engines
 choseSearch :: X ()
 choseSearch = searchGrid >>= flip whenJust (promptSearch myXPConfig)
 
-{- myXMonadPrompt :: X ()
-myXMonadPrompt = do
-  cmds <- defaultsCommands
- -}
-
 keyBindings :: ScreenId -> [((KeyMask, KeySym), X ())]
 keyBindings nScreens =
   [ ((shiftMask .|. myModMask, xK_a), kill),
@@ -136,7 +132,7 @@ keyBindings nScreens =
     ((myModMask, xK_m), sendMessage $ Toggle FULL),
     ((shiftMask .|. myModMask, xK_space), withFocused $ windows . W.sink),
     ((myModMask, xK_q), sendMessage ToggleStruts),
-    ((myModMask, xK_s), windows nextScreen),
+    ((myModMask, xK_s), windows nextScreen >> updatePointer (0.5, 0.5) (0, 0)),
 
     -- Prompts
     ((myModMask, xK_Tab), goToSelected myGSConfig),
@@ -193,7 +189,9 @@ myStartupHook =
     >> spawnOnce "setxkbmap -layout fr -variant azerty"
     >> spawnOnce "picom -fb"
     >> spawnOnce "xscreensaver &"
+    >> spawnOnce "echo > Images/wallpapers/.wall-list"
     >> spawnOnce "xrdb ~/.Xresources"
+    >> spawnOnce "pgrep clipmenud || clipmenud &"
 
 myXmobarPP :: PP
 myXmobarPP =
