@@ -28,12 +28,14 @@ parser_configs.norg_table = {
 treesitter.setup {
     ensure_installed = "all",
     highlight = {
-	    enable = true,
-	    disable = { "haskell" }
+        enable = true,
+        use_languagetree = true,
+        additional_vim_regex_highlighting = false,
+        disable = { "haskell" }
     },
     rainbow = {
-	    enable = true,
-	    extended_mode = true,
-	    max_file_lines = nil,
+        enable = true,
+        extended_mode = true,
+        max_file_lines = nil,
     }
 }

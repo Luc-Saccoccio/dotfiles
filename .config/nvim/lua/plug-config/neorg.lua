@@ -2,7 +2,6 @@ local neorg = require('neorg')
 
 neorg.setup {
 	load = {
-		["core.highlights"] = {},
 		["core.defaults"] = {},
 		["core.keybinds"] = {
 			config = {
