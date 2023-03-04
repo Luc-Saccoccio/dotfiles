@@ -175,20 +175,9 @@ zsh: ## Init zsh shell
 	$(LN) ${PWD}/.profile ${HOME}/.profile
 	$(LN) ${PWD}/.config/zsh ${HOME}/.config/zsh
 
-pip: ## Install python packages
-	pip install --user --upgrade pip
-	pip install --user 'python-language-server[all]'
-
-pipbackup: ## Backup python packages
-	$(MKDIR) $(PWD)/${OS}
-	pip freeze > $(PWD)/${OS}/requirements.txt
-
-piprecover: ## Recover python packages
-	mkdir -p ${PWD}/${OS}
-	pip install --user -r ${PWD}/${OS}/requirements.txt
-
-tex: ## Install TinyTex and TeX packages
-	wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
+latexmk:
+	rm -f $(HOME)/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
 texbackup: ## Backup TeX packages
 	$(MKDIR) $(PWD)/${OS}
