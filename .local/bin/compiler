@@ -7,9 +7,7 @@ base="${file%.*}"
 cd "$dir" || exit
 
 textype() { \
-	command="xelatex"
-	$command --output-directory="$dir" "$base" &&
-	$command --ourput-directory="$dir" "$base"
+	xelatex --output-directory="$dir" "$base"
 }
 
 case "$file" in
