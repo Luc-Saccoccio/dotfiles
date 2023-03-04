@@ -29,6 +29,7 @@ export FZF_DEFAULT_OPTS='--layout=reverse --preview-window right:70%'
 
 # NNN
 export NNN_LOCKER="binarix"
+# export NNN_OPENER="/home/luc/.config/nnn/plugins/nuke"
 export NNN_PLUG='p:preview-tabbed;P:preview-tui'
 
 # XDG

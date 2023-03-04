@@ -10,12 +10,11 @@ PKGINSTALL=sudo -E pacman --noconfirm -S
 .PHONY: allinstall update allbackup
 
 help: ## Display Help
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' Makefile \
 	| sort \
 	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-pacmancolors:
-	# Make pacman and yay colorful and adds eye candy on the progress bar
+pacmancolors: ## Make pacman and yay colorful and adds eye candy on the progress bar
 	sudo sed -i "s/^#Color/Color/" /etc/pacman.conf
 	sudo sed -i "/#VerbosePkgLists/a ILoveCandy" /etc/pacman.conf
 
@@ -85,6 +84,10 @@ i3: ## Init i3 WM
 	rm -f $(HOME)/.config/$@
 	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
+latexmk: ## Init LaTeXmk
+	rm -f $(HOME)/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
+
 mpd: ## Init the Music Player Daemon
 	rm -f $(HOME)/.config/$@
 	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
@@ -97,7 +100,11 @@ ncmpcpp: ## Init ncmpcpp mpd's interface
 	rm -f $(HOME)/.config/$@
 	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
-msmtp:
+msmtp: ## Init msmtp
+	rm -f $(HOME)/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
+
+mypy: ## Init mypy
 	rm -f $(HOME)/.config/$@
 	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
@@ -175,10 +182,6 @@ zsh: ## Init zsh shell
 	$(LN) ${PWD}/.profile ${HOME}/.profile
 	$(LN) ${PWD}/.config/zsh ${HOME}/.config/zsh
 
-latexmk:
-	rm -f $(HOME)/.config/$@
-	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
-
 texbackup: ## Backup TeX packages
 	$(MKDIR) $(PWD)/${OS}
 	tlmgr info --only-installed --data "name" > $(PWD)/${OS}/installed_package.txt
@@ -200,27 +203,27 @@ ext-repos: repos
 	git clone https://github.com/himanshub16/ProxyMan
 
 .ONESHELL:
-dmenu:
+dmenu: ## Clone dmenu
 	cd $(HOME)/repos/perso
 	git clone https://github.com/Luc-Saccoccio/dmenu
 
 .ONESHELL:
-dwm:
+dwm: ## Clone dwm
 	cd $(HOME)/repos/perso
 	git clone https://github.com/Luc-Saccoccio/dwm
 
 .ONESHELL:
-dwmblocks:
+dwmblocks: ## Clone dwmblocks
 	cd $(HOME)/repos/perso
 	git clone https://github.com/Luc-Saccoccio/dwmblocks
 
 .ONESHELL:
-st:
+st: ## Clone st
 	cd $(HOME)/repos/perso
 	git clone https://github.com/Luc-Saccoccio/st
 
 .ONESHELL:
-tabbed:
+tabbed: ## Clone tabbed
 	cd $(HOME)/repos/perso
 	git clone https://github.com/Luc-Saccoccio/tabbed
 
@@ -243,4 +246,4 @@ allconfig: bin bspwm catgirl desktop dunst git i3 mpd mpv ncmpcpp neomutt newsbo
 
 archinstall: install nvim neomutt suckless yay pacmancolors aur bin
 
-allbackup: backup pipbackup texbackup
+allbackup: backup texbackup
