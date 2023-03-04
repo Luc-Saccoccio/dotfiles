@@ -22,6 +22,7 @@ command -range -nargs=+ Coordinates call ReplaceCoordinates(<f-args>)
 nnoremap <C-p> :VimtexTocToggle<CR>
 inoremap ,V \vect{}<Left>
 inoremap ,al \begin{align*}<Enter>\end{align*}<Enter><++><Esc>2ko
+inoremap ,ans \begin{Answer}<Enter><Enter>\end{Answer}<Enter><Enter><++><Esc>3kA
 inoremap ,bf \textbf{}<++><Esc>T{i
 inoremap ,cal \mathcal{}<Left>
 inoremap ,cas \begin{cases}<Enter>\end{cases}<Enter><++><Up><Up><End><Enter>
@@ -35,6 +36,7 @@ inoremap ,eg \begin{example}<Enter><BS>\end{example}<Enter><Enter><++><Esc>3ko
 inoremap ,dq \begin{description}<Enter><Enter>\end{description}<Enter><Enter><++><Esc>3kA\item[$\circ$]<Space><Enter>\item[$\circ$]<Space><Enter>\item[$\circ$]<Space>
 inoremap ,em \emph{}<++><Esc>T{i
 inoremap ,emp \begin{empheq}[box=\fbox]{align}<Enter><Enter>\end{empheq}
+inoremap ,ex \begin{Exercise}<Enter><Enter>\end{Exercise}<Enter><Enter><++><Esc>3kA
 inoremap ,fi \begin{figure}<Enter>\centering<Enter><Enter>\end{figure}<Enter><Enter><++><Esc>3kA
 inoremap ,fr \begin{frame}{}<Enter><Enter><++><Enter><Enter>\end{frame}<Enter><Enter><++><Esc>6kf}i
 inoremap ,func \begin{tikzpicture}<CR>\draw[thin, dashed, gray] (startx, starty) grid (endx, endy);<CR>\draw[->] (startx, 0) -- (endx, 0) node[right] {$x$};<CR>\draw[->] (0, starty) -- (0, endy) node[above] {$y$};<CR>\end{tikzpicture}<Esc>$v4<Up>0:Coordinates
