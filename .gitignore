@@ -18,7 +18,7 @@ config.mk
 .config/nvim/plugged/
 .config/nvim/spell
 .config/nvim/ftplugin/vimwiki.vim
-.config/nvim/lua/packer_compiled.lua
+.config/nvim/lazy-lock.json
 .config/xmonad/xmonad
 .config/xmonad/xmonad-contrib
 .config/xmonad/stack.yaml.lock
