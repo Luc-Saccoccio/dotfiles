@@ -3,6 +3,7 @@ import qualified Data.Map                            as M
 import           Graphics.X11.ExtraTypes.XF86
 import           System.Exit
 import           System.IO
+import           System.Process
 import           XMonad
 import           XMonad.Actions.GridSelect
 import           XMonad.Actions.Search
@@ -23,6 +24,7 @@ import           XMonad.Layout.MultiToggle.Instances
 import           XMonad.Layout.NoBorders
 import           XMonad.Layout.Roledex
 import           XMonad.Layout.Tabbed
+import           XMonad.Prelude
 import           XMonad.Prompt
 import           XMonad.Prompt.ConfirmPrompt
 import           XMonad.Prompt.FuzzyMatch
@@ -32,6 +34,7 @@ import           XMonad.Prompt.Ssh
 import           XMonad.Prompt.Unicode
 import           XMonad.Prompt.XMonad
 import qualified XMonad.StackSet                     as W
+import qualified XMonad.Util.ExtensibleState         as XS
 import           XMonad.Util.EZConfig                (additionalKeys)
 import           XMonad.Util.Loggers
 import           XMonad.Util.Run                     (spawnPipe)
@@ -45,8 +48,48 @@ import           XMonad.Util.Ungrab
    https://xmonad.github.io/xmonad-docs/xmonad-contrib/XMonad-Prompt-Unicode.html
 -}
 
+
 instance HasColorizer SearchEngine where
   defaultColorizer (SearchEngine n _) = defaultColorizer n
+
+data WLState = WLState [FilePath]
+
+instance ExtensionClass WLState where
+  initialValue = WLState []
+
+type WallpaperConf = FilePath
+
+replaceFile :: (Int, FilePath) -> [FilePath] -> [FilePath]
+replaceFile (_, file) []     = [file]
+replaceFile (0, file) (x:xs) = file:xs
+replaceFile (n, file) (x:xs) = x:replaceFile (n-1, file) xs
+
+getRandomWallpaper :: FilePath -> IO FilePath
+getRandomWallpaper wd = do
+  (lpin, lpout, lperr, _) <- runInteractiveProcess "ls" [] (Just wd) Nothing
+  hClose lpin
+  walls <- hGetContents lpout
+  (spin, spout, sperr, _) <- runInteractiveProcess "shuf" ["-n1"] Nothing Nothing
+  hPutStr spin walls
+  hClose spin
+  wallpaper <- hGetContents spout
+  when (wallpaper == wallpaper) $ return ()
+  hClose lpout
+  hClose lperr
+  hClose spout
+  hClose sperr
+  return wallpaper
+
+-- To run with withWindowSet !!!
+setWallpaperOnScreen :: WallpaperConf -> ScreenId -> WindowSet -> X ()
+setWallpaperOnScreen wd (S nScreens) ws = do
+  WLState oldWalls <- XS.get
+  randomWall <- liftIO $ getRandomWallpaper wd
+  let (S n) = W.screen $ W.current ws
+      newWalls = map (filter (/='\n')) . take nScreens $ replaceFile (n, randomWall) oldWalls
+      command = unwords $ "cd":wd:";":"feh":"--bg-fill":newWalls
+  XS.put $ WLState newWalls
+  spawn command
 
 myModMask :: KeyMask
 myModMask = mod4Mask
@@ -99,6 +142,9 @@ myLayout = smartBorders . mkToggle (NOBORDERS ?? FULL ?? EOT) $
       delta = 3 / 100
       tiled = Tall nmaster delta ratio
 
+myWallpaperConf :: WallpaperConf
+myWallpaperConf = "/home/luc/Images/wallpapers"
+
 layoutGrid :: X (Maybe String)
 layoutGrid = gridselect myGSConfig . map (\x -> (x, x)) $! layouts
   where
@@ -143,7 +189,7 @@ keyBindings nScreens =
     ((myModMask, xK_F3), sshPrompt myXPConfig),
     ((myModMask, xK_d), shellPrompt myXPConfig),
     ((shiftMask .|. myModMask, xK_BackSpace), confirmPrompt greenXPConfig "exit" $ io exitSuccess),
-    ((shiftMask .|. myModMask, xK_q), confirmPrompt greenXPConfig "recompile" $ spawn "xmonad --recompile && xmonad --restart"),
+    ((shiftMask .|. myModMask, xK_q), confirmPrompt greenXPConfig "recompile" $ spawn "xmonad --recompile && xmonad --restart && notify-send \"XMonad\" \"Restarted\""),
     ((shiftMask .|. myModMask, xK_r), confirmPrompt greenXPConfig "restart" $ spawn "xmonad --restart"),
 
     -- Apps
@@ -151,7 +197,7 @@ keyBindings nScreens =
     ((shiftMask .|. myModMask, xK_p), spawn "dmenuunicode"),
     ((myModMask, xK_t), spawn "firefox"),
     ((myModMask, xK_p), spawn "thunar"),
-    ((myModMask, xK_i), spawn "random-wall"),
+    ((myModMask, xK_i), withWindowSet $ setWallpaperOnScreen myWallpaperConf nScreens),
     ((shiftMask .|. myModMask, xK_u), spawn "walw"),
     ((myModMask, xK_w), spawn "walc -s"),
     ((shiftMask .|. myModMask, xK_s), spawn "walc -d"),
@@ -203,7 +249,9 @@ myXmobarPP =
       ppHiddenNoWindows = xmobarColor "gray" "",
       ppVisibleNoWindows = Just $ xmobarColor "yellow" "",
       ppSep = " ",
-      ppTitle = const ""
+      -- Following are controlled by custom loggers
+      ppTitle = const "",
+      ppLayout = const ""
     }
 
 myManageHook :: ManageHook
@@ -218,7 +266,7 @@ myManageHook = manageDocks <+> composeAll [ className =? "floating" --> doFloat'
 main :: IO ()
 main = do
   nScreens <- countScreens
-  xmobars <- sequence [statusBarPipe ("xmobar -x " ++ show i) . pure $ marshallPP si (myXmobarPP { ppExtras = [(xmobarColor "pink" "" . shorten 36) `onLogger` logTitleOnScreen si] }) | si@(S i) <- [0..nScreens-1]]
+  xmobars <- sequence [statusBarPipe ("xmobar -x " ++ show i) . pure $ marshallPP si (myXmobarPP { ppExtras = [logLayoutOnScreen si, (xmobarColor "pink" "" . shorten 36) `onLogger` logTitleOnScreen si] }) | si@(S i) <- [0..nScreens-1]]
   xmonad . ewmh . docks . withSB (mconcat xmobars) $
       desktopConfig
         { modMask = mod4Mask,
