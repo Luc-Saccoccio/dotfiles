@@ -64,31 +64,38 @@ replaceFile (_, file) []     = [file]
 replaceFile (0, file) (x:xs) = file:xs
 replaceFile (n, file) (x:xs) = x:replaceFile (n-1, file) xs
 
-getRandomWallpaper :: FilePath -> IO FilePath
-getRandomWallpaper wd = do
+getRandomWallpaper :: Int -> FilePath -> IO [FilePath]
+getRandomWallpaper n wd = do
   (lpin, lpout, lperr, _) <- runInteractiveProcess "ls" [] (Just wd) Nothing
   hClose lpin
   walls <- hGetContents lpout
-  (spin, spout, sperr, _) <- runInteractiveProcess "shuf" ["-n1"] Nothing Nothing
+  (spin, spout, sperr, _) <- runInteractiveProcess "shuf" ["-n", show n] Nothing Nothing
   hPutStr spin walls
   hClose spin
-  wallpaper <- hGetContents spout
-  when (wallpaper == wallpaper) $ return ()
+  wallpapers <- hGetContents spout
+  when (wallpapers == wallpapers) $ return ()
   hClose lpout
   hClose lperr
   hClose spout
   hClose sperr
-  return wallpaper
+  return $ words wallpapers
 
 -- To run with withWindowSet !!!
 setWallpaperOnScreen :: WallpaperConf -> ScreenId -> WindowSet -> X ()
 setWallpaperOnScreen wd (S nScreens) ws = do
   WLState oldWalls <- XS.get
-  randomWall <- liftIO $ getRandomWallpaper wd
+  randomWall <- liftIO $ getRandomWallpaper 1 wd
   let (S n) = W.screen $ W.current ws
-      newWalls = map (filter (/='\n')) . take nScreens $ replaceFile (n, randomWall) oldWalls
-      command = unwords $ "cd":wd:";":"feh":"--bg-fill":newWalls
+      newWalls = take nScreens $ replaceFile (n, head randomWall) oldWalls
+      command = unwords $ "cd":wd:"; feh --bg-fill":newWalls
   XS.put $ WLState newWalls
+  spawn command
+
+randomWallpaper :: WallpaperConf -> ScreenId -> X ()
+randomWallpaper wd (S nScreens) = do
+  randomWalls <- liftIO $ getRandomWallpaper nScreens wd
+  let command = unwords $ "cd":wd:"; feh --bg-fill":randomWalls
+  XS.put $ WLState randomWalls
   spawn command
 
 myModMask :: KeyMask
@@ -230,7 +237,7 @@ keyBindings nScreens =
 myStartupHook :: X ()
 myStartupHook =
   -- spawnOnce "$HOME/.fehbg"
-  spawnOnce "random-wall"
+  randomWallpaper
     >> spawnOnce "xsetroot -cursor_name left_ptr"
     >> spawnOnce "setxkbmap -layout fr -variant azerty"
     >> spawnOnce "picom -fb"
