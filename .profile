@@ -16,7 +16,7 @@ export MANPAGER="man-pager"
 # export MOZ_X11_EGL=1
 
 # Path & MAN
-export PATH=/home/luc/.local/share/opam/default/bin:/home/luc/.local/share/cargo/bin:/home/luc/.local/share/go/bin:/home/luc/.local/share/gem/ruby/3.0.0/bin:/home/luc/.TinyTeX/bin/x86_64-linux:/home/luc/.local/bin:/home/luc/.cabal/bin:$PATH
+export PATH=/home/luc/.local/share/opam/default/bin:/home/luc/.local/share/cargo/bin:/home/luc/.local/share/go/bin:/home/luc/.local/share/gem/ruby/3.0.0/bin:/home/luc/.local/bin:$PATH
 export MANPATH=/usr/share/man:/usr/local/share/man:$MANPATH
 
 # Useful directories
