@@ -14,38 +14,38 @@ local function lsp_status()
     return msg
 end
 
-require('lualine').setup {
-	options = {
-		theme = 'spaceduck',
-		section_separators = { left = '', right = '' },
-		component_separators = {left = '', right = ''},
-		icons_enabled = true,
-	},
-	sections = {
-		lualine_a = { {'mode', {upper = true,},}, },
-		lualine_b = { {'branch', {icon = '',}, }, },
-		lualine_c = {
-			{'filename', file_status = true, separator = ''},
-			{'diagnostics',
-				sources = { 'nvim_diagnostic' },
-				symbols = { error = ' ', warn = ' ', info = ' ' },
-				separator = ''
-			},
-			{ '%=', separator = '' },
+return {
+  options = {
+    theme = 'spaceduck',
+    section_separators = { left = '', right = '' },
+    component_separators = {left = '', right = ''},
+    icons_enabled = true,
+  },
+  sections = {
+    lualine_a = { {'mode', {upper = true,},}, },
+    lualine_b = { {'branch', {icon = '',}, }, },
+    lualine_c = {
+      {'filename', file_status = true, separator = ''},
+      {'diagnostics',
+        sources = { 'nvim_diagnostic' },
+        symbols = { error = ' ', warn = ' ', info = ' ' },
+        separator = ''
+      },
+      { '%=', separator = '' },
                         { lsp_status, icon = ' LSP:'},
-			-- color = { fg = '#ffffff', gui = 'bold' },
-		},
-		lualine_x = { 'encoding', 'fileformat', 'filetype' },
-		lualine_y = { 'progress' },
-		lualine_z = { 'location' },
-	},
-	inactive_sections = {
-		lualine_a = {  },
-		lualine_b = {  },
-		lualine_c = { 'filename' },
-		lualine_x = { 'location' },
-		lualine_y = {  },
-		lualine_z = {  },
-	},
-	extensions = {'nvim-tree'}
+      -- color = { fg = '#ffffff', gui = 'bold' },
+    },
+    lualine_x = { 'encoding', 'fileformat', 'filetype' },
+    lualine_y = { 'progress' },
+    lualine_z = { 'location' },
+  },
+  inactive_sections = {
+    lualine_a = {  },
+    lualine_b = {  },
+    lualine_c = { 'filename' },
+    lualine_x = { 'location' },
+    lualine_y = {  },
+    lualine_z = {  },
+  },
+  extensions = {'nvim-tree'}
 }

@@ -18,7 +18,7 @@ Plug 'lervag/vimtex', { 'for': ['tex', 'latex'] }
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' } " Nerdtree file manager
 Plug 'bling/vim-airline', "Vim-airline
 Plug 'vim-airline/vim-airline-themes' "Themes for vim-airline
-	let g:airline_theme='lucius' " Use lucius theme
+  let g:airline_theme='lucius' " Use lucius theme
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'edkolev/tmuxline.vim' " Tmux matching nvim

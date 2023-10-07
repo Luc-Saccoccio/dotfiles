@@ -26,7 +26,7 @@ syntax match wikidotColor '##\(#\?\w\+|\)\?'
 syntax match wikidotQuoteBlock '^>\+ '
 syntax match wikidotAlign '^='
 
-syn keyword wTodo	TODO FIXME XXX
+syn keyword wTodo TODO FIXME XXX
 
 syntax region wikidotRaw matchgroup=wikidotRaw start='@@' end='@@' oneline
 syntax region wikidotRaw matchgroup=wikidotRawLegacy start='``' end='``' oneline

@@ -1,22 +1,17 @@
 set expandtab
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=2
+set tabstop=2
 set smartindent
 set autoindent
-let g:tex_flavor="xelatex"
 set spell spelllang=fr
-autocmd VimLeave * !texclear %
 set foldmethod=indent
 set makeprg=compiler\ %
-let g:cmp_enabled=0
+lua require("nabla").enable_virt({autogen = true, silent = false, align_center = true})
+set formatprg=pandoc\ -t\ markdown-simple_tables
 
-function ReplaceCoordinates(startx, starty, endx, endy) range
-  :%s/startx/\=a:startx/g
-  :%s/starty/\=a:starty/g
-  :%s/endx/\=a:endx/g
-  :%s/endy/\=a:endy/g
-endfunction
-command -range -nargs=+ Coordinates call ReplaceCoordinates(<f-args>)
+inoremap ,cd ⋅
+inoremap ,& ∧
+inoremap ,d <C-R>=strftime('%F')<C-M>
 
 " Mappings
 nnoremap <C-p> :VimtexTocToggle<CR>

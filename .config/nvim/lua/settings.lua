@@ -18,33 +18,17 @@ o.relativenumber = true
 -- Files
 o.encoding = 'utf-8'
 o.fileencoding = 'utf-8'
---[[ g.repl = {
-    python = {
-        bin = 'python',
-        args = '',
-        syntax = 'python',
-        title = 'Python REPL',
-    },
-    haskell = {
-        bin = 'ghci',
-        args = '',
-        syntax = 'haskell',
-        title = 'Haskell REPL',
-    },
-    ocaml = {
-        bin = 'utop',
-        args = '',
-        syntax = 'ocaml',
-        title = 'OCaml REPL',
-    }
-} ]]
-g.slime_target = "neovim"
 
 -- LSP
 bo.omnifunc = 'v:lua.vim.lsp.omnifunc'
 o.completeopt = 'menuone,noinsert,noselect'
 g.completion_enable_auto_popup = 1
 cmd('set shortmess+=c')
+
+-- Tabs
+o.expandtab = true
+o.tabstop = 2
+o.shiftwidth = 2
 
 -- Miscellaneous
 o.clipboard = 'unnamedplus'
@@ -62,8 +46,7 @@ o.foldmethod = 'indent'
 g.python3_host_prog = "/usr/bin/python3"
 g.python_host_prog = "/usr/bin/python"
 g.nvim_agda_settings = {
-	agda = "/home/luc/.local/bin/agda",
-	-- agda_args = [ "--arg1", "--arg2"  ]
+  agda = "/home/luc/.local/bin/agda",
 }
 
 
@@ -76,11 +59,7 @@ g.tmuxline_preset = {
       x    = '',
       y    = {'%T', '%a', '%Y'},
       z    = '#(battery)'}
-g.vimwiki_list = {
-	{ path = '~/.local/share/vimwiki',
-	path_html = '~/.local/share/vimwiki/html'},
-	{ path = '~/.local/share/vimwikin',
-	path_html = '~/.local/share/vimwikin/html'}}
+
 cmd('autocmd BufEnter *.Rmd set spell spelllang=fr')
 cmd('autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %')
 cmd('autocmd FileType ocaml,haskell inoremap ,l λ')
