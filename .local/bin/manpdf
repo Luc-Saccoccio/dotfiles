@@ -1,4 +1,6 @@
 #!/bin/sh
 # Display a manual in zathura
-manpage=$(man -k . | dmenu -l 10 | awk '{ print $1 }')
-if [ -z "$manpage" ]; then exit; else man -Tpdf "$manpage" | zathura - & fi
+manpage=$(man -k . | dmenu -l 10)
+if [ -n "$manpage" ]; then
+    echo "$manpage" | awk -F "[(,)]" '{ system("man -Tpdf " $2 " " $1) }' | zathura -
+fi
