@@ -60,6 +60,11 @@ g.tmuxline_preset = {
       y    = {'%T', '%a', '%Y'},
       z    = '#(battery)'}
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "TelescopeResults",
+  command = "setlocal nofoldenable",
+})
+
 cmd('autocmd BufEnter *.Rmd set spell spelllang=fr')
 cmd('autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %')
 cmd('autocmd FileType ocaml,haskell inoremap ,l λ')

@@ -65,7 +65,8 @@ local plugins = {
 
   {
     'neovim/nvim-lspconfig',
-    opts = require("plug-config.lsp").config
+    config = require("plug-config.lsp"),
+    cmd = "LspStart",
   },
 
   {
