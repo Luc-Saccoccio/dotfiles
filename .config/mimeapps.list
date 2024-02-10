@@ -23,6 +23,7 @@ application/x-shockwave-flash=video.desktop
 application/csv=tab.desjtop
 application/x-sc=tab.desktop
 application/pdf=pdf.desktop
+application/postscript=pdf.desktop
 application/x-compressed-tar=xarchiver.desktop
 application/x-tar=xarchiver.desktop
 application/zip=org.gnome.FileRoller.desktop
