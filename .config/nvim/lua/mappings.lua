@@ -6,10 +6,6 @@ local function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-local function toggle_cmp()
-  vim.g.cmp_enabled = not vim.g.cmp_enabled
-end
-
 local nest = require('nest')
 
 nest.applyKeymaps({
@@ -19,8 +15,6 @@ nest.applyKeymaps({
 
     { 'S', "<cmd>colorscheme spaceduck<CR><cmd>lua require('lualine').setup { options = { theme = 'spaceduck'}}<CR>" },
     { 'L', "<cmd>colorscheme rusticated<CR>" },
-
-    { 'C', toggle_cmp },
 
     { "<leader>", "<Esc>/<++><Enter>\"_c4l", mode = 'ni' },
 
@@ -42,7 +36,7 @@ nest.applyKeymaps({
         { 'c', '<cmd>Telescope git_commits<CR>' },
         { 's', '<cmd>Telescope git_status<CR>' },
       }},
-      { 'h', "<cmd>Telescope help_tags<CR>" },
+      { 'h', "<cmd>Telescope hoogle<CR>" },
       { 'l', '<cmd>Telescope live_grep<cr>' },
       { 'm', "<cmd>Telescope man_pages sections=1,2,3,7,8<CR>" },
       { 'o', "<cmd>Telescope vim_options<CR>" },

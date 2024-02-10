@@ -3,10 +3,8 @@ set shiftwidth=2
 set tabstop=2
 set smartindent
 set autoindent
-set spell spelllang=fr
 set foldmethod=indent
 set makeprg=compiler\ %
-lua require("nabla").enable_virt({autogen = true, silent = false, align_center = true})
 set formatprg=pandoc\ -t\ markdown-simple_tables
 
 inoremap ,cd ⋅

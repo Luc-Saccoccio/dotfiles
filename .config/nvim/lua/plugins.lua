@@ -13,6 +13,11 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
   {
+    'RRethy/nvim-base16',
+    lazy = false,
+  },
+
+  {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     event = 'BufEnter',
@@ -26,8 +31,20 @@ local plugins = {
     ft = 'agda'
   },
 
-   'hrsh7th/cmp-nvim-lsp',
-   'hrsh7th/cmp-buffer',
+  {
+    'hrsh7th/cmp-nvim-lsp',
+    enabled = false,
+  },
+
+  {
+    'hrsh7th/cmp-buffer',
+    enabled = false,
+  },
+
+   {
+     'neovimhaskell/haskell-vim',
+     ft = 'haskell',
+   },
 
   {
     'b3nj5m1n/kommentary',
@@ -37,22 +54,28 @@ local plugins = {
   {
     'nvim-lualine/lualine.nvim',
     dependencies = {'kyazdani42/nvim-web-devicons'}, opts = function() return require("plug-config.lualine") end,
-    lazy = false
+    lazy = false,
   },
 
    'LionC/nest.nvim',
 
   {
     'hrsh7th/nvim-cmp',
-    opts = function() return require("plug-config.cmp") end
+    opts = function() return require("plug-config.cmp") end,
+    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer' },
+    enabled = false,
+  },
+  {
+    'dcampos/nvim-snippy',
+    opts = function() return require("plug-config.snippy") end,
+    enabled = false,
   },
 
   {
-    'dcampos/nvim-snippy',
-    opts = function() return require("plug-config.snippy") end
+    'dcampos/cmp-snippy',
+    enabled = false,
   },
 
-   'dcampos/cmp-snippy',
   {
     'norcalli/nvim-colorizer.lua',
     opts = function() return require("plug-config.colorizer") end
@@ -60,7 +83,8 @@ local plugins = {
 
   {
     'Julian/lean.nvim',
-    opts = function() return require("plug-config.lean") end
+    opts = function() return require("plug-config.lean") end,
+    ft = "lean",
   },
 
   {
@@ -87,13 +111,23 @@ local plugins = {
   },
 
    'pineapplegiant/spaceduck',
-
   {
     'tpope/vim-fugitive',
     cmd = "G"
   },
-
   {
+    "nvim-neorg/neorg",
+    build = ":Neorg sync-parsers",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = function() return require("plug-config.neorg") end,
+    keys = {
+      { "<leader>ww", ":Neorg workspace work<cr>", desc = "Open work" },
+      { "<leader>wh", ":Neorg workspace home<cr>", desc = "Open home" },
+    },
+    cmd = "Neorg",
+  },
+
+  --[[ {
     'serenevoid/kiwi.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = function() return require("plug-config.kiwi") end,
@@ -102,7 +136,7 @@ local plugins = {
       { "<leader>wd", ":lua require(\"kiwi\").open_diary_index()<cr>", desc = "Open Diary index" },
       { "<leader>wn", ":lua require(\"kiwi\").open_diary_new()<cr>", desc = "Open today's Diary" },
     },
-  },
+  }, ]]
 }
 
 local options = {

@@ -38,7 +38,7 @@ g.nocompatible = true
 g.loaded_netrwPlugin = true
 o.title = true
 o.mouse = 'a'
-cmd('colorscheme spaceduck')
+cmd('colorscheme base16-seti')
 o.number = true
 g.vimtex_compiler_engine = 'xelatex'
 g.c_syntax_for_h = true

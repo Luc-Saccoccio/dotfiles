@@ -1,8 +1,6 @@
 local cmp = require('cmp')
 local mapping = require('cmp.config.mapping')
 
-vim.g.cmp_enabled = true
-
 local function border(hl_name)
   return {
     { "╭", hl_name },
@@ -17,9 +15,6 @@ local function border(hl_name)
 end
 
 return {
-      enabled = function()
-    return vim.g.cmp_enabled
-      end,
       window = {
     completion = {
         border = border("CmpBorder"),
