@@ -1,0 +1,264 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fiches}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% IMPORTS %%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[french]{babel}      % language
+\usepackage[french]{datetime}   % language for dates
+\usepackage[top=1.5cm, bottom=1.5cm, left=2cm, right=2cm]{geometry}
+\usepackage{enumitem}           % enumeration config
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{stmaryrd}           % ll/rr brackets
+\usepackage{hyperref}           % better links
+\usepackage{pgffor}             % for loop
+\usepackage{sectsty}            % format sections
+\usepackage{float}              % floats
+\usepackage{dsfont}             % bold 1
+\usepackage{centernot}          % centered \not
+\usepackage[backend=biber,style=alphabetic]{biblatex} % citations
+
+% Drawing
+\usepackage{tikz}               % drawings
+\usepackage{tikz-cd,mathtools}  % diagrams
+\usepackage{xcolor}             % color definitions
+\usepackage[framemethod=tikz]{mdframed} % frames (props, thms, ...)
+\usetikzlibrary{shadows}        % frame shadows
+\usetikzlibrary{lindenmayersystems}
+
+% Exercise
+\usepackage[exercisedelayed,answerdelayed,lastexercise]{exercise}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% CUSTOM COMMANDS %%%%%%%%%%%%%%%%%%%%%%%%%%
+% shorthands for fonts
+\newcommand{\bb}[1]{\mathbb{#1}}
+\newcommand{\ca}[1]{\mathcal{#1}}
+\newcommand{\fk}[1]{\mathfrak{#1}}
+\newcommand{\sr}[1]{\mathscr{#1}}
+
+\newcommand{\textdef}[1]{\textit{\textbf{#1}}}
+\newcommand{\textcat}[1]{{\normalfont\textsf{#1}}}
+
+% def lowercase: fraktur (no redef \fi \fk)
+\foreach \x in {a,b,c,d,e,f,g,h, j, l,m,n,o,p,q,r,s,t,u,v,w,x,y,z}{%
+    \expandafter\xdef\csname f\x\endcsname{\noexpand\fk{\x}}%
+}%
+
+% def uppercase: blackboard, caligraphy, fraktur, script
+\foreach \x in {A,...,Z}{%
+    \expandafter\xdef\csname b\x\endcsname{\noexpand\bb{\x}}%
+    \expandafter\xdef\csname c\x\endcsname{\noexpand\ca{\x}}%
+    \expandafter\xdef\csname f\x\endcsname{\noexpand\fk{\x}}%
+    \expandafter\xdef\csname s\x\endcsname{\noexpand\sr{\x}}%
+}%
+
+% drawing
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\makeatletter
+\DeclareRobustCommand{\rvdots}{%
+  \vbox{
+    \baselineskip4\p@\lineskiplimit\z@
+    \kern-\p@
+    \hbox{.}\hbox{.}\hbox{.}
+  }}
+\makeatother
+
+% hardcode letters
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\G}{\mathbb{G}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\U}{\mathbb{U}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\1}{\mathds{1}}
+
+% delimiters
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\snorm}[1]{{\left\vert\kern-0.25ex\left\vert\kern-0.25ex\left\vert #1 \right\vert\kern-0.25ex\right\vert\kern-0.25ex\right\vert}}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\interv}[1]{\left[#1\right]}
+\newcommand{\scp}[1]{\left<#1\right>}
+\renewcommand{\mid}{\;\middle|\;}
+\newcommand{\iset}[1]{\llbracket #1 \rrbracket}
+
+% arrows
+\newcommand{\ssi}{\Leftrightarrow}
+\renewcommand{\implies}{\Rightarrow}
+
+% deriv
+\newcommand{\dd}{\mathrm{d}}
+\foreach \x in {f,g,h,t,u,v,w,x,y,z}{%
+    \expandafter\xdef\csname d\x\endcsname{\noexpand\dd\x}%
+}%
+\newcommand{\deriv}[2]{\dfrac{\dd #1}{\dd #2}}
+\newcommand{\pderiv}[2]{\dfrac{\partial#1}{\partial#2}}
+
+% binops
+\newcommand{\cc}{\mathbin{\subseteq\!\!\subseteq}} % relativement compact
+
+% operators
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\Car}{Car}
+\DeclareMathOperator{\Cof}{Cof}
+\DeclareMathOperator{\Com}{Com}
+\DeclareMathOperator{\Conv}{Conv}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\DSE}{DSE}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Ind}{Ind}
+\DeclareMathOperator{\Log}{Log}
+\DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Vect}{Vect}
+
+\let\Re\relax
+\let\Im\relax
+\DeclareMathOperator{\Re}{\mathfrak{Re}}
+\DeclareMathOperator{\Im}{\mathfrak{Im}}
+
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\cont}{cont}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\pgcd}{pgcd}
+\DeclareMathOperator{\ppcm}{ppcm}
+\DeclareMathOperator{\rg}{rg}
+\DeclareMathOperator{\supp}{supp}
+
+% categories
+\newcommand{\catMet}{\textcat{Met}}
+\newcommand{\catTop}{\textcat{Top}}
+
+% shorthands
+\newcommand{\et}{\textup{ et }}
+\newcommand{\ou}{\textup{ ou }}
+\newcommand{\CV}{\textup{ converge }}
+\newcommand{\CVU}{\textup{ converge uniformément }}
+\newcommand{\DV}{\textup{ diverge }}
+\newcommand{\ie}{\textup{ i.e. }}
+\newcommand{\khi}{\chi}
+\newcommand{\Cabs}{\cC^{\textcat{abs}}}
+\newcommand{\Cinf}{\cC^\infty}
+\newcommand{\Ctri}{\cC^{\textcat{tri}}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% COLORS %%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{aqua}{rgb}{0.0,0.6,0.7}
+\definecolor{ltgreen}{rgb}{0.0,0.8,0.7}
+\definecolor{ltblue}{RGB}{0, 150, 210}
+\definecolor{ocre}{RGB}{0, 113, 188}
+\definecolor{dkgreen}{RGB}{113, 188, 113}
+\definecolor{coral}{RGB}{233, 137, 128}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% THM ENVS %%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% Styles
+\mdfdefinestyle{theorem}{
+    roundcorner=2pt,
+    linewidth=3pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    shadow=true,
+    shadowsize=6pt,
+    nobreak=true,
+}
+
+\mdfdefinestyle{prop}{
+    hidealllines=true,
+    roundcorner=2pt,
+    leftline=true,
+    linewidth=3pt,
+    innertopmargin=0pt,
+    innerbottommargin=5pt,
+    nobreak=true,
+}
+
+\newtheoremstyle{plain*}{\topsep}{\topsep}{\itshape}{0pt}{}{.}{5pt plus 1pt minus 1pt}{{\sffamily\bfseries\thmname{#1}}\ifstrempty{#3}{}{{ \sffamily(\thmnote{#3})}}}
+
+\newtheoremstyle{definition*}{\topsep}{\topsep}{}{0pt}{}{.}{3pt plus 1pt minus 1pt}{{\sffamily\bfseries\thmname{#1}}\ifstrempty{#3}{}{{ \sffamily(\thmnote{#3})}}}
+
+%%%%%%%%%% Abstract env factories
+\newcounter{globalctr}[section]
+\renewcommand{\theglobalctr}{\arabic{section}.\arabic{globalctr}}
+
+\newcommand\propenvmaker[4]{
+    \theoremstyle{#1}
+    \newmdtheoremenv[
+        style=prop,
+        linecolor=#2,
+    ]{#3}[globalctr]{\sffamily #4}
+}
+
+\newcommand\thmenvmaker[5]{
+    \theoremstyle{#1}
+    \newmdtheoremenv[
+        style=theorem,
+        linecolor=#2,
+        backgroundcolor=#3,
+    ]{#4}[globalctr]{\sffamily #5}
+}
+
+\newcommand{\newpropenv}[4][definition]{
+    \propenvmaker{#1}{#2}{@#3}{#4}
+    \propenvmaker{#1*}{#2}{@#3*}{#4}
+
+    \newenvironment{#3}{\begin{@#3}}{\end{@#3}\vspace*{-3pt}}
+    \newenvironment{#3*}{\begin{@#3*}}{\end{@#3*}\vspace*{-3pt}}
+}
+
+\newcommand{\newthmenv}[5][plain]{
+    \thmenvmaker{#1}{#2}{#3}{#4}{#5}
+    \thmenvmaker{#1*}{#2}{#3}{#4*}{#5}
+}
+
+%%%%%%%%%% Prop-like
+\newpropenv[plain]{ocre}{proposition}{Proposition}
+\newpropenv[plain]{aqua}{lemma}{Lemme}
+\newpropenv[plain]{ltblue}{corollary}{Corollaire}
+
+\newpropenv{dkgreen}{example}{Exemple}
+\newpropenv{dkgreen}{remark}{Remarque}
+
+%%%%%%%%%% Theorem-like
+\newthmenv{ocre}{blue!5}{theorem}{Théorème}
+\newthmenv{coral}{red!5}{definition}{Définition}
+\newthmenv[definition]{dkgreen}{green!5}{rappel}{Rappel}
+
+%%%%%%%%%% Proof-like
+\renewenvironment{proof}{\vspace*{-3pt}\noindent\textcolor{ocre}{\textit{\textsf{Preuve.}}}}{\qed\medskip}
+\newenvironment{proof*}{\vspace*{-3pt}\noindent\textcolor{ocre}{\textit{\textsf{Preuve.}}}}{}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% MISC %%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength\parindent{16pt}
+
+\hypersetup{
+    colorlinks,
+    citecolor=ocre,
+    filecolor=ocre,
+    linkcolor=ocre,
+    urlcolor=ocre
+}
+
+\pgfdeclarelindenmayersystem{cantor set}{
+  \rule{F -> FfF}
+  \rule{f -> fff}
+}
+
+% format chapters/sections
+\chapterfont{\sffamily}
+\sectionfont{\sffamily}
+\subsectionfont{\sffamily}
+\subsubsectionfont{\sffamily}

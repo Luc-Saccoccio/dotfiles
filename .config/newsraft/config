@@ -1,0 +1,7 @@
+set scrolloff 5
+
+set open-in-browser-command linkhandler "%l"
+# set item-content-format feed,title,authors,date,link,max-content
+bind R reload-all
+bind C mark-read-all
+unbind c

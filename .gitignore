@@ -13,6 +13,7 @@ config.mk
 .config/ncmpcpp/lyrics/
 .config/ncmpcpp/error.log
 .config/newsboat/urls
+.config/newsraft/urls
 .config/nvim/.netrwhist
 .config/nvim/autoload
 .config/nvim/plugged/

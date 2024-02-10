@@ -88,6 +88,10 @@ latexmk: ## Init LaTeXmk
 	rm -f $(HOME)/.config/$@
 	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
+texmf: ## Install my own LaTeX package
+	rm -f $(HOME)/.local/share/$@
+	$(LN) ${PWD}/.local/share/$@ ${HOME}/.local/share/$@
+
 mpd: ## Init the Music Player Daemon
 	rm -f $(HOME)/.config/$@
 	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
@@ -118,6 +122,10 @@ newsboat: ## Init newsboat RSS/Atom feed reader
 	rm -f $(HOME)/.config/$@
 	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
+newsraft: ## Init newsraft RSS/Atom feed reader
+	rm -f $(HOME)/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
+
 nimble: ## Settings for nimble
 	rm -f $(HOME)/.config/$@
 	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
@@ -144,6 +152,10 @@ rofi: ## Init rofi (to clean !!!)
 	rm -f $(HOME)/.config/$@
 	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
+scheme: ## Init Chicken Scheme
+	rm -f $(HOME)/.csirc
+	$(LN) ${PWD}/.csirc ${HOME}/.csirc
+
 sxhkd: ## Init shkd hotkey daemon
 	rm -f $(HOME)/.config/$@
 	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
@@ -158,8 +170,8 @@ vimus: ## Init vimus mpd interface
 
 X: ## Init Xmodmap and Xresources
 	rm -f $(HOME)/{.Xmodmap,.Xresources}
-	$(LN) ${PWD}/.Xmodmap ${HOME}/.Xmodmap
-	$(LN) ${PWD}/.Xresources ${HOME}/.Xresources
+	$(LN) ${PWD}/.Xmodmap ${HOME}/.config/X11/xresources
+	$(LN) ${PWD}/.config/X11/xresources ${HOME}/.config/X11/xresources
 
 xmonad: ## Init xmonad WM
 	rm -f $(HOME)/.config/$@
@@ -181,6 +193,7 @@ zsh: ## Init zsh shell
 	rm -f $(HOME)/.config/$@ $(HOME)/.profile
 	$(LN) ${PWD}/.profile ${HOME}/.profile
 	$(LN) ${PWD}/.config/zsh ${HOME}/.config/zsh
+	# sudo echo 'export ZDOTDIR="\$HOME"/.config/zsh' > /etc/zsh/zshenv -- TODO
 
 texbackup: ## Backup TeX packages
 	$(MKDIR) $(PWD)/${OS}
