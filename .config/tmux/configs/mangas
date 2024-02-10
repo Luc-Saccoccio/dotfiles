@@ -2,9 +2,9 @@
 
 if tmux ls | grep "mangas"
 then
-	tmux -2 attach-session -d -t mangas
+  tmux -2 attach-session -d -t mangas
 else
-	tmux new-session -d -s mangas -n "Sate" -c ~/Documents/Reading\ Material/Mangas "sc-im state.sc"
-	tmux new-window -n "Mangas" -c ~/Documents/Reading\ Material/Mangas "nnn"
-	tmux -2 attach-session -d -t mangas
+  tmux new-session -d -s mangas -n "State" -c ~/Documents/Reading\ Material/Mangas "sc-im state.sc"
+  tmux new-window -n "Mangas" -c ~/Documents/Reading\ Material/Mangas "nnn"
+  tmux -2 attach-session -d -t mangas
 fi

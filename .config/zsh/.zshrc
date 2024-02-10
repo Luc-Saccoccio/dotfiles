@@ -16,8 +16,8 @@ PS1+='>──%{$fg[yellow]%}»%b '
 
 # ZSH History
 HISTFILE=~/.cache/zshistory
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=1000000
+SAVEHIST=1000000
 setopt HIST_IGNORE_SPACE
 
 # Load aliases
@@ -84,4 +84,7 @@ source /usr/share/fzf/key-bindings.zsh
 
 # opam configuration
 test -r /home/luc/.opam/opam-init/init.zsh && . /home/luc/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+# ghcup configuration
+[ -f "/home/luc/.local/share/ghcup/env" ] && source "/home/luc/.local/share/ghcup/env" # ghcup-env
 # vim: ft=zsh

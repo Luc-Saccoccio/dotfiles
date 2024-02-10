@@ -15,11 +15,11 @@
 # Monitors #
 ############
 if xrandr -q | grep 'HDM1 connected'; then
-	xrandr --output HDM1 --mode 1920x1080 --right-of eDP1
-	bspc monitor eDP1 -d 1 2 3 4 5
-	bspc monitor HDM1 -d 6 7 8 9 10
+  xrandr --output HDM1 --mode 1920x1080 --right-of eDP1
+  bspc monitor eDP1 -d 1 2 3 4 5
+  bspc monitor HDM1 -d 6 7 8 9 10
 else
-	bspc monitor -d 1 2 3 4 5 6 7 8 9 10 # Ten monitors, arabics numbers.
+  bspc monitor -d 1 2 3 4 5 6 7 8 9 10 # Ten monitors, arabics numbers.
 fi
 xrandr --output eDP1 --mode 1920x1080
 

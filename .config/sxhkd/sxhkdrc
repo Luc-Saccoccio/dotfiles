@@ -12,167 +12,167 @@
 # Terminal emulators #
 ######################
 super + Return
-	st
+  st
 super + shift + Return
-	st -c floating
+  st -c floating
 
 ################
 # Command Tree #
 ################
 super + e
-	cmdtree
+  cmdtree
 
 #####################
 # Program launchers #
 #####################
 super + d
-	dmenu_run
+  dmenu_run
 super + shift + m
-	clipmenu
+  clipmenu
 super + shift + p
-	/home/luc/.local/bin/dmenuunicode
+  /home/luc/.local/bin/dmenuunicode
 super + BackSpace
-	xdg-menu | xmenu | sh
+  xdg-menu | xmenu | sh
 
 #################
 # File Managers #
 #################
 super + p
-	thunar
+  thunar
 
 ################
 # Web Browsers #
 ################
 super + t
-	firefox
+  firefox
 
 #########
 # Print #
 #########
 Print
-	/home/luc/.local/bin/perscrot
+  /home/luc/.local/bin/perscrot
 super + shift + Print
-	scrot '%Y-%m-%d-%s_$wx$h.png' -e 'mv $f ~/Images/screenshots/' && notify-send --icon=itmages-information "Screenshot" "Screenshot saved to /home/luc/Images/screenshots"
+  scrot '%Y-%m-%d-%s_$wx$h.png' -e 'mv $f ~/Images/screenshots/' && notify-send --icon=itmages-information "Screenshot" "Screenshot saved to /home/luc/Images/screenshots"
 
 ##################
 # Volume Control #
 ##################
 XF86AudioLowerVolume
-#	/home/luc/.local/bin/volume-control dec
-	amixer set Master 1%-
+#  /home/luc/.local/bin/volume-control dec
+  amixer set Master 1%-
 XF86AudioRaiseVolume
-#	/home/luc/.local/bin/volume-control inc
-	amixer set Master 1%+
+#  /home/luc/.local/bin/volume-control inc
+  amixer set Master 1%+
 XF86AudioMute
-#	/home/luc/.local/bin/volume-control mute
-	amixer -q set Master toggle
+#  /home/luc/.local/bin/volume-control mute
+  amixer -q set Master toggle
 
 #########################
 # Restart bspwm/polybar #
 #########################
 super + shift + r
-	bspc wm -r
+  bspc wm -r
 super + shift + q
-	$HOME/.config/polybar/launch.sh
+  $HOME/.config/polybar/launch.sh
 
 ###################
 # Polybar Control #
 ###################
 super + q
-	polybar-msg cmd toggle
+  polybar-msg cmd toggle
 
 ##############
 # Exit bspwm #
 ##############
 super + shift + e
-	/home/luc/.local/bin/powermenu
+  /home/luc/.local/bin/powermenu
 
 #####################
 # Wallpaper Control #
 #####################
 super + i
-	/home/luc/.local/bin/random-wall
+  /home/luc/.local/bin/random-wall
 super + shift + i
-	/home/luc/.local/bin/current-wal
+  /home/luc/.local/bin/current-wal
 super + shift + u
-	/home/luc/.local/bin/walw &> /dev/null
+  /home/luc/.local/bin/walw &> /dev/null
 super + w
-	/home/luc/.local/bin/walc -s
+  /home/luc/.local/bin/walc -s
 super + shift + s
-	/home/luc/.local/bin/walc -d
+  /home/luc/.local/bin/walc -d
 super + shift + t
-	/home/luc/.local/bin/walc -t
+  /home/luc/.local/bin/walc -t
 super + shift + w
-	/home/luc/.local/bin/livewalc
+  /home/luc/.local/bin/livewalc
 
 ###############
 # MPD Control #
 ###############
 XF86Audio{Play,Pause,Next,Prev,Stop}
-	mpc {toggle,toggle,next,prev,stop}
+  mpc {toggle,toggle,next,prev,stop}
 
 #####################
 # Backlight Control #
 #####################
 XF86MonBrightness{Up,Down}
-	/home/luc/.local/bin/backlight-control {inc,dec}
+  /home/luc/.local/bin/backlight-control {inc,dec}
 
 #########
 # Dunst #
 #########
 super + space
-	dunstctl close
+  dunstctl close
 super + shift + space
-	dunstctl close_all
+  dunstctl close_all
 super + shift + space
-	dunstctl context
+  dunstctl context
 
 #################
 # Close or Kill #
 #################
 super + {shift + a,r}
-	bspc node -{c,k}
+  bspc node -{c,k}
 
 ###################
 # State and flags #
 ###################
 super + {s,z,shift + f}
-	bspc node -t {tiled,pseudo_tiled,floating}
+  bspc node -t {tiled,pseudo_tiled,floating}
 super + {h,l,y,j}
-	bspc node -g {hidden,locked,sticky,private}
+  bspc node -g {hidden,locked,sticky,private}
 super + shift + h
-	~/.local/bin/dmenuhidden
+  ~/.local/bin/dmenuhidden
 super + f
-	bspc node -t \~fullscreen
+  bspc node -t \~fullscreen
 
 #########
 # Focus #
 #########
 super + {_,shift + }{Left,Down,Up,Right}
-	bspc node -{f,s} {west,south,north,east}
+  bspc node -{f,s} {west,south,north,east}
 super + {_,shift + }{ampersand,eacute,quotedbl,apostrophe,parenleft,minus,egrave,underscore,ccedilla,agrave}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+  bspc {desktop -f,node -d} '^{1-9,10}'
 super + {_,shift + } Tab
-	bspc desktop -f {next,prev}
+  bspc desktop -f {next,prev}
 super + g
-	bspc node -s biggest
+  bspc node -s biggest
 super + m
-	bspc desktop -l next
+  bspc desktop -l next
 
 #############
 # Preselect #
 #############
 super + KP_{4,8,6,2,5}
-	bspc node -p {west,north,east,south,cancel}
+  bspc node -p {west,north,east,south,cancel}
 
 ##########################
 # Move a floating window #
 ##########################
 super + alt + {Left,Down,Up,Right}
-	bspc node -v {-20 0,0 20,0 -20,20 0}
+  bspc node -v {-20 0,0 20,0 -20,20 0}
 
 ############################
 # Resize a floating window #
 ############################
 super + ctrl + {Left,Down,Up,Right}
-	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+  bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}

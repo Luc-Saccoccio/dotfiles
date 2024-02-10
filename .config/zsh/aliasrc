@@ -2,60 +2,62 @@
 
 # Basics like verbosity and settings
 alias \
-	cp="cp -iv" \
-	mv="mv -iv" \
-	rm="rm -Iv" \
-	mkd="mkdir -pv" \
-	yt="yt-dlp --add-metadata -i" \
-	yta="yt -x -f bestaudio/best" \
+  cp="cp -iv" \
+  mv="mv -iv" \
+  rm="rm -Iv" \
+  mkd="mkdir -pv" \
+  yt="yt-dlp --add-metadata -i" \
+  yta="yt -x -f bestaudio/best" \
     ytap="yta --audio-format mp3 -o  '%(playlist_index)s-%(title)s.%(ext)s'" \
-	ffmpeg="ffmpeg -hide_banner" \
-	nnn="nnn -a" \
-	lsblk='lsblk -o name,size,type,mountpoint,label' \
-	lsblkv='lsblk -o name,size,type,fstype,mountpoint,label,uuid' \
-	df='df --total -h' \
-	bat='PAGER="less -R" bat' \
-	rmg='MESA_GL_VERSION_OVERRIDE=3.3 RMG' \
+  ffmpeg="ffmpeg -hide_banner" \
+  nnn="nnn -a" \
+  lsblk='lsblk -o name,size,type,mountpoint,label' \
+  lsblkv='lsblk -o name,size,type,fstype,mountpoint,label,uuid' \
+  df='df --total -h' \
+  bat='PAGER="less -R" bat' \
+  rmg='MESA_GL_VERSION_OVERRIDE=3.3 RMG' \
     wget='wget --hsts-file=.local/share/wget-hsts' \
-	stig='stig -c ~/.config/pipx/rc'
+  stig='stig -c ~/.config/pipx/rc' \
+    wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
+
 
 # Colorize commands when possible
 alias \
-	ls="ls -hN --color=auto" \
-	grep="grep --color=auto" \
-	diff="diff --color=auto" \
-	ccat="highlight --out-format=ansi --force" \
-	less="less -r"
+  ls="ls -hN --color=auto" \
+  grep="grep --color=auto" \
+  diff="diff --color=auto" \
+  ccat="highlight --out-format=ansi --force" \
+  less="less -r"
 
 # Others
 alias \
-	la="lsd -la" \
-	ll="lsd -l" \
-	lsa="lsd -a" \
-	vim="nvim -u ~/.config/nvim/minimal.vim" \
-	scim="sc-im" \
-	wm-name="xprop | grep 'WM_NAME'" \
-	film="mpv --sub-auto=all --sub-file-paths=Subs" \
+  la="lsd -la" \
+  ll="lsd -l" \
+  lsa="lsd -a" \
+  vim="nvim -u ~/.config/nvim/minimal.vim" \
+  scim="sc-im" \
+  wm-name="xprop | grep 'WM_NAME'" \
+  film="mpv --sub-auto=all --sub-file-paths=Subs" \
 
 # Cleaning
 alias \
     tmux="tmux -f ~/.config/tmux/tmux.conf" \
-    abook=abook --config "$XDG_CONFIG_HOME"/abookrc --datafile "$XDG_DATA_HOME"/abook/addressbook \
+    abook='abook --config ~/.config/abook/abookrc --datafile ~/.local/share/abook/addressbook' \
     mbsync=mbsync -c "$XDG_CONFIG_HOME"/mbsyncrc \
     wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
 
 fr() { # FZF Repos
-	choices=$(find "$HOME"/repos/ -maxdepth 2 -type d)
-	cd "$(echo "$choices" | fzf --layout=reverse --height 40%)" || exit 1
+  choices=$(find "$HOME"/repos/ -maxdepth 2 -type d)
+  cd "$(echo "$choices" | fzf --layout=reverse --height 40%)" || exit 1
 }
 
 allatexcomp() { # Compile all latex documents in a directory
-	for file in $(ls | grep ".tex")
-	do
-		xelatex "$file"
-		xelatex "$file"
-		texclear "$file"
-	done
+  for file in $(ls | grep ".tex")
+  do
+    xelatex "$file"
+    xelatex "$file"
+    texclear "$file"
+  done
 }
 
 # vim: filetype=sh
