@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if pgrep screenkey; then
-	pkill -SIGTERM screenkey
+  pkill -SIGTERM screenkey
 else
-	screenkey
+  screenkey
 fi

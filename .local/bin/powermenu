@@ -1,54 +1,54 @@
 #!/bin/bash
 
 check() {
-	base="Something is still running :\n"
-	while IFS=$'\n' read -r line
-	do
-		if pgrep "$line"
-		then
-			list+="- $line running\n"
-		fi
-	done < "$HOME"/.local/share/scripts/proglist
-	if mpc | grep playing
-	then
-		mpd_status="MPD Playing : Yes"
-	else
-		mpd_status="MPD Playing : No"
-	fi
-	if [ -n "$list" ]
-	then
-		dunstify --icon=~/.local/share/scripts/nope.png "Nope !" "$base$list$mpd_status"
+  base="Something is still running :\n"
+  while IFS=$'\n' read -r line
+  do
+    if pgrep "$line"
+    then
+      list+="- $line running\n"
+    fi
+  done < "$HOME"/.local/share/scripts/proglist
+  if mpc | grep playing
+  then
+    mpd_status="MPD Playing : Yes"
+  else
+    mpd_status="MPD Playing : No"
+  fi
+  if [ -n "$list" ]
+  then
+    dunstify --icon=~/.local/share/scripts/nope.png "Nope !" "$base$list$mpd_status"
 
-		return 1
-	else
-		return 0
-	fi
+    return 1
+  else
+    return 0
+  fi
 }
 
 # menu=$( rofi -theme ~/.config/rofi/themes/mpdmenu.rasi -sep "|" -dmenu -i -p 'Menu' -width 10 -hide-scrollbar -line-padding 4 -padding 20 -lines 4 <<< " Lock| Logout| Reboot| Force Shutdown| Shutdown")
 menu=$(printf " Lock\n Logout\n Reboot\n Force Shutdown\n Shutdown" | dmenu -c -bw 1 -l 5)
 
 case $menu in
-	*Lock)
-		/home/luc/.local/bin/lock.sh;;
-	*Logout)
-		if check
-		then
-			pkill -KILL "$(pgrep -u "$(id -u)" -nf 'clipmenud$')"
-			bspc quit || pkill -SIGQUIT dwm
-		fi;;
-	*Reboot)
-		check
-		if check
-		then
-			systemctl reboot
-		fi;;
-	*Force*)
-		systemctl -i poweroff
-		;;
-	*Shutdown)
-		if check
-		then
-			systemctl -i poweroff
-		fi;;
+  *Lock)
+    /home/luc/.local/bin/lock.sh;;
+  *Logout)
+    if check
+    then
+      pkill -KILL "$(pgrep -u "$(id -u)" -nf 'clipmenud$')"
+      bspc quit || pkill -SIGQUIT dwm
+    fi;;
+  *Reboot)
+    check
+    if check
+    then
+      systemctl reboot
+    fi;;
+  *Force*)
+    systemctl -i poweroff
+    ;;
+  *Shutdown)
+    if check
+    then
+      systemctl -i poweroff
+    fi;;
 esac

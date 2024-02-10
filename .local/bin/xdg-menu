@@ -1,9 +1,0 @@
-#!/bin/sh
-
-FILE="$HOME/.cache/xmenu"
-
-if [ -f "$FILE" ]; then
-	cat "$FILE"
-else
-	xdg-xmenu
-fi

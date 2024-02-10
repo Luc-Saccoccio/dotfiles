@@ -2,7 +2,7 @@
 
 if [ $# -eq 0 ]
 then
-	sh -c 'col -bx | bat -l man -p'
+  sh -c 'col -bx | bat -l man -p'
 else
-	cat "$1" | col -bx | bat --language man --style plain
+  cat "$1" | col -bx | bat --language man --style plain
 fi

@@ -2,27 +2,27 @@
 
 while getopts 'sd' c
 do
-	case $c in
-		s) menu="nsxiv" ;;
-		d) menu="dmenu" ;;
-		*) printf "Unkown Argument\n" ;;
-	esac
+  case $c in
+    s) menu="nsxiv" ;;
+    d) menu="dmenu" ;;
+    *) printf "Unkown Argument\n" ;;
+  esac
 done
 
 if [ "$menu" = "nsxiv" ]; then
-	walls=$(nsxiv -t -o -r -g 750x750+585+165 "$WALLPAPER" | xargs)  # running nsxiv in thumbnail mode.
-	wall1=$(printf "%s" "$walls" | grep -o '[^\ ]*$') # Only print the last marked Wallpaper
+  walls=$(nsxiv -t -o -r -g 750x750+585+165 "$WALLPAPER" | xargs)  # running nsxiv in thumbnail mode.
+  wall1=$(printf "%s" "$walls" | grep -o '[^\ ]*$') # Only print the last marked Wallpaper
 else
-	wall1=$(find "$WALLPAPER" | sort | dmenu -p "Wallpaper: " -l 7 | xargs)
+  wall1=$(find "$WALLPAPER" | sort | dmenu -p "Wallpaper: " -l 7 | xargs)
 fi
 
 
 # if no picture is marked in nsxiv, exit.
 if [ -z "$wall1" ]
 then
-	exit 0
+  exit 0
 else
-	$SingleWallMenu
+  $SingleWallMenu
 fi
 
 SingleWallMenu="dmenu -c -bw 3 -l 5 -p Options"
@@ -31,9 +31,9 @@ SingleWallOptions="fill"
 
 if [ -z "$SingleWallOptions" ]
 then
-	exit 0
+  exit 0
 else
-	feh --bg-"$SingleWallOptions" "$wall1" && /home/luc/.local/bin/livewallpaper clear
+  feh --bg-"$SingleWallOptions" "$wall1" && /home/luc/.local/bin/livewallpaper clear
 fi
 
 echo "$wall1" >> "$WALLPAPER"/.wall-list

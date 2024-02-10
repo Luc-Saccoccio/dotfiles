@@ -7,22 +7,22 @@ base="${file%.*}"
 cd "$dir" || exit
 
 textype() { \
-	xelatex --output-directory="$dir" "$base"
+  xelatex --output-directory="$dir" "$1"
 }
 
 case "$file" in
         *\.ms) refer -PS -e "$file" | groff -me -ms -kept -T pdf > "$base".pdf ;;
-	*\.mom) refer -PS -e "$file" | groff -mom -kept -T pdf > "$base".pdf ;;
-	*\.[0-9]) refer -PS -e "$file" | groff -mandoc -T pdf > "$base".pdf ;;
-	*\.[rR]md) Rscript -e "require(rmarkdown); rmarkdown::render('$file')" ;;
-	*\.tex) textype "$file" ;;
-	*\.md) pandoc "$file" --pdf-engine=xelatex -o "$base".pdf ;;
-	*config.h) make;;
-	*\.c) cc "$file" -o "$base" && "$base";;
-	*\.cpp) c++ "$file" -o "$base" && "$base" ;;
-	*\.py) python "$file" ;;
-	*\.go) go run "$file" ;;
-	*\.sent) setsid sent "$file" 2>/dev/null & ;;
-	*\.dot|*\.gv) dot "$file" -Tps2 -o "$base".ps | ps2pdf "$base".ps ;;
-	*) sed 1q "$file" | grep "^#!/" | sed "s/^#!//" | xargs -r -I % "$file" ;;
+  *\.mom) refer -PS -e "$file" | groff -mom -kept -T pdf > "$base".pdf ;;
+  *\.[0-9]) refer -PS -e "$file" | groff -mandoc -T pdf > "$base".pdf ;;
+  *\.[rR]md) Rscript -e "require(rmarkdown); rmarkdown::render('$file')" ;;
+  *\.tex) textype "$file" ;;
+  *\.md) pandoc "$file" --number-sections --pdf-engine=xelatex -o "$base".pdf ;;
+  *config.h) make;;
+  *\.c) cc "$file" -o "$base" && "$base";;
+  *\.cpp) c++ "$file" -o "$base" && "$base" ;;
+  *\.py) python "$file" ;;
+  *\.go) go run "$file" ;;
+  *\.sent) setsid sent "$file" 2>/dev/null & ;;
+  *\.dot|*\.gv) dot "$file" -Tps2 -o "$base".ps | ps2pdf "$base".ps ;;
+  *) sed 1q "$file" | grep "^#!/" | sed "s/^#!//" | xargs -r -I % "$file" ;;
 esac

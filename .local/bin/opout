@@ -7,7 +7,7 @@ basename="$(echo "$1" | sed 's/\.[^\/.]*$//')"
 BROWSER="surf"
 
 case "$1" in
-	*.tex|*.md|*.rmd|*.ms|*.me|*.mom|*.dot|*.gv) setsid "zathura" "$basename".pdf >/dev/null 2>&1 & ;;
-	*.html|*.Rmd) setsid "$BROWSER" "$basename".html >/dev/null 2>&1 & ;;
-	*.sent) setsid sent "$1" >/dev/null 2>&1 & ;;
+  *.tex|*.md|*.rmd|*.ms|*.me|*.mom|*.dot|*.gv) setsid "zathura" "$basename".pdf >/dev/null 2>&1 & ;;
+  *.html|*.Rmd) setsid "$BROWSER" "$basename".html >/dev/null 2>&1 & ;;
+  *.sent) setsid sent "$1" >/dev/null 2>&1 & ;;
 esac

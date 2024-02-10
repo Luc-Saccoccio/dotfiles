@@ -1,5 +1,5 @@
 #!/bin/sh
 
 while true ; do
-	mpc idle player >/dev/null && (mpc status | grep "\[playing\]" > /dev/null) && mpd_cover
+  mpc idle player >/dev/null && (mpc status | grep "\[playing\]" > /dev/null) && mpd_cover
 done
