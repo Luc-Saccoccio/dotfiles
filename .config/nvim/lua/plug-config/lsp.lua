@@ -1,3 +1,20 @@
+-- Borders
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+  vim.lsp.handlers.hover, {
+    border = "single"
+  }
+)
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+  vim.lsp.handlers.signature_help, {
+    border = "single"
+  }
+)
+
+vim.diagnostic.config{
+  float = { border = "single" }
+}
+
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -50,7 +67,8 @@ function()
   -- lspconfig.ocamllsp.setup{ root_dir = vim.loop.cwd }
   lspconfig.pylsp.setup{ root_dir = vim.loop.cwd }
   lspconfig.rust_analyzer.setup{ root_dir = vim.loop.cwd }
-  lspconfig.texlab.setup{ capabilities = capabilities }
+  lspconfig.texlab.setup{}
+  lspconfig.asm_lsp.setup{ filetypes = { "asm", "vmasm", "nasm" }}
   -- lspconfig.zls.setup{ root_dir = vim.loop.cwd }
 
 end
