@@ -7,7 +7,7 @@ let g:tex_flavor="xelatex"
 set spell spelllang=fr
 autocmd VimLeave * !texclear %
 set foldmethod=indent
-set makeprg=compiler\ %
+set makeprg=latexmk
 
 function ReplaceCoordinates(startx, starty, endx, endy) range
   :%s/startx/\=a:startx/g
