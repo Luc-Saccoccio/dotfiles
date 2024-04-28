@@ -54,6 +54,7 @@ export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export GOPATH="$XDG_DATA_HOME/go"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
 export HISTFILE="$XDG_CACHE_HOME/bash/history"
+export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
 export LESSHISTFILE="/dev/null"
 export MBSYNCRC="$XDG_CONFIG_HOME/mbsyncrc"
 export MINETEST_USER_PATH="$XDG_DATA_HOME/minetest"
