@@ -113,30 +113,13 @@ local plugins = {
    'pineapplegiant/spaceduck',
   {
     'tpope/vim-fugitive',
-    cmd = "G"
-  },
-  {
-    "nvim-neorg/neorg",
-    build = ":Neorg sync-parsers",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    opts = function() return require("plug-config.neorg") end,
-    keys = {
-      { "<leader>ww", ":Neorg workspace work<cr>", desc = "Open work" },
-      { "<leader>wh", ":Neorg workspace home<cr>", desc = "Open home" },
-    },
-    cmd = "Neorg",
+    cmd = {"G", "Gvdiffsplit!"},
   },
 
-  --[[ {
-    'serenevoid/kiwi.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = function() return require("plug-config.kiwi") end,
-    keys = {
-      { "<leader>ww", ":lua require(\"kiwi\").open_wiki_index()<cr>", desc = "Open Wiki index" },
-      { "<leader>wd", ":lua require(\"kiwi\").open_diary_index()<cr>", desc = "Open Diary index" },
-      { "<leader>wn", ":lua require(\"kiwi\").open_diary_new()<cr>", desc = "Open today's Diary" },
-    },
-  }, ]]
+  {
+    'vimwiki/vimwiki',
+    keys = "<Leader>ww",
+  },
 }
 
 local options = {

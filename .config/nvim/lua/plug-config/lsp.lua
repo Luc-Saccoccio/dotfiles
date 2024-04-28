@@ -34,7 +34,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, opts) ]]
     vim.keymap.set('n', '<C-s>D', vim.lsp.buf.type_definition, opts)
-    vim.keymap.set('n', '<C-s>rn', vim.lsp.buf.rename, opts)
+    vim.keymap.set('n', '<C-s>r', vim.lsp.buf.rename, opts)
     vim.keymap.set({ 'n', 'v' }, '<C-s>ca', vim.lsp.buf.code_action, opts)
     vim.keymap.set('n', '<C-s>gr', vim.lsp.buf.references, opts)
   end,

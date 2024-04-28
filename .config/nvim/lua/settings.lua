@@ -18,6 +18,10 @@ o.relativenumber = true
 -- Files
 o.encoding = 'utf-8'
 o.fileencoding = 'utf-8'
+g.nvim_agda_settings = {
+  agda = "/home/luc/.local/bin/agda",
+}
+g.asmsyntax = "nasm"
 
 -- LSP
 bo.omnifunc = 'v:lua.vim.lsp.omnifunc'
@@ -40,14 +44,10 @@ o.title = true
 o.mouse = 'a'
 cmd('colorscheme base16-seti')
 o.number = true
-g.vimtex_compiler_engine = 'xelatex'
 g.c_syntax_for_h = true
 o.foldmethod = 'indent'
 g.python3_host_prog = "/usr/bin/python3"
 g.python_host_prog = "/usr/bin/python"
-g.nvim_agda_settings = {
-  agda = "/home/luc/.local/bin/agda",
-}
 
 
 g.tmuxline_preset = {
@@ -60,6 +60,12 @@ g.tmuxline_preset = {
       y    = {'%T', '%a', '%Y'},
       z    = '#(battery)'}
 
+g.vimwiki_list = {
+   { path = '~/notes/home',
+   path_html = '~/notes/home/html'},
+   { path = '~/notes/work',
+   path_html = '~/notes/work/html'}}
+
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "TelescopeResults",
   command = "setlocal nofoldenable",
@@ -69,11 +75,7 @@ cmd('autocmd BufEnter *.Rmd set spell spelllang=fr')
 cmd('autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %')
 cmd('autocmd FileType ocaml,haskell inoremap ,l λ')
 cmd('autocmd BufWritePre * :%s/\\s\\+$//e')
-cmd('command C !compiler %')
 cmd('command O !opout %')
-cmd('command CO !compiler % && opout %')
-cmd('hi NormalFloat guifg=#ecf0c1 ctermfg=255 guibg=#0f111b ctermbg=233 gui=NONE cterm=NONE')
-cmd('hi FloatBorder guifg=#ecf0c1 ctermfg=255 guibg=#0f111b ctermbg=233 gui=NONE cterm=NONE')
 cmd([[
 command -bar Hexmode call ToggleHex()
 
@@ -134,3 +136,7 @@ augroup Binary
         \  unlet oldma | unlet oldro |
         \ endif
 augroup END]])
+
+-- spaceduck
+--[[ cmd('hi NormalFloat guifg=#ecf0c1 ctermfg=255 guibg=#0f111b ctermbg=233 gui=NONE cterm=NONE')
+cmd('hi FloatBorder guifg=#ecf0c1 ctermfg=255 guibg=#0f111b ctermbg=233 gui=NONE cterm=NONE') ]]
