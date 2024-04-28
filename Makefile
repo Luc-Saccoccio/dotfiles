@@ -62,6 +62,7 @@ catgirl: ## Init catgirl IRC client
 desktop: ## Init all dekstop files related settings
 	rm -f $(HOME)/.config/mimeapps.list
 	$(LN) ${PWD}/.config/mimeapps.list ${HOME}/.config/mimeapps.list
+	mkdir -p $(HOME)/.local/share/applications
 	for file in html img mimeinfo pdf surf svg tab text video; do \
 		rm -f $(HOME)/.local/share/applications/$$file.desktop; \
 		$(LN) ${PWD}/.local/share/applications/$$file.desktop ${HOME}/.local/share/applications/$$file.desktop; \
@@ -134,7 +135,7 @@ nvim: ## Init nvim editor
 	rm -f $(HOME)/.config/$@
 	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 	$(LN) ${PWD}/.config/pycodestyle ${HOME}/.config/pycodestyle
-	$(LN) ${PWD}/.pylintrc ${HOME}/.pylintrc
+	$(LN) ${PWD}/.config/pylintrc ${HOME}/.config/pylintrc
 
 picom: ## Init picom compositor
 	rm -f $(HOME)/.config/$@
@@ -170,8 +171,8 @@ vimus: ## Init vimus mpd interface
 
 X: ## Init Xmodmap and Xresources
 	rm -f $(HOME)/{.Xmodmap,.Xresources}
-	$(LN) ${PWD}/.Xmodmap ${HOME}/.config/X11/xresources
-	$(LN) ${PWD}/.config/X11/xresources ${HOME}/.config/X11/xresources
+	$(LN) ${PWD}/.Xmodmap ${HOME}/.Xmodmap
+	$(LN) ${PWD}/.config/X11 ${HOME}/.config/X11
 
 xmonad: ## Init xmonad WM
 	rm -f $(HOME)/.config/$@

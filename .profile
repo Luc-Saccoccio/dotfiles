@@ -64,6 +64,7 @@ export PULSE_COOKIE="$HOME/.cache/pulse-cookie"
 export PYLINTHOME="$XDG_CACHE_HOME/pylint"
 export PYTHONSTARTUP="/etc/python/pythonrc"
 export QT_QPA_PLATFORMTHEME=gtk2
+export RENPY_PATH_TO_SAVES="$XDG_DATA_HOME"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export SQLITE_HISTORY="$XDG_CACHE_HOME/sqlite_history"
 export STACK_ROOT="$XDG_DATA_HOME/stack"
@@ -76,6 +77,7 @@ export XAUTHORITY="$XDG_CONFIG_HOME/X11/Xauthority"
 export XCURSOR_PATH="/usr/share/icons:$XDG_DATA_HOME/icons"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
 export ZDOTDIR="$HOME/.config/zsh"
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 
 # FIXME
 # export XDG_RUNTIME_DIR="/run/user/1000"
