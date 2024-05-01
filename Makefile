@@ -59,6 +59,10 @@ catgirl: ## Init catgirl IRC client
 	rm -f $(HOME)/.config/$@
 	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
 
+cmus: ## Init C* Music Player
+	rm -f $(HOME)/.config/$@
+	$(LN) ${PWD}/.config/$@ ${HOME}/.config/$@
+
 desktop: ## Init all dekstop files related settings
 	rm -f $(HOME)/.config/mimeapps.list
 	$(LN) ${PWD}/.config/mimeapps.list ${HOME}/.config/mimeapps.list
