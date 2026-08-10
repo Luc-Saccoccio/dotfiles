@@ -1,10 +1,10 @@
-include config.mk
-
-BASE=$(PWD)
-SCRIPTS=$(HOME)/.local/bin
+# Commands
 MKDIR=mkdir -p
 LN=ln -vsfn
 PKGINSTALL=sudo -E pacman --noconfirm -S
+
+# OS
+OS=$(shell grep '^ID' /etc/os-release | cut -d \" -f2)
 
 .DEFAULT_GOAl := help
 .PHONY: allinstall update allbackup
@@ -21,7 +21,7 @@ pacmancolors: ## Make pacman and yay colorful and adds eye candy on the progress
 pac-install: ## Install arch linux packages using pacman
 	$(PKGINSTALL) --needed - < $(PWD)/archlinux/pacmanlist
 
-aur : ## Install arch linux AUR packages using yay
+aur: ## Install arch linux AUR packages using yay
 	yay -S --needed - < $(PWD)/archlinux/aurlist
 
 base:
@@ -37,10 +37,10 @@ yay: git base repos ## Install yay
 backup: ## Backup system packages
 	$(MKDIR) $(PWD)/${OS}
 ifeq ($(OS), archlinux)
-	pacman -Qnq > $(PWD)/archlinux/pacmanlist
-	pacman -Qqem > $(PWD)/archlinux/aurlist
+	pacman -Qnq > $(PWD)/${OS}/pacmanlist
+	pacman -Qqem > $(PWD)/${OS}/aurlist
 else
-	xpkg > ${PWD}/voidlinux/packages-list
+	xpkg > ${PWD}/${OS}/packages-list
 endif
 
 bin: ## Init all my scripts
@@ -199,6 +199,7 @@ zsh: ## Init zsh shell
 	$(LN) ${PWD}/.profile ${HOME}/.profile
 	$(LN) ${PWD}/.config/zsh ${HOME}/.config/zsh
 	# sudo echo 'export ZDOTDIR="\$HOME"/.config/zsh' > /etc/zsh/zshenv -- TODO
+	# sudo echo "source /usr/share/zsh/plugins/xbps-command-not-found/xbps-command-not-found.zsh" > /etc/zsh/zshrc -- TODO
 
 texbackup: ## Backup TeX packages
 	$(MKDIR) $(PWD)/${OS}
@@ -212,7 +213,7 @@ repos: git ## Create the repos directory and clone a few repos
 	$(MKDIR) $(HOME)/repos/externals
 
 .ONESHELL:
-ext-repos: repos
+ext-repos: repos ## Clone some external repositories
 	cd $(HOME)/repos/externals
 	git clone https://github.com/tsoding/boomer
 	git clone https://notabug.org/PangolinTurtle/BLAG-fortune
@@ -245,7 +246,7 @@ tabbed: ## Clone tabbed
 	cd $(HOME)/repos/perso
 	git clone https://github.com/Luc-Saccoccio/tabbed
 
-suckless: dmenu dwm st dwmblocks tabbed
+suckless: dmenu dwm st dwmblocks tabbed ## Alias for all suckless tools
 
 testpath: ## Echo PATH
 	PATH=$$PATH
@@ -253,15 +254,10 @@ testpath: ## Echo PATH
 	GOPATH=$$GOPATH
 	@echo $$GOPATH
 
-update:
+update: ## Reminder for update commands
 	@echo "Python: pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip3 install -U"
 	@echo "Arch Linux: yay -S"
 	@echo "Void Linux: xi -Su"
 	@echo "LaTeX: tlmgr update --all"
 
-allinstall: install aur pip piprecover tex bin bspwm catgirl desktop dunst git i3 mpd mpv ncmpcpp neomutt newsboat nvim picom polybar proxyman sxhkd tmux X xmonad zathura zsh repos suckless
-allconfig: bin bspwm catgirl desktop dunst git i3 mpd mpv ncmpcpp neomutt newsboat nvim picom polybar proxyman sxhkd tmux X xmonad zathura zsh
-
-archinstall: install nvim neomutt suckless yay pacmancolors aur bin
-
-allbackup: backup texbackup
+allbackup: backup texbackup ## Backup packages and TeX packages
