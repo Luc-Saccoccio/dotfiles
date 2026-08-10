@@ -4,7 +4,7 @@
 # Defaults Programs
 export EDITOR="/usr/bin/nvim"
 export TERMINAL="st"
-export BROWSER="firefox"
+export BROWSER="floorp"
 export READER="zathura"
 export PAGER="less -r"
 export MANPAGER="man-pager"
@@ -16,8 +16,8 @@ export MANPAGER="man-pager"
 # export MOZ_X11_EGL=1
 
 # Path & MAN
-export PATH=/home/luc/.local/share/opam/default/bin:/home/luc/.local/share/cargo/bin:/home/luc/.local/share/go/bin:/home/luc/.local/share/gem/ruby/3.0.0/bin:/home/luc/.local/bin:/home/luc/.local/share/elan/bin:$PATH
-export MANPATH=/usr/share/man:/usr/local/share/man:$MANPATH
+export PATH=/home/luc/.local/share/cabal/bin:/home/luc/.local/bin:/home/luc/.local/share/elan/bin:$PATH
+export MANPATH=/usr/share/man:/usr/local/share/man:$XDG_DATA_HOME/man:$MANPATH
 
 
 # XDG
@@ -48,6 +48,7 @@ export GHCUP_USE_XDG_DIRS="yes"
 # Cleanup
 export CABAL_DIR="$XDG_DATA_HOME/cabal"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export DVDCSS_CACHE="$XDG_DATA_HOME"/dvdcss
 export ELAN_HOME="$XDG_DATA_HOME/elan"
 export FCEUX_HOME="$XDG_CONFIG_HOME/fceux"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"

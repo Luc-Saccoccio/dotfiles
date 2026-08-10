@@ -16,9 +16,8 @@ alias \
   df='df --total -h' \
   bat='PAGER="less -R" bat' \
   rmg='MESA_GL_VERSION_OVERRIDE=3.3 RMG' \
-    wget='wget --hsts-file=.local/share/wget-hsts' \
   stig='stig -c ~/.config/pipx/rc' \
-    wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
+  wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
 
 
 # Colorize commands when possible
@@ -35,29 +34,20 @@ alias \
   ll="lsd -l" \
   lsa="lsd -a" \
   vim="nvim -u ~/.config/nvim/minimal.vim" \
-  scim="sc-im" \
   wm-name="xprop | grep 'WM_NAME'" \
-  film="mpv --sub-auto=all --sub-file-paths=Subs" \
+  film="mpv --sub-auto=all --sub-file-paths=Subs"
+  # scim="sc-im"
 
 # Cleaning
 alias \
     tmux="tmux -f ~/.config/tmux/tmux.conf" \
     abook='abook --config ~/.config/abook/abookrc --datafile ~/.local/share/abook/addressbook' \
-    mbsync=mbsync -c "$XDG_CONFIG_HOME"/mbsyncrc \
-    wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
+    mbsync='mbsync -c "$XDG_CONFIG_HOME"/mbsyncrc' \
+    wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
 
 fr() { # FZF Repos
   choices=$(find "$HOME"/repos/ -maxdepth 2 -type d)
   cd "$(echo "$choices" | fzf --layout=reverse --height 40%)" || exit 1
-}
-
-allatexcomp() { # Compile all latex documents in a directory
-  for file in $(ls | grep ".tex")
-  do
-    xelatex "$file"
-    xelatex "$file"
-    texclear "$file"
-  done
 }
 
 # vim: filetype=sh

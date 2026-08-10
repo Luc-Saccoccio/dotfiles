@@ -20,6 +20,9 @@ HISTSIZE=1000000
 SAVEHIST=1000000
 setopt HIST_IGNORE_SPACE
 
+# GPG is a dumb nasty little program
+export GPG_TTY=$(tty)
+
 # Load aliases
 [ -f "$HOME/.config/zsh/aliasrc" ] && source "$HOME/.config/zsh/aliasrc"
 
@@ -79,7 +82,6 @@ zle -N zle-line-init
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
-source /home/luc/.config/zsh/completions
 source /usr/share/fzf/key-bindings.zsh
 
 # opam configuration
@@ -87,4 +89,3 @@ test -r /home/luc/.opam/opam-init/init.zsh && . /home/luc/.opam/opam-init/init.z
 
 # ghcup configuration
 [ -f "/home/luc/.local/share/ghcup/env" ] && source "/home/luc/.local/share/ghcup/env" # ghcup-env
-# vim: ft=zsh
