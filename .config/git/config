@@ -13,12 +13,6 @@
   style = diff3
   tool = nvim
 
-[mergetool]
-  prompt = false
-
-[mergetool "nvim"]
-  cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
-
 [diff]
   tool = nvim
 
@@ -43,14 +37,23 @@
 
 [credential]
   helper = cache
+
 [init]
   defaultBranch = master
 
 [sendemail]
-  smtpServer = /usr/bin/msmtp
-  smtpServerOption = -a
-  smtpServerOption = lucsaccoccio@disroot.org
+  smtpserver = disroot.org
+  smtpuser = lucsaccoccio@disroot.org
+  smtpencryption = tls
+  smtpserverport = 587
   annotate = yes
   confirm = auto
+
 [format]
   signOff = yes
+
+[mergetool]
+  prompt = false
+
+[mergetool "nvim"]
+  cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
