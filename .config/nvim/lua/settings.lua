@@ -64,7 +64,11 @@ g.vimwiki_list = {
    { path = '~/notes/home',
    path_html = '~/notes/home/html'},
    { path = '~/notes/work',
-   path_html = '~/notes/work/html'}}
+   path_html = '~/notes/work/html'},
+   { path = '~/.local/share/vimwiki',
+   path_html = '~/.local/share/vimwiki/html'},
+   { path = '~/.local/share/vimwikin',
+   path_html = '~/.local/share/vimwikin/html'}}
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "TelescopeResults",
@@ -74,7 +78,7 @@ vim.api.nvim_create_autocmd("FileType", {
 cmd('autocmd BufEnter *.Rmd set spell spelllang=fr')
 cmd('autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %')
 cmd('autocmd FileType ocaml,haskell inoremap ,l λ')
-cmd('autocmd BufWritePre * :%s/\\s\\+$//e')
+-- cmd('autocmd BufWritePre * :%s/\\s\\+$//e')
 cmd('command O !opout %')
 cmd([[
 command -bar Hexmode call ToggleHex()

@@ -4,7 +4,6 @@ set tabstop=2
 set smartindent
 set autoindent
 set foldmethod=indent
-set makeprg=compiler\ %
 set formatprg=pandoc\ -t\ markdown-simple_tables
 
 inoremap ,cd ⋅

@@ -18,6 +18,15 @@ local plugins = {
   },
 
   {
+      "lervag/vimtex",
+      ft = 'tex',
+      init = function()
+        -- VimTeX configuration goes here, e.g.
+        vim.g.vimtex_view_method = "zathura"
+      end
+    },
+
+  {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     event = 'BufEnter',
@@ -26,9 +35,17 @@ local plugins = {
     opts = function() return require("plug-config.treesitter") end
   },
 
-  {
+  --[[ {
     'ashinkarov/nvim-agda',
     ft = 'agda'
+  }, ]]
+  {
+    'isovector/cornelis',
+    name = 'cornelis',
+    ft = 'agda',
+    build = 'stack install',
+    dependencies = {'neovimhaskell/nvim-hs.vim', 'kana/vim-textobj-user'},
+    version = '*',
   },
 
   {
@@ -78,7 +95,8 @@ local plugins = {
 
   {
     'norcalli/nvim-colorizer.lua',
-    opts = function() return require("plug-config.colorizer") end
+    opts = function() return require("plug-config.colorizer") end,
+    cmd = "ColorizerAttachToBuffer"
   },
 
   {
@@ -90,7 +108,6 @@ local plugins = {
   {
     'neovim/nvim-lspconfig',
     config = require("plug-config.lsp"),
-    cmd = "LspStart",
   },
 
   {
@@ -113,7 +130,7 @@ local plugins = {
    'pineapplegiant/spaceduck',
   {
     'tpope/vim-fugitive',
-    cmd = {"G", "Gvdiffsplit!"},
+    cmd = {"G", }, -- "Gvdiffsplit!"}, doesn't work ??
   },
 
   {
@@ -126,6 +143,7 @@ local options = {
   defaults = {
     lazy = true,
   },
+  git = { timeout = 600 },
   performance = {
     cache = { enabled = true },
     reset_packpath = true, -- reset the package path to improve startup time

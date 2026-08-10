@@ -1,15 +1,7 @@
 -- Borders
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-  vim.lsp.handlers.hover, {
-    border = "single"
-  }
-)
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.buf.hover({ border = "single" })
 
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-  vim.lsp.handlers.signature_help, {
-    border = "single"
-  }
-)
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.buf.signature_help({ border = "single" })
 
 vim.diagnostic.config{
   float = { border = "single" }
@@ -43,13 +35,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
 vim.api.nvim_create_autocmd('ModeChanged', {
   pattern = {'n:i', 'v:s'},
   desc = 'Disable diagnostics in insert and select mode',
-  callback = function(e) vim.diagnostic.disable(e.buf) end
+  callback = function(e) vim.diagnostic.enable(false, {bufnr = e.buf}) end
 })
 
 vim.api.nvim_create_autocmd('ModeChanged', {
   pattern = 'i:n',
   desc = 'Enable diagnostics when leaving insert mode',
-  callback = function(e) vim.diagnostic.enable(e.buf) end
+  callback = function(e) vim.diagnostic.enable(true, {bufnr = e.buf}) end
 })
 
 
@@ -57,18 +49,15 @@ return
 
 function()
 
-  -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
-  local lspconfig = require('lspconfig')
-
-  lspconfig.clangd.setup{}
-  lspconfig.gopls.setup{}
-  lspconfig.hls.setup{}
-  lspconfig.leanls.setup{}
-  -- lspconfig.ocamllsp.setup{ root_dir = vim.loop.cwd }
-  lspconfig.pylsp.setup{ root_dir = vim.loop.cwd }
-  lspconfig.rust_analyzer.setup{ root_dir = vim.loop.cwd }
-  lspconfig.texlab.setup{}
-  lspconfig.asm_lsp.setup{ filetypes = { "asm", "vmasm", "nasm" }}
-  -- lspconfig.zls.setup{ root_dir = vim.loop.cwd }
+  vim.lsp.enable('clangd')
+  vim.lsp.enable('gopls')
+  vim.lsp.enable('hls')
+  vim.lsp.enable('leanls')
+  -- vim.lsp.enable('ocamllsp', { root_dir = vim.loop.cwd })
+  vim.lsp.enable('pylsp', { root_dir = vim.loop.cwd })
+  vim.lsp.enable('rust_analyzer', { root_dir = vim.loop.cwd })
+  vim.lsp.enable('texlab')
+  vim.lsp.enable('asm_lsp', { filetypes = { "asm", "vmasm", "nasm" }})
+  -- vim.lsp.enable('zls', { root_dir = vim.loop.cwd })
 
 end

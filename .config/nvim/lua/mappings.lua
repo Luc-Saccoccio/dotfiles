@@ -43,6 +43,10 @@ nest.applyKeymaps({
       { 'r', "<cmd>Telescope oldfiles<CR>" },
       { 'b', "<cmd>Telescope buffers<CR>" },
     }},
+
+    { 't', { -- Tabs
+        { 't', "<cmd>tabnew<CR>" },
+    }},
   }},
   { "<C-", {
     { "w>", { -- Windows
@@ -57,7 +61,8 @@ nest.applyKeymaps({
   { "<Esc>", "<C-\\><C-n>", mode='t' },
   { "<F5>", ":term<CR>" },
   { "g", {
-    { "d", vim.lsp.buf.definition },
+    { 'b', vim.lsp.buf.code_action },
+    { 'd', vim.lsp.buf.definition },
     { 'l', vim.diagnostic.open_float },
   }},
   { mode='i', options = { expr = true, noremap = true, silent = false }, {
