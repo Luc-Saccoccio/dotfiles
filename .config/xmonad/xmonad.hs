@@ -3,6 +3,7 @@ module Main where
 import           Data.Char                           (toUpper)
 import qualified Data.Map                            as M
 import           Graphics.X11.ExtraTypes.XF86
+import           System.Environment                  (getEnv)
 import           System.Exit
 import           System.IO
 import           System.Process
@@ -10,7 +11,6 @@ import           Text.Printf
 import           XMonad
 import           XMonad.Actions.GridSelect
 import           XMonad.Actions.PhysicalScreens
-import           XMonad.Actions.Search
 import           XMonad.Actions.UpdatePointer
 import           XMonad.Config.Desktop
 import           XMonad.Hooks.DynamicLog
@@ -45,9 +45,6 @@ import           XMonad.Util.Loggers
 import           XMonad.Util.Run                     (spawnPipe)
 import           XMonad.Util.SpawnOnce
 
-
-instance HasColorizer SearchEngine where
-  defaultColorizer (SearchEngine n _) = defaultColorizer n
 
 newtype WLState = WLState [FilePath]
 
@@ -102,9 +99,8 @@ chooseWallpaperOnScreen :: WallpaperConf -> ScreenId -> WindowSet -> X ()
 chooseWallpaperOnScreen wd nScreens ws = do
   (_, Just hout, _, handle) <- io $ createProcess ((shell "ls | sort | dmenu -p 'Wallpaper: ' -l 7") { std_out = CreatePipe, cwd = Just wd })
   wall <- words <$> io (hGetContents' hout)
-  if wall /= [] then
-    setWallpaperOnScreen wd nScreens (W.screen $ W.current ws) $ head wall
-  else return ()
+  when (wall /= [])
+    $ setWallpaperOnScreen wd nScreens (W.screen $ W.current ws) $ head wall
 
 randomWallpaper :: WallpaperConf -> ScreenId -> WindowSet -> X ()
 randomWallpaper wd nScreens ws = do
@@ -153,7 +149,7 @@ myXPConfig = def
   changeModeKey = xK_twosuperior }
 
 buildGSConfig :: (a -> Bool -> X (String, String)) -> GSConfig a
-buildGSConfig col = GSConfig 60 130 10 col (myFont++"9") defaultNavigation noRearranger (1/2) (1/2) "white"
+buildGSConfig col = GSConfig 60 130 10 col (myFont++"9") defaultNavigation noRearranger (1/2) (1/2) "white" True
 
 myGSConfig :: HasColorizer a => GSConfig a
 myGSConfig = buildGSConfig defaultColorizer
@@ -185,20 +181,6 @@ layoutGrid = gridselect myGSConfig . map (\x -> (x, x)) $! layouts
 choseLayout :: X ()
 choseLayout = layoutGrid >>= flip whenJust (sendMessage . JumpToLayout)
 
-searchGrid :: X (Maybe SearchEngine)
-searchGrid = gridselect myGSConfig . map f $! engines
-  where
-    maj :: String -> String
-    maj (x:xs) = toUpper x : xs
-    maj []     = []
-    f :: SearchEngine -> (String, SearchEngine)
-    f s@(SearchEngine name _) = (maj name, s)
-    engines :: [SearchEngine]
-    engines = [duckduckgo, hoogle, github, hackage, imdb, alpha, mathworld, wikipedia, youtube, aur, cratesIo, flora, ncatlab, protondb, rosettacode, rustStd, sourcehut, steam, voidpgks_x86_64]
-
-choseSearch :: X ()
-choseSearch = searchGrid >>= flip whenJust (promptSearch myXPConfig)
-
 keyBindings :: ScreenId -> [((KeyMask, KeySym), X ())]
 keyBindings nScreens =
   [ ((shiftMask .|. myModMask, xK_a), kill),
@@ -225,7 +207,6 @@ keyBindings nScreens =
     -- Prompts
     ((myModMask, xK_Tab), goToSelected myGSConfig),
     ((myModMask, xK_space), choseLayout),
-    ((myModMask, xK_e), choseSearch),
     ((myModMask, xK_F1), manPrompt myXPConfig),
     ((myModMask, xK_F2), xmonadPrompt myXPConfig),
     ((myModMask, xK_F3), sshPrompt myXPConfig),
@@ -238,7 +219,8 @@ keyBindings nScreens =
     -- Apps
     ((shiftMask .|. myModMask, xK_m), spawn "clipmenu"),
     ((shiftMask .|. myModMask, xK_p), spawn "dmenuunicode"),
-    ((myModMask, xK_t), spawn "firefox"),
+    ((myModMask, xK_t), spawn "floorp"),
+    ((shiftMask .|. myModMask, xK_t), spawn "floorp --private-window"),
     ((myModMask, xK_p), spawn "thunar"),
     ((myModMask, xK_i), withWindowSet $ randomWallpaper myWallpaperConf nScreens),
     ((shiftMask .|. myModMask, xK_i), randomWallpapers myWallpaperConf nScreens),
@@ -255,7 +237,10 @@ keyBindings nScreens =
     ((noModMask, xF86XK_AudioMute), spawn "pulsemixer --toggle-mute"),
     ((noModMask, xF86XK_AudioMicMute), spawn "thinkpad-mutemic"),
     ((noModMask, xF86XK_AudioRaiseVolume), spawn "pulsemixer --change-volume +5"),
-    ((noModMask, xF86XK_AudioLowerVolume), spawn "pulsemixer --change-volume -5")
+    ((noModMask, xF86XK_AudioLowerVolume), spawn "pulsemixer --change-volume -5"),
+    ((noModMask, xF86XK_AudioPrev), spawn "cmus-remote -r"),
+    ((noModMask, xF86XK_AudioPlay), spawn "cmus-remote -u"),
+    ((noModMask, xF86XK_AudioNext), spawn "cmus-remote -n")
   ]
     ++ wsKeys
   where
@@ -275,15 +260,17 @@ keyBindings nScreens =
       ]
 
 myStartupHook :: X ()
-myStartupHook =
-  spawnOnce "$HOME/.fehbg" -- TODO: Load wallpapers on start too
-    >> spawnOnce "xsetroot -cursor_name left_ptr"
-    >> spawnOnce "setxkbmap -layout fr -variant azerty"
-    >> spawnOnce "picom -fb"
-    >> spawnOnce "xscreensaver &"
-    >> spawnOnce "echo > Images/wallpapers/.wall-list"
-    >> spawnOnce "xrdb ~/.config/X11/xresources"
-    >> spawnOnce "pgrep clipmenud || clipmenud &"
+myStartupHook = do
+  spawnOnce "$HOME/.fehbg"
+  spawnOnce "xsetroot -cursor_name left_ptr"
+  spawnOnce "setxkbmap -layout fr -variant azerty"
+  spawnOnce "picom -fb"
+  spawnOnce "xscreensaver --no-splash &"
+  spawnOnce "echo > images/wallpapers/.wall-list"
+  spawnOnce "xrdb ~/.config/X11/xresources"
+  spawnOnce "pgrep clipmenud || clipmenud &"
+  walls <- io (getEnv "HOME" >>= (readFile . (++"/.fehbg")))
+  XS.put . WLState . map (init . tail) . drop 3 . words . last . lines $ walls
 
 myXmobarPP :: PP
 myXmobarPP =
@@ -311,7 +298,7 @@ myManageHook = manageDocks <+> composeAll [ className =? "floating" --> doFloat'
 main :: IO ()
 main = do
   nScreens <- countScreens
-  xmobars <- sequence [statusBarPipe ("xmobar -x " ++ show i) . pure $ marshallPP si (myXmobarPP { ppExtras = [logLayoutOnScreen si, (xmobarColor "pink" "" . shorten 36) `onLogger` logTitleOnScreen si] }) | si@(S i) <- [0..nScreens-1]]
+  xmobars <- sequence [statusBarPipe ("/home/luc/.config/xmobar/xmobar -x " ++ show i) . pure $ marshallPP si (myXmobarPP { ppExtras = [logLayoutOnScreen si] }) | si@(S i) <- [0..nScreens-1]]
   xmonad . ewmh . ewmhFullscreen . docks . withSB (mconcat xmobars) $
       desktopConfig
         { modMask = mod4Mask,
